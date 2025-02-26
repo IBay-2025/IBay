@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head> 
+        <meta charset="utf-8">
+        <title>Log In</title>
+        <link rel="stylesheet" href="loginPage.css">
+        
+    </head>
+    <body>
+        </header>
+            <h1 class="header">Welcome to IBAY</h1>
+            <img src="IBAY-Logo.png" alt="Intro" width="200" class="logo">
+            
+        </header>
+        <div class="login-box">
+        <h1>Login</h1>
+        <form action="login.php" method="post">
+            <div class="textbox">
+            <input type="text" placeholder="Username" name="username" required>
+            </div>
+            <style>
+                .textbox {
+                    margin-bottom: 20px;
+                }
+            </style>
+            <div class="textbox">
+            <input type="password" placeholder="Password" name="password" required>
+            </div>
+            <style>
+                .textbox {
+                    margin-bottom: 20px;
+                }
+            </style>
+            <input type="submit" class="btn" value="Login">
+        </form>
+        
+        <a href="registerPage.php">Don't have an account? Register here</a>
+        </div>
+    </body>
+
+</html>
