@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
         <title>Sign up</title>
         <link rel="stylesheet" href="loginPage.css">
-        
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+            
     </head>
     <body>
         </header>
             <h1 class="header">Welcome to IBAY</h1>
             <img src="IBAY-Logo.png" alt="Intro" width="200" class="logo">
-            
         </header>
-        <div class="login-box">
+        <br>
+        <div id="sign-up" class="login-box">
         <h1>Sign up</h1>
         <form action="login.php" method="post">
             <div class="textbox">
                 <div class="textbox" id = "firstname">
-                    <input type="text" placeholder="Enter First Name" name="firstname" required>
+                    <input type="text" placeholder="Enter First name" name="firstname" required>
                 </div>
                 <div class="textbox" id = "surname">
                     <input type="text" placeholder="Enter Surname" name="surname" required>
                 </div>
-                <input type="text" placeholder="Enter email address" name="username" required>
+                <input type="text" placeholder="Enter Email address" name="username" required>
                 </div>
                 <style>
                     .textbox {
@@ -38,22 +40,22 @@
                 }
             </style>
             <div class="textbox">
-            <input type="password" placeholder="Create new Password" name="password" required>
-            <input type="password" placeholder="Enter Password again" name="password" required>
+            <input type="password" placeholder="Create Password" name="password" required>
+            <input type="password" placeholder="Confirm Password" name="password" required>
             </div>
             <style>
                 .textbox {
                     margin-bottom: 20px;
                 }
             </style>
-            <label for="address">Address excluding Postcode:</label>
+            <label for="address">Address (excluding Postcode):</label>
             <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
 
             <label for="postcode">Postcode:</label>
             <input type="text" id="postcode" name="postcode" required><br><br>
             
             <label for="phone">Phone Number:</label>
-            <input type="text" id="phone" name="phone"><br><br>
+            <input type="tel" id="phone" name="phone"><br><br>
 
             <label for="dob">Date of Birth:</label>
             <input type="date" id="dob" name="dob" required><br><br>
@@ -64,7 +66,10 @@
             <input type="radio" name="gender" value="other">Other
             <span class="error">* <?php echo $genderErr;?></span><br><br>
 
-            <
+            <label for="usertype">User Type:</label>
+            <input type="radio" name="usertype" value=1 required>Buyer
+            <input type="radio" name="usertype" value=0>Seller<br><br>
+            
             <input type="submit" class="btn" value="Sign Up">
             <input type="reset" class="btn" value="Reset">
             
