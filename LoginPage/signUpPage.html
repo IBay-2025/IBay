@@ -40,9 +40,10 @@
                 }
             </style>
             <div class="textbox">
-            <input type="password" placeholder="Create Password" name="password" required>
-            <input type="password" placeholder="Confirm Password" name="password" required>
+            <input type="password" placeholder="Create Password" name="password" id="password" required>
+            <input type="password" placeholder="Confirm Password" name="confirm_password" id="confirm_password" required>
             </div>
+            
             <style>
                 .textbox {
                     margin-bottom: 20px;
@@ -70,13 +71,14 @@
             <input type="radio" name="usertype" value=1 required>Buyer
             <input type="radio" name="usertype" value=0>Seller<br><br>
             
-            <input type="submit" class="btn" value="Sign Up">
+            <input type="submit" class="btn" value="Sign Up" onclick="validatePassword()">
             <input type="reset" class="btn" value="Reset">
             
         </form>
         
         
         </div>
+        <script src="login.js"></script>
     </body>
 
 </html>
