@@ -54,6 +54,20 @@ body {
     background-color:  rgba(0, 0, 0, 0.8);
     color: #fff
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    background-color: #b34b0b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #fc2807;
 }
 
 #log-in{
@@ -67,4 +81,12 @@ body {
 #firstname {
     float: left;
     margin-right: 4px;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: rgb(173, 100, 16);
 }
