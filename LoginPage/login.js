@@ -1,15 +1,4 @@
-//Delete this if necessary//
-/*window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    document.getElementById("navbar").style.top = "0";
-  } else {
-    document.getElementById("navbar").style.top = "-50px";
-  }
-}*/
-
-//Validation of password//
+//VALIDATION FOR PASSWORD//
 var password = document.getElementById("password");
 var confirmPassword = document.getElementById("confirmPassword");
 

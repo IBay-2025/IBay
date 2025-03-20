@@ -1,8 +1,11 @@
+/*//STYLESHEET FOR LOGIN PAGE//*/
+/*Styling for html*/
 html {
     height: 100%;
     margin: 0;
 }
 
+/*Styling for body*/
 body {
     display: flex;
     justify-content: center;
@@ -17,6 +20,7 @@ body {
     border: 1px solid black;
 }
 
+/*Styling for header*/
 .header {
     position: absolute;
     top: -20px;
@@ -30,12 +34,14 @@ body {
     font-weight: bold;
 }
 
+/*Media tag to align header text to right to prevent it from being hidden by logo*/
 @media screen and (max-width: 700px){
     .header {
         text-align: right;
     }
 }
 
+/*Styling for logo*/
 .logo {
     position: absolute;
     top: 0px;
@@ -46,6 +52,7 @@ body {
     background-repeat: no-repeat;
 }
 
+/*Styling for login box*/
 .login-box {
     width: 525px;
     padding: 10px 20px;
@@ -58,6 +65,8 @@ body {
     align-items: center;
 }
 
+/*/Styling for buttons/*/
+/*Default styling for button */
 .btn {
     background-color: #b34b0b;
     color: white;
@@ -66,27 +75,40 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+/*Hover styling for button*/
 .btn:hover {
     background-color: #fc2807;
 }
 
+/*Styling for text boxes*/
+.textbox {
+    margin-bottom: 20px;
+}
+
+/*Styling for main div for login*/
 #log-in{
     margin: 150px auto;
 }
 
+/*Styling for main div for sign up*/
 #sign-up{
     margin: 100px auto;
 }
 
+/*Styling for element with id first name  */
 #firstname {
     float: left;
     margin-right: 4px;
 }
 
+/*/Styling for links/*/
+/*Main styling for links*/
 a {
     color: white;
 }
 
+/*Hover styling for links*/
 a:hover {
     color: rgb(173, 100, 16);
 }
