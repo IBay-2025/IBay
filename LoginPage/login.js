@@ -45,3 +45,34 @@ confirmPassword.addEventListener('input', function () {
 
   confirmPassword.reportValidity();
 });
+
+//Event listener for validating postcode
+var postcode = document.getElementById("postcode");
+
+postcode.addEventListener('input', function () {
+  var postcodeVal = document.getElementById("postcode").value;
+  //Check if postcode is a valid UK postcode
+  if (!postcodeVal.match(/^[A-Z]{1,2}[0-9]{1,2}[A-Z]?\s?[0-9][A-Z]{2}$/)) {
+    postcode.setCustomValidity("Invalid UK postcode");
+  } else {
+    postcode.setCustomValidity('');
+  }
+
+  postcode.reportValidity();
+}) 
+
+//Event listener for validating telephone number
+var telephone = document.getElementById("phonenumber");
+
+telephone.addEventListener('input', function () {
+  var telephoneVal = document.getElementById("phonenumber").value;
+  //Check if telephone number is a valid UK telephone number
+  if (!telephoneVal.match(/^0[0-9]{10}$/)) {
+    telephone.setCustomValidity("Invalid UK telephone number");
+  } else {
+    telephone.setCustomValidity('');
+  }
+
+  telephone.reportValidity();
+})
+
