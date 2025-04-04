@@ -4,8 +4,10 @@
     <!-- HTML for head -->
     <head> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <title>Seller Page</title>
+        <!-- Link to Google CDN for jQuery -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <!-- Link to CSS file -->
         <link rel="stylesheet" href="sellerPage.css">
         <!-- Add favicon (small icon on tab) for website -->
@@ -16,10 +18,9 @@
     <body>
         <!-- HTML for header -->
         <header>
-            <img src="IBAY-Logo.png" alt="Intro" width="200" class="logo">
+            <!-- Link to go back to buyers/search page by clicking on logo-->
+            <a href="buyerPage.html"><img src="IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
             <h1>My Seller Page</h1>
-            <!-- Add link to go back to buyers/search page below-->
-            <a id="linkBack" href="">To Main Page</a>
         </header>
         <br>
 
@@ -78,10 +79,29 @@
         </form>
         </div>
         
-        <div id="view" class="content-box"> a </div>
+        <!-- HTML for content box for viewing and editing items -->
+        <!-- Use a table to display items -->
+        <div id="view" class="content-box">
+            <h1>View and Edit Items</h1>
+            <table id="itemTable">
+                <tr>
+                    <th>Item Name</th>
+                    <th>Item Price</th>
+                    <th>Item Postage</th>
+                    <th>Item Category</th>
+                    <th>Item Description</th>
+                    <th>Item Images</th>
+                    <th>Edit Item</th>
+                </tr>
+                <tbody id="itemTableBody">
+                    <!-- JavaScript will populate this table with items from the database -->
+                </tbody>
+            </table>
+        </div>
         <!--</div>-->
-        <!-- Link to JavaScript file -->
-        <script src="seller.js"></script>
+        
+        <!-- Link to JavaScript file-->
+        <script type="text/javascript" src="seller.js"></script>
 
     </body>
 
