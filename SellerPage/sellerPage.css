@@ -1,0 +1,129 @@
+/*//STYLESHEET FOR LOGIN PAGE//*/
+/*Styling for html*/
+html {
+    height: 100%;
+    margin: 0;
+}
+
+/*Styling for body*/
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;  
+    align-items: center;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    background-image: url("background_img3.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    border: 1px solid black;
+}
+
+/*Media tag to align header text to right to prevent it from being hidden by logo*/
+@media screen and (max-width: 1200px){
+    body {
+        flex-direction: column;
+    }
+}
+
+/*Styling for header*/
+header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    max-height: 80px;
+    background-color: #000;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    display: flex;
+    flex: left;
+    justify-content: space-between;
+}
+
+/*Media tag to align header text to right to prevent it from being hidden by logo*/
+@media screen and (max-width: 700px){
+    header {
+        text-align: right;
+    }
+}
+
+/*Styling for logo*/
+.logo {
+    width: 220px;
+    background-repeat: no-repeat;
+
+}
+
+/*Styling for login box*/
+.content-box {
+    width: 525px;
+    padding: 10px 20px;
+    border: 5px solid #000;
+    border-radius: 5px;
+    background-color:  rgba(0, 0, 0, 0.8);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+}
+
+/*/Styling for buttons/*/
+/*Default styling for button */
+.btn {
+    background-color: #b34b0b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*Hover styling for button*/
+.btn:hover {
+    background-color: #fc2807;
+}
+
+/*Styling for text boxes*/
+.textbox {
+    margin-bottom: 20px;
+}
+
+/*Styling for main div for login*/
+#log-in{
+    margin: 150px auto;
+}
+
+/*Styling for main div for sign up*/
+#sign-up{
+    margin: 100px auto;
+}
+
+/*Styling for element with id first name  */
+#firstname {
+    float: left;
+    margin-right: 4px;
+}
+
+#description {
+    resize: none;
+}
+
+/*/Styling for links/*/
+/*Main styling for links*/
+a {
+    color: white;
+}
+
+/*Hover styling for links*/
+a:hover {
+    color: rgb(173, 100, 16);
+}
+
+#linkBack {
+    text-align: right;
+    background-color: #fff;
+}

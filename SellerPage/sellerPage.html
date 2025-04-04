@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <!-- HTML for head -->
+    <head> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <title>Seller Page</title>
+        <!-- Link to CSS file -->
+        <link rel="stylesheet" href="sellerPage.css">
+        <!-- Add favicon (small icon on tab) for website -->
+        <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+    </head>
+
+    <!-- HTML for body -->
+    <body>
+        <!-- HTML for header -->
+        <header>
+            <img src="IBAY-Logo.png" alt="Intro" width="200" class="logo">
+            <h1>My Seller Page</h1>
+            <!-- Add link to go back to buyers/search page below-->
+            <a id="linkBack" href="">To Main Page</a>
+        </header>
+        <br>
+
+        <!-- HTML for main div for sign up box -->
+        <!--<div class="container">-->
+        <div id="upload" class="content-box">
+        <h1>Upload New Selling Item</h1>
+        <br>
+        <br>
+        <!-- HTML for form for letting user sign up -->
+        <!-- All inputs are required to be filled in by user -->
+        <form name="sellerForm" enctype="multipart/form-data" action="sellerPage.php" method="post">
+            <!-- Max file size set to 1MB -->
+            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+            
+            <!-- HTML for text boxes for item name, item price and item postage -->
+            <label for="itemName">Item Name:</label>
+            <input type="text" class="textbox" placeholder="Enter Item Name" name="itemName" required><br>
+            <label for="itemPrice">Item Price:</label>
+            <input type="number" class="textbox" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" required><br>
+            <label for="itemPostage">Item Postage:</label>
+            <input type="text" class="textbox" placeholder="Enter Item Postage" name="itemPostage" required>
+            
+            <br>
+            <!-- HTML for dropdown for item category -->
+            <label for="category">Item Category:</label>
+            <!-- Allow user to select category from choices listed below -->
+            <select name="category" id="category" required>
+                <option value="home">Home</option>
+                <option value="garden">Garden & DIY</option>
+                <option value="electronics">Electronics</option>
+                <option value="refurbished">Refurbished</option>
+                <option value="fashion">Fashion</option>
+                <option value="jewellery">Jewellery & Watches</option>
+                <option value="motors">Motors</option>
+                <option value="collectables">Collectables</option>
+                <option value="sport">Sport & Leisure</option>
+                <option value="health">Health & Beauty</option>
+            </select>
+            <br>
+            <br>
+            <!-- HTML for text area for item description -->
+            <label for="description">Item Description:</label>
+            <textarea id="description" name="description" rows="4" cols="55" required></textarea><br><br>
+            
+            <!-- HTML for file upload for item images -->
+            <!-- User must upload 2 images of item -->
+            <label for="imgFiles">Upload Images for Item (2 images required, max size for each image is 1MB):</label>
+            <input type="file" id="imgFiles" name="imgFiles" accept="image/*" multiple required>
+            <br>
+            <br>
+
+            <!-- HTML for submit and reset buttons -->
+            <input type="submit" class="btn" value="Submit" id="submitBtn">
+            <input type="reset" class="btn" value="Reset">
+        </form>
+        </div>
+        
+        <div id="view" class="content-box"> a </div>
+        <!--</div>-->
+        <!-- Link to JavaScript file -->
+        <script src="seller.js"></script>
+
+    </body>
+
+</html>
