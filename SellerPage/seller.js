@@ -39,7 +39,7 @@ $(document).ready(function() {
           );
       });
     } else {
-        // If no items are found, display a message in the table
+        // If no items are found, display a error message in the table
         $('#itemsTableBody').append(
           `<tr>
             <td colspan="5">No items found</td>
@@ -49,7 +49,7 @@ $(document).ready(function() {
     },
     error: function (error) {
       // Handle errors (e.g., network issues)
-      alert("Error fetching items data: " + error);
+      alert("Error fetching items data, please try again later.");
     }
   });
 });

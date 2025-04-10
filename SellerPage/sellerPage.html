@@ -18,32 +18,31 @@
     <body>
         <!-- HTML for header -->
         <header>
-            <!-- Link to go back to buyers/search page by clicking on logo-->
+            <!-- Go back to buyers/search page by clicking on logo-->
             <a href="buyerPage.html"><img src="IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
             <h1>My Seller Page</h1>
         </header>
         <br>
 
         <!-- HTML for main div for sign up box -->
-        <!--<div class="container">-->
         <div id="upload" class="content-box">
         <h1>Upload New Selling Item</h1>
         <br>
         <br>
-        <!-- HTML for form for letting user sign up -->
+        <!-- HTML for form for uplading a new selling item to database -->
         <!-- All inputs are required to be filled in by user -->
         <form name="sellerForm" enctype="multipart/form-data" action="sellerPage.php" method="post">
-            <!-- Max file size set to 1MB -->
+            <!-- Max file size for uploaded images set to 1MB -->
             <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
             
             <!-- HTML for text boxes for item name, item price and item postage -->
             <label for="itemName">Item Name:</label>
             <input type="text" class="textbox" placeholder="Enter Item Name" name="itemName" required><br>
             <label for="itemPrice">Item Price:</label>
+            <!-- Prices must be entered in GBP -->
             <input type="number" class="textbox" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" required><br>
             <label for="itemPostage">Item Postage:</label>
             <input type="text" class="textbox" placeholder="Enter Item Postage" name="itemPostage" required>
-            
             <br>
             <!-- HTML for dropdown for item category -->
             <label for="category">Item Category:</label>
@@ -94,11 +93,10 @@
                     <th>Edit Item</th>
                 </tr>
                 <tbody id="itemTableBody">
-                    <!-- JavaScript will populate this table with items from the database -->
+                    <!-- fetchItems.php and seller.js will populate this table with items from the database -->
                 </tbody>
             </table>
         </div>
-        <!--</div>-->
         
         <!-- Link to JavaScript file-->
         <script type="text/javascript" src="seller.js"></script>

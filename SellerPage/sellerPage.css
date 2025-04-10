@@ -1,4 +1,4 @@
-/*//STYLESHEET FOR LOGIN PAGE//*/
+/*//STYLESHEET FOR SELLER PAGE//*/
 /*Styling for html*/
 html {
     height: 100%;
@@ -57,7 +57,7 @@ header {
 
 }
 
-/*Styling for login box*/
+/*Styling for content box*/
 .content-box {
     width: 525px;
     padding: 10px 20px;
@@ -92,21 +92,6 @@ header {
     margin-bottom: 20px;
 }
 
-/*Styling for main div for login*/
-#log-in{
-    margin: 150px auto;
-}
-
-/*Styling for main div for sign up*/
-#sign-up{
-    margin: 100px auto;
-}
-
-/*Styling for element with id first name  */
-#firstname {
-    float: left;
-    margin-right: 4px;
-}
 
 #description {
     resize: none;
