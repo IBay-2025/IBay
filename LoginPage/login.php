@@ -25,7 +25,7 @@ if(isset($_POST['login-submit'])){
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     session_start();
-                    $_SESSION['user_id'] = $row['user_id'];
+                    $_SESSION['userId'] = $row['userId'];
                     header("Location: ../SellerPage/sellerPage.html");
                     exit();
                     #### open corresponding page ####
