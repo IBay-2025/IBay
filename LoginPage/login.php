@@ -1,24 +1,55 @@
 <?php
+include 'connect.php';
+
 echo "<h1>Action Debugging</h1>";
-// Start the session
-session_start();
+// Check if the form is submitted and weather itsd login
 
-// Check if the form is submitted and which form it is
-if (!empty($_POST['login-submit'])) {
-    echo "Login Form Submitted";
-    // Hardcoded credentials for Db
-    $servername = "localhost";
-    $dbname = "cob295db";
-    $username = 'cob295user';
-    $password = 'aey38pcb';
+if(isset($_POST['login-submit'])){
+    $email = $_POST['username'];
+    $password = $_POST['password'];
 
-    //set db variable
-    $db = mysqli_connect($servername, $username, $password, $dbname);
-
-
+    #login form submitted
+    if (empty($_POST['username']) || empty($_POST['password'])) {
+        die("Username or password is missing.");
+    }
+    else{
+        //username and pas present
+        $membersTbl = "iBayMembers";
+        $sql = "SELECT * 
+            FROM $membersTbl 
+            WHERE email = '$email' 
+            AND password = '$password'";
+        $result = mysqli_query($db, $sql);
+    
+        //use query results
+        if (!$result) {
+            die("Query failed: " . mysqli_error($db));
+        }
+        else{
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "correct username and password<br>";
+    
+    
+                    #### open corresponding page ####
+    
+    
+                    echo "<hr>";
+                }
+            } else {
+                echo "incorrect username or password.<br>";
+    
+                ####pass message to login page####
+    
+    
+    
+            }
+        }
+    }
     
 }
-else {
-    //not known source, redirect to login page
+else{
+    echo "Incorrect php file called. this is for the login form only.<br>";
 }
+echo "<h1>End of Action Debugging</h1>";
 ?>
