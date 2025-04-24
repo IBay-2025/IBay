@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include '../connect.php';
 // Check if the form is submitted and weather itsd login
 if(isset($_POST['login-submit'])){
     $email = $_POST['username'];
