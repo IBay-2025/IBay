@@ -1,9 +1,6 @@
 <?php
 include 'connect.php';
-
-echo "<h1>Action Debugging</h1>";
 // Check if the form is submitted and weather itsd login
-
 if(isset($_POST['login-submit'])){
     $email = $_POST['username'];
     $password = $_POST['password'];
@@ -13,14 +10,13 @@ if(isset($_POST['login-submit'])){
         die("Username or password is missing.");
     }
     else{
-        //username and pas present
+        //username and pass present check if valid
         $membersTbl = "iBayMembers";
         $sql = "SELECT * 
             FROM $membersTbl 
             WHERE email = '$email' 
             AND password = '$password'";
         $result = mysqli_query($db, $sql);
-    
         //use query results
         if (!$result) {
             die("Query failed: " . mysqli_error($db));
@@ -28,16 +24,14 @@ if(isset($_POST['login-submit'])){
         else{
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo "correct username and password<br>";
-    
-    
+                    session_start();
+                    $_SESSION['user_id'] = $row['user_id'];
+                    header("Location: ../SellerPage/sellerPage.html");
+                    exit();
                     #### open corresponding page ####
-    
-    
-                    echo "<hr>";
                 }
             } else {
-                echo "incorrect username or password.<br>";
+                die("incorrect username or password.<br>");
     
                 ####pass message to login page####
     
@@ -51,5 +45,4 @@ if(isset($_POST['login-submit'])){
 else{
     echo "Incorrect php file called. this is for the login form only.<br>";
 }
-echo "<h1>End of Action Debugging</h1>";
 ?>
