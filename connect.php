@@ -1,9 +1,9 @@
 <?php
 // Hardcoded credentials for Db
     $servername = "localhost";
-    $dbname = "cob295db";
-    $username = 'cob295user';
-    $password = 'aey38pcb';
+    $dbname = "295group2";
+    $username = '295group2';
+    $password = 'uCyMtN7q9iRLXFpvJAqR';
 
     //retrive db
     $db = mysqli_connect($servername, $username, $password, $dbname);
