@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <!--HEAD-->
+    <head> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <title>Buyers Page</title>
+        <link rel="stylesheet" href="buyersPage.css">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <h1 class="header">Welcome to IBAY</h1>
+            <img src="IBAY-Logo.png" alt="Intro" width="200" class="logo">
+        
+    </head>
+    <!--BODY-->
+    <body>
+        <header>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for items..." id="searchInput">
+                <select id="Advanced searchOptions" onchange="sortItems()">
+                    <option value="default">None</option>
+                    <option value="Price less than £2">Price less than £2</option>
+                    <option value="Price greater than £2">Price greater than £2</option>
+                    <option value="Price between £2 and £5">Price between £2 and £5</option>
+                    <option value="free postage">free postage</option>
+                    <option value="restricted categories">restricted categories</option>
+                    <option value="location">location</option>
+                    <option value="Average or better condition">Average or better condition</option>
+                    <option value="Refurbished">Brand new</option>
+
+                </select>
+                <button type="button" onclick="searchItems()">Search</button>
+                <select id="sortOptions" onchange="sortItems()">
+                    <option value="default">Sort By</option>
+                    <option value="Price High to Low">Price high to low</option>
+                    <option value="Price Low to High">Price low to high</option>
+                    <opion value="Ending soonest">Ending soonest</option>
+                    <option value="User rating">User rating</option>
+                </select>
+                <!-- <script>
+                    function sortItems() {
+                        const sortOption = document.getElementById('sortOptions').value;
+                        const itemsContainer = document.getElementById('Items');
+                        const items = Array.from(itemsContainer.getElementsByClassName('item'));
+
+                        if (sortOption === 'name') {
+                            items.sort((a, b) => {
+                                const nameA = a.querySelector('h2').textContent.toLowerCase();
+                                const nameB = b.querySelector('h2').textContent.toLowerCase();
+                                return nameA.localeCompare(nameB);
+                            });
+                        } else if (sortOption === 'description') {
+                            items.sort((a, b) => {
+                                const descA = a.querySelector('p').textContent.toLowerCase();
+                                const descB = b.querySelector('p').textContent.toLowerCase();
+                                return descA.localeCompare(descB);
+                            });
+                        }
+
+                        itemsContainer.innerHTML = '';
+                        items.forEach(item => itemsContainer.appendChild(item));
+                    }
+                </script> -->
+                
+            </div>
+            <!-- <script>
+                function searchItems() {
+                    const query = document.getElementById('searchInput').value.toLowerCase();
+                    const items = document.querySelectorAll('.item');
+                    items.forEach(item => {
+                        const itemName = item.querySelector('h2').textContent.toLowerCase();
+                        if (itemName.includes(query)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                }
+            </script> -->
+        </header>
+        <br>
+        <main>
+            <div class="grid-container">
+                <h2>Home</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item">Item 1</div>
+                    <div class="grid-item">Item 2</div>
+                    <div class="grid-item">Item 3</div>
+                    <div class="grid-item">Item 4</div>
+                    <div class="grid-item">Item 5</div>
+                    <div class="grid-item">Item 6</div>
+                    <div class="grid-item">Item 7</div>
+                    <div class="grid-item">Item 8</div>
+                    <div class="grid-item">Item 9</div>
+                    <div class="grid-item">Item 10</div>
+                </div>
+                
+                <h2>Garden & DIY</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item">Item 11</div>
+                    <div class="grid-item">Item 12</div>
+                    <div class="grid-item">Item 13</div>
+                    <div class="grid-item">Item 14</div>
+                    <div class="grid-item">Item 15</div>
+                    <div class="grid-item">Item 16</div>
+                    <div class="grid-item">Item 17</div>
+                    <div class="grid-item">Item 18</div>
+                    <div class="grid-item">Item 19</div>
+                    <div class="grid-item">Item 20</div>
+                </div>
+                
+                <h2>Electronics</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item">Item 21</div>
+                    <div class="grid-item">Item 22</div>
+                    <div class="grid-item">Item 23</div>
+                    <div class="grid-item">Item 24</div>
+                    <div class="grid-item">Item 25</div>
+                    <div class="grid-item">Item 26</div>
+                    <div class="grid-item">Item 27</div>
+                    <div class="grid-item">Item 28</div>
+                    <div class="grid-item">Item 29</div>
+                    <div class="grid-item">Item 30</div>
+                </div>
+                
+                
+                <h2>Fashion</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item">Item 41</div>
+                    <div class="grid-item">Item 42</div>
+                    <div class="grid-item">Item 43</div>
+                    <div class="grid-item">Item 44</div>
+                    <div class="grid-item">Item 45</div>
+                    <div class="grid-item">Item 46</div>
+                    <div class="grid-item">Item 47</div>
+                    <div class="grid-item">Item 48</div>
+                    <div class="grid-item">Item 49</div>
+                    <div class="grid-item">Item 50</div>
+                </div>
+                <h2>Jewellery & Watches</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item">Item 41</div>
+                    <div class="grid-item">Item 42</div>
+                    <div class="grid-item">Item 43</div>
+                    <div class="grid-item">Item 44</div>
+                    <div class="grid-item">Item 45</div>
+                    <div class="grid-item">Item 46</div>
+                    <div class="grid-item">Item 47</div>
+                    <div class="grid-item">Item 48</div>
+                    <div class="grid-item">Item 49</div>
+                    <div class="grid-item">Item 50</div>
+                </div>
+                
+                <h2>Motors</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item">Item 41</div>
+                    <div class="grid-item">Item 42</div>
+                    <div class="grid-item">Item 43</div>
+                    <div class="grid-item">Item 44</div>
+                    <div class="grid-item">Item 45</div>
+                    <div class="grid-item">Item 46</div>
+                    <div class="grid-item">Item 47</div>
+                    <div class="grid-item">Item 48</div>
+                    <div class="grid-item">Item 49</div>
+                    <div class="grid-item">Item 50</div>
+                </div>
+
+                <h2>Collectors</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item">Item 41</div>
+                    <div class="grid-item">Item 42</div>
+                    <div class="grid-item">Item 43</div>
+                    <div class="grid-item">Item 44</div>
+                    <div class="grid-item">Item 45</div>
+                    <div class="grid-item">Item 46</div>
+                    <div class="grid-item">Item 47</div>
+                    <div class="grid-item">Item 48</div>
+                    <div class="grid-item">Item 49</div>
+                    <div class="grid-item">Item 50</div>
+                </div>
+
+                <h2>Sport & Leisure</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item">Item 41</div>
+                    <div class="grid-item">Item 42</div>
+                    <div class="grid-item">Item 43</div>
+                    <div class="grid-item">Item 44</div>
+                    <div class="grid-item">Item 45</div>
+                    <div class="grid-item">Item 46</div>
+                    <div class="grid-item">Item 47</div>
+                    <div class="grid-item">Item 48</div>
+                    <div class="grid-item">Item 49</div>
+                    <div class="grid-item">Item 50</div>
+                </div>
+
+                <h2>Health & Beauty</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item">Item 41</div>
+                    <div class="grid-item">Item 42</div>
+                    <div class="grid-item">Item 43</div>
+                    <div class="grid-item">Item 44</div>
+                    <div class="grid-item">Item 45</div>
+                    <div class="grid-item">Item 46</div>
+                    <div class="grid-item">Item 47</div>
+                    <div class="grid-item">Item 48</div>
+                    <div class="grid-item">Item 49</div>
+                    <div class="grid-item">Item 50</div>
+                </div>
+
+                    <script>
+                        document.querySelectorAll('.horizontal-scroll').forEach(container => {
+                            let isDown = false;
+                            let startX;
+                            let scrollLeft;
+
+                            container.addEventListener('mousedown', (e) => {
+                                isDown = true;
+                                container.classList.add('active');
+                                startX = e.pageX - container.offsetLeft;
+                                scrollLeft = container.scrollLeft;
+                            });
+
+                            container.addEventListener('mouseleave', () => {
+                                isDown = false;
+                                container.classList.remove('active');
+                            });
+
+                            container.addEventListener('mouseup', () => {
+                                isDown = false;
+                                container.classList.remove('active');
+                            });
+
+                            container.addEventListener('mousemove', (e) => {
+                                if (!isDown) return;
+                                e.preventDefault();
+                                const x = e.pageX - container.offsetLeft;
+                                const walk = (x - startX) * 2; // Adjust scroll speed
+                                container.scrollLeft = scrollLeft - walk;
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+
+            
+        </main>
+    </body>
+</html>
