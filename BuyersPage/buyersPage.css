@@ -10,7 +10,7 @@ body {
     min-height: 100%;
     margin: 0;
     background-color: #000;
-    background-image: url("background_img2.jpg");
+    background-image: url("background_img3.jpg");
     background-size: cover;
     background-attachment: fixed;
     border: 1px solid black;
@@ -131,7 +131,7 @@ a:hover {
     align-items: center;
     gap: 10px;
     position: absolute;
-    top: 90px;
+    top: 80px;
     left: 100px;
     width: auto;
     
@@ -159,16 +159,16 @@ a:hover {
 
 .grid-container {
     top: 400px;
-    left: 100px;
+    left: 150px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(192px, 2fr));
     gap: 10px;
     padding: 10px;
 }
 
 .grid-item {
-    min-width: 150px;
-    height: 100px;
+    min-width: 200px;
+    height: 150px;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     display: flex;
@@ -190,4 +190,11 @@ a:hover {
 .horizontal-scroll::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-    
+
+.item_description {
+    flex: 1;
+    border: 
+    1px solid #ccc; 
+    padding: 10px;
+    background-color: #f9f9f9;
+}
