@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <!-- HTML for head -->
+    <head> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <title>Seller Page</title>
+        <!-- Link to Google CDN for jQuery -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <!-- Link to CSS file -->
+        <link rel="stylesheet" href="sellerPage.css">
+        <!-- Add favicon (small icon on tab) for website -->
+        <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+    </head>
+
+    <!-- HTML for body -->
+    <body id="view-body">
+        <!-- HTML for header -->
+        <header id="view-header">
+            <!-- Go back to buyers/search page by clicking on logo-->
+            <a href="buyerPage.html"><img src="IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
+            <h1>My Seller Page</h1>
+        </header>
+        <br>
+        
+        <!-- HTML for content box for viewing and editing items -->
+        <!-- Use a table to display items -->
+        <div id="view" class="content-box">
+            <h1>My Selling Items</h1>
+            <table id="itemTable" class=".itemTable">
+                <tr>
+                    <th>Item ID</th>
+                    <th>Item Title</th>
+                    <th>Item Price (£)</th>
+                    <th>Item Postage</th>
+                    <th>Item Category</th>
+                    <th>Item Description</th>
+                    <th>Item Images</th>
+                    <th>Edit Item</th>
+                    <th>Delete Item</th>
+                </tr>
+                <tbody id="itemTableBody">
+                    <!-- fetchItems.php and seller.js will populate this table with items from the database -->
+                    <!-- For now, use test data below-->
+                    <tr>
+                        <td>1</td>
+                        <td><textarea type="text" class="row-data itemTitle itemTextbox" name="itemTitle" disabled>Test Item 1</textarea></td>
+                        <td><input type="number" class="row-data itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" value="10100.00" disabled></td>
+                        <td>
+                            <select class="row-data" name="itemPostage" disabled required>
+                            <option value="2.00 - Standard Delivery" selected disabled hidden>2.00 - Standard Delivery</option>
+                            <option value="0.00 - Standard Delivery">0.00 - Standard Delivery</option>
+                            <option value="1.00 - Standard Delivery">1.00 - Standard Delivery</option>
+                            <option value="2.00 - Standard Delivery">2.00 - Standard Delivery</option>
+                            <option value="0.00 - Economy Delivery">0.00 - Economy Delivery</option>
+                            <option value="1.00 - Economy Delivery">1.00 - Economy Delivery</option>
+                            <option value="2.00 - Economy Delivery">2.00 - Economy Delivery</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="row-data" name="itemCategory" id="itemCategory" disabled required>
+                            <option value="Garden & DIY" selected disabled hidden>Garden & DIY</option> 
+                            <option value="Home">Home</option>
+                            <option value="Garden & DIY">Garden & DIY</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Refurbished">Refurbished</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Jewellery & Watches">Jewellery & Watches</option>
+                            <option value="Motors">Motors</option>
+                            <option value="Collectables">Collectables</option>
+                            <option value="Sport & Leisure">Sport & Leisure</option>
+                            <option value="Health & Beauty">Health & Beauty</option>
+                        </select>
+                    </td>
+                    <td><textarea type="text" name="description" class="row-data itemTextbox" disabled>This is a test item description.</textarea></td>
+                    <td> <!-- Hide "choose file" button behind images so user can click on image to edit it after clicking button -->
+                        <label for="imgPreview"><img id="1" class="imgOutput" src="IBAY-Logo.png" alt="Test Image 1" width="100"></label>
+                        <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden required disabled>
+                        <label for="imgPreview"><img id="2" class="imgOutput" src="background_img.jpg" alt="Test Image 2" width="100"></label>
+                        <input type="file" class="row-data imgPreview" name="imgPreview2" accept="image/*" hidden required disabled>
+                    </td>
+                    <td>
+                        <button name="editBtn" class="btn edit-btn">Edit</button>
+                        <!-- Only show save and cancel buttons after clicking edit button -->
+                        <button name="saveBtn" class="btn save-btn" hidden>Save</button> 
+                        <button name="cancelBtn" class="btn cancel-btn" hidden>Cancel</button>
+                    </td>
+                    <td><button name="deleteBtn" class="btn delete-btn">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="textarea" class="row-data" value="Test Item 1" disabled></td>
+                        <td><input type="number" class="row-data itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" value="10.00" disabled></td>
+                        <td><select class="row-data" name="itemPostage" value="2.00 - Standard Delivery" disabled required>
+                            <option value="0.00 - Standard Delivery">0.00 - Standard Delivery</option>
+                            <option value="1.00 - Standard Delivery">1.00 - Standard Delivery</option>
+                            <option value="2.00 - Standard Delivery">2.00 - Standard Delivery</option>
+                            <option value="0.00 - Economy Delivery">0.00 - Economy Delivery</option>
+                            <option value="1.00 - Economy Delivery">1.00 - Economy Delivery</option>
+                            <option value="2.00 - Economy Delivery">2.00 - Economy Delivery</option>
+                        </select></td>
+                        <td><select class="row-data" name="itemCategory" value="garden" disabled required>
+                            <option value="home">Home</option>
+                            <option value="garden">Garden & DIY</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="refurbished">Refurbished</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="jewellery">Jewellery & Watches</option>
+                            <option value="motors">Motors</option>
+                            <option value="collectables">Collectables</option>
+                            <option value="sport">Sport & Leisure</option>
+                            <option value="health">Health & Beauty</option>
+                        </select>
+                    </td>
+                    <td><input type="textarea" value="This is a test item description." name="description" class="row-data description" disabled></textarea></td>
+                        <td> <!-- Hide "choose file" button behind images so user can click on image to edit it after clicking button -->
+                            <label for="imgPreview"><img id="imgOutput1" class="imgOutput" src="background_img2.jpg" alt="Test Image 1" width="100"></label>
+                            <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden required disabled>
+                            <label for="imgPreview"><img id="imgOutput2" class="imgOutput" src="background_img3.jpg" alt="Test Image 2" width="100"></label>
+                            <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden required disabled>
+                        </td>
+                        <td>
+                            <button name="editBtn" class="btn edit-btn">Edit</button>
+                            <!-- Only show save and cancel buttons after clicking edit button -->
+                            <button name="saveBtn" class="btn save-btn" hidden>Save</button> 
+                            <button name="cancelBtn" class="btn cancel-btn" hidden>Cancel</button>
+                        </td>
+                        <td><button name="deleteBtn" class="btn delete-btn">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Link to JavaScript file-->
+        <script type="text/javascript" src="seller.js"></script>
+        <!-- <script type="text/javascript" src="seller2.js"></script> -->
+
+    </body>
+
+</html>

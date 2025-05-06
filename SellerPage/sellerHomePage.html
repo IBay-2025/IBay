@@ -15,9 +15,9 @@
     </head>
 
     <!-- HTML for body -->
-    <body>
+    <body id="home-body">
         <!-- HTML for header -->
-        <header>
+        <header id="home-header">
             <!-- Go back to buyers/search page by clicking on logo-->
             <a href="buyerPage.html"><img src="IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
             <h1>My Seller Page</h1>
@@ -36,20 +36,29 @@
             <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
             
             <!-- HTML for text boxes for item name, item price and item postage -->
-            <label for="itemName">Item Name:</label>
-            <input type="text" class="textbox" placeholder="Enter Item Name" name="itemName" required><br>
-            <label for="itemPrice">Item Price:</label>
-            <!-- Prices must be entered in GBP -->
-            <input type="number" class="textbox" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" required><br>
+            <label for="itemTitle">Item Title:</label>
+            <input type="text" class="textbox" placeholder="Enter Item Title" name="itemTitle" required><br>
+
+            <label for="itemPrice">Item Price (GBP):</label> <!-- Prices must be entered in GBP -->
+            <input type="number" class="textbox itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price to 2 decimal places" name="itemPrice" required>
+            <br>
             <label for="itemPostage">Item Postage:</label>
-            <input type="text" class="textbox" placeholder="Enter Item Postage" name="itemPostage" required>
+            <select name="itemPostage" required>
+                <option value="0.00 - Standard Delivery">0.00 - Standard Delivery</option>
+                <option value="1.00 - Standard Delivery">1.00 - Standard Delivery</option>
+                <option value="2.00 - Standard Delivery">2.00 - Standard Delivery</option>
+                <option value="0.00 - Economy Delivery">0.00 - Economy Delivery</option>
+                <option value="1.00 - Economy Delivery">1.00 - Economy Delivery</option>
+                <option value="2.00 - Economy Delivery">2.00 - Economy Delivery</option>
+            </select>
+            <br>
             <br>
             <!-- HTML for dropdown for item category -->
-            <label for="category">Item Category:</label>
+            <label for="itemCategory">Item Category:</label>
             <!-- Allow user to select category from choices listed below -->
-            <select name="category" id="category" required>
+            <select name="itemCategory" required>
                 <option value="home">Home</option>
-                <option value="garden">Garden & DIY</option>
+                <option value="harden">Garden & DIY</option>
                 <option value="electronics">Electronics</option>
                 <option value="refurbished">Refurbished</option>
                 <option value="fashion">Fashion</option>
@@ -63,39 +72,19 @@
             <br>
             <!-- HTML for text area for item description -->
             <label for="description">Item Description:</label>
-            <textarea id="description" name="description" rows="4" cols="55" required></textarea><br><br>
+            <textarea class="textbox" placeholder="Enter Item Description..." id="description" name="description" required></textarea><br><br>
             
             <!-- HTML for file upload for item images -->
             <!-- User must upload 2 images of item -->
             <label for="imgFiles">Upload Images for Item (2 images required, max size for each image is 1MB):</label>
-            <input type="file" id="imgFiles" name="imgFiles" accept="image/*" multiple required>
+            <input type="file" class="textbox" id="imgFiles" name="imgFiles" accept="image/*" multiple required>
             <br>
             <br>
 
             <!-- HTML for submit and reset buttons -->
             <input type="submit" class="btn" value="Submit" id="submitBtn">
-            <input type="reset" class="btn" value="Reset">
+            <input type="reset" class="btn" value="Reset" id="resetBtn">
         </form>
-        </div>
-        
-        <!-- HTML for content box for viewing and editing items -->
-        <!-- Use a table to display items -->
-        <div id="view" class="content-box">
-            <h1>View and Edit Items</h1>
-            <table id="itemTable">
-                <tr>
-                    <th>Item Name</th>
-                    <th>Item Price</th>
-                    <th>Item Postage</th>
-                    <th>Item Category</th>
-                    <th>Item Description</th>
-                    <th>Item Images</th>
-                    <th>Edit Item</th>
-                </tr>
-                <tbody id="itemTableBody">
-                    <!-- fetchItems.php and seller.js will populate this table with items from the database -->
-                </tbody>
-            </table>
         </div>
         
         <!-- Link to JavaScript file-->
