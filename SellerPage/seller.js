@@ -117,6 +117,7 @@ $(document).on('click', '.edit-btn', function(event)
   
 });
 
+//Event listener for allowing user to upload a different image by clicking on the image preview
 $(document).on('click', '.imgOutput', function (event) {
   //alert("Image preview 1 changed"); //Debugging alert
   //var imageOutput = $(this).parent().next();
@@ -126,6 +127,7 @@ $(document).on('click', '.imgOutput', function (event) {
   //Set the src of the image preview to the selected file
 });
 
+//Event listener for changing the image preview when a new file is selected
 $(document).on('change', '.imgPreview', function (event) {
   var image = URL.createObjectURL($(this).prop('files')[0]); //Debugging alert
   //alert("Image: " + image); //Debugging alert
