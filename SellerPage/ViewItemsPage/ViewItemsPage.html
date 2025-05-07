@@ -19,7 +19,7 @@
         <!-- HTML for header -->
         <header id="view-header">
             <!-- Go back to buyers/search page by clicking on logo-->
-            <a href="../../BuyerPage/BuyerPage.html"><img src="../../Formatting/IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
+            <a href="../../BuyersPage/buyers_page1.html"><img src="../../Formatting/IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
             <h1>My Seller Page</h1>
         </header>
         <br>
@@ -37,6 +37,7 @@
                     <th>Item Category</th>
                     <th>Item Description</th>
                     <th>Item Images</th>
+                    <th>Duration</th>
                     <th>Edit Item</th>
                     <th>Delete Item</th>
                 </tr>
@@ -48,7 +49,7 @@
                         <td><textarea type="text" class="row-data itemTitle itemTextbox" name="itemTitle" disabled>Test Item 1</textarea></td>
                         <td><input type="number" class="row-data itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" value="10100.00" disabled></td>
                         <td>
-                            <select class="row-data" name="itemPostage" disabled required>
+                            <select class="row-data" name="itemPostage" disabled >
                             <option value="2.00 - Standard Delivery" selected disabled hidden>2.00 - Standard Delivery</option>
                             <option value="0.00 - Standard Delivery">0.00 - Standard Delivery</option>
                             <option value="1.00 - Standard Delivery">1.00 - Standard Delivery</option>
@@ -73,11 +74,13 @@
                             <option value="Health & Beauty">Health & Beauty</option>
                         </select>
                     </td>
-                    <td><textarea type="text" name="description" class="row-data itemTextbox" disabled>This is a test item description.</textarea></td>
+                    <td>
+                        <textarea type="text" name="description" class="row-data itemTextbox" disabled>This is a test item description.</textarea>
+                    </td>
                     <td> <!-- Hide "choose file" button behind images so user can click on image to edit it after clicking button -->
-                        <label for="imgPreview"><img id="1" class="imgOutput" src="IBAY-Logo.png" alt="Test Image 1" width="100"></label>
+                        <label for="imgPreview"><img id="1" class="imgOutput" src="../../Formatting/background_img.jpg" alt="Test Image 1" width="100"></label>
                         <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden required disabled>
-                        <label for="imgPreview"><img id="2" class="imgOutput" src="background_img.jpg" alt="Test Image 2" width="100"></label>
+                        <label for="imgPreview"><img id="2" class="imgOutput" src="../../Formatting/background_img.jpg" alt="Test Image 2" width="100"></label>
                         <input type="file" class="row-data imgPreview" name="imgPreview2" accept="image/*" hidden required disabled>
                     </td>
                     <td>
@@ -115,10 +118,17 @@
                     </td>
                     <td><input type="textarea" value="This is a test item description." name="description" class="row-data description" disabled></textarea></td>
                         <td> <!-- Hide "choose file" button behind images so user can click on image to edit it after clicking button -->
-                            <label for="imgPreview"><img id="imgOutput1" class="imgOutput" src="background_img2.jpg" alt="Test Image 1" width="100"></label>
+                            <label for="imgPreview"><img id="imgOutput1" class="imgOutput" src="../../Formatting/background_img2.jpg" alt="Test Image 1" width="100"></label>
                             <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden required disabled>
-                            <label for="imgPreview"><img id="imgOutput2" class="imgOutput" src="background_img3.jpg" alt="Test Image 2" width="100"></label>
+                            <label for="imgPreview"><img id="imgOutput2" class="imgOutput" src="../../Formatting/background_img3.jpg" alt="Test Image 2" width="100"></label>
                             <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden required disabled>
+                        </td>
+                        <td>
+                            <label for="startDate">Auction Start Date:</label>
+                            <input type="datetime-local" class="row-data" id="startDate" name="startDate" value="2023-10-01T12:00" disabled required>
+                            <br>
+                            <label for="endDate">Auction End Date:</label>
+                            <input type="datetime-local" class="row-data" id="endDate" name="endDate" value="2023-10-02T12:00" disabled required>
                         </td>
                         <td>
                             <button name="editBtn" class="btn edit-btn">Edit</button>

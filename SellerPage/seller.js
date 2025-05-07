@@ -1,3 +1,86 @@
+//Adjust the width of header to be the same as body width for the view page
+$("#view-header").css("width", $("#view-body").width()); //Set the width of the header to be the same as the body width
+
+$(document).on('change', '.startDate, .endDate', function() {
+  var startDate = $(this).val(); //Get the value of the input field
+  var endDate = $('#endDate').val(); //Get the value of the end date input field
+
+  //Check if the start date is greater than the end date
+  if (startDate > endDate) {
+    this.setCustomValidity("Start date cannot be greater than end date"); //If the start date is greater than the end date, set the custom validity message
+  } else {
+    this.setCustomValidity(''); //If the start date is not greater than the end date, set the custom validity to empty
+  }
+  
+  this.reportValidity(); //Report the validity of the input field
+});
+
+$(document).ready(function() {
+  var items = [
+    {itemId: 1, itemTitle: "Item 1", itemPrice: 10.00, itemPostage: "2.00 - Standard Delivery", itemCategory: "Fashion", itemDescription: "Description 1", itemImages: [{imageId: 1, imageLink: "../../Formatting/IBAY-Logo.png"}, {imageId: 2, imageLink: "../../Formatting/IBAY-Logo.png"}]},
+  ];
+  
+  var tbl = '';
+
+  $.each(items, function(index, item) {
+    tbl += `<tr>`;
+    tbl += `<td>${item.itemId}</td>`;
+    tbl += `<td>
+              <textarea type="text" class="row-data itemTitle itemTextbox" name="itemTitle" disabled>${item.itemTitle}</textarea>
+            </td>`;
+    tbl += `<td>
+              <input type="number" class="row-data itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" value="${item.itemPrice.toFixed(2)}" disabled>
+            </td>`;
+    tbl += `<td>
+              <select class="row-data itemPostage" name="itemPostage" disabled>
+              <option value=${item.itemPostage} selected disabled hidden>${item.itemPostage}</option>
+              <option value="0.00 - Standard Delivery">0.00 - Standard Delivery</option>
+              <option value="1.00 - Standard Delivery">1.00 - Standard Delivery</option>
+              <option value="2.00 - Standard Delivery">2.00 - Standard Delivery</option>
+              <option value="0.00 - Economy Delivery">0.00 - Economy Delivery</option>
+              <option value="1.00 - Economy Delivery">1.00 - Economy Delivery</option>
+              <option value="2.00 - Economy Delivery">2.00 - Economy Delivery</option>
+              </select>
+            </td>`;
+    tbl += `<td>
+              <select class="row-data itemCategory" name="itemCategory" disabled>
+              <option value=${item.itemCategory} selected disabled hidden>${item.itemCategory}</option>
+              <option value="Home">Home</option>
+              <option value="Garden & DIY">Garden & DIY</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Refurbished">Refurbished</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Jewellery & Watches">Jewellery & Watches</option>
+              <option value="Motors">Motors</option>
+              <option value="Collectables">Collectables</option>
+              <option value="Sport & Leisure">Sport & Leisure</option>
+              <option value="Health & Beauty">Health & Beauty</option> 
+              </select>           
+            </td>`;
+    tbl += `<td>
+              <textarea type="text" class="row-data itemTextbox" name="itemDescription" disabled>${item.itemDescription}</textarea>
+            </td>`;
+    tbl += `<td>
+              <label for="imgPreview"><img id=${item.itemImages[0].imageId} class="imgOutput" src="${item.itemImages[0].imageLink}" alt="Item Image 1" ></label>
+              <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden disabled>
+              <label for="imgPreview"><img id=${item.itemImages[1].imageId} class="imgOutput" src="${item.itemImages[1].imageLink}" alt="Item Image 2"></label>
+              <input type="file" class="row-data imgPreview" name="imgPreview2" accept="image/*" hidden disabled>
+            </td>`;
+    tbl += `<td>
+              <button id="editBtn" class="btn edit-btn">Edit</button>
+              <button name="saveBtn" class="btn save-btn" hidden>Save</button> 
+              <button name="cancelBtn" class="btn cancel-btn" hidden>Cancel</button>
+            </td>`;
+    tbl += `<td>
+              <button id="deleteBtn" class="btn delete-btn">Delete</button>
+            </td>`;
+    tbl += '</tr>';
+
+  //Append the table rows to the table body
+  $(document).find('#itemTableBody').append(tbl); //Append the table rows to the table body
+  });
+});
+
 //Event listener for making sure user uploads only 2 files
 $(document).on('change', '#imgFiles', function () {
   //Check if the number of files is greater than 2
@@ -12,10 +95,6 @@ $(document).on('change', '#imgFiles', function () {
 
   imgFiles.reportValidity();
 });
-
-//Adjust the width of header to be the same as body width for the view page
-$("#view-header").css("width", $("#view-body").width()); //Set the width of the header to be the same as the body width
-//$("#home-header").css("width", $("#home-body").width()); //Set the margin of the header to be the same as the body margin
 
 //Validate the price input to make sure it has 2 decimal places
 $(document).on('change, blur', '.itemPrice', function () {
@@ -46,22 +125,6 @@ $(document).on('change, blur', '.itemTitle, .itemTextbox', function () {
   this.reportValidity(); //Report the validity of the input field
 });
 
-//Events listener for allowing user to upload a different image by clicking on the image preview
-/*var imgPreview1 = document.getElementById("imgPreview1");
-var imgPreview2 = document.getElementById("imgPreview2");
-
-imgPreview1.addEventListener('change', function (event) {
-  var imageOutput1 = document.getElementById('imgOutput1');
-
-  imageOutput1.src = URL.createObjectURL(event.target.files[0]); //Set the src of the image preview to the selected file
-});
-
-imgPreview2.addEventListener('change', function (event) {
-  var imageOutput2 = document.getElementById('imgOutput2');
-
-  imageOutput2.src = URL.createObjectURL(event.target.files[0]); //Set the src of the image preview to the selected file
-});*/
-
 //Event listener for editing an item's details in the table
 $(document).on('click', '.edit-btn', function(event) 
   {
@@ -82,13 +145,6 @@ $(document).on('click', '.edit-btn', function(event)
     row.find(".cancel-btn").show(); 
   
     // Make the whole row editable
-    // The class row-data is used to allow for specific values to be editable and prevent editing of item id
-    //row.find(".row-data").attr("contenteditable","true").prop("disabled", false);
-  
-    //alert("Enabled: " + row.find("imgPreview"));
-    //Iterate through the row-data class elements and set them to be editable and set the original value to be the current value
-    //originalvalue used to revert back to the original value if the user cancels the edit
-    //alert("Row data: " + row.find(".row-data").length);
     row.find(".row-data").each(function() {
       //Check if element is a file input, 
       if ($(this).attr("type") == "file") {
@@ -96,45 +152,22 @@ $(document).on('click', '.edit-btn', function(event)
         $(this).prop("disabled", false); // Enable the file input
       } else if (["itemPostage", "itemCategory"].includes($(this).attr("name"))) { //
         $(this).attr("originalvalue", $(this).find(":selected").val()); // Store the original value in a data attribute
-        //$(this).html($(this).attr("originalvalue")); // Set the inner HTML of the element to the value
         $(this).prop("disabled", false); // Make the element editable
-        //alert($(this).attr("originalvalue")); //Debugging alert
       } else {
         $(this).attr("originalvalue", $(this).val()); // Store the original value in a data attribute
         $(this).prop("disabled", false); // Make the element editable
       }
-  
-      //alert($(this).attr("originalvalue")) // Store the original value in a data attribute
     });
-      //Check if the element is 
-    //Store the original values of the row in data attributes in case the user wants to cancel the edit
-    /*row.find(".row-data").each(function() {
-      if ($(this).attr("contenteditable") == "true") {
-        $(this).attr("original-value", $(this).text()); // Store the original value in a data attribute
-      }
-      alert("Original value: " + $(this).attr("original-value"));
-    });*/
-  
 });
 
 //Event listener for allowing user to upload a different image by clicking on the image preview
 $(document).on('click', '.imgOutput', function (event) {
-  //alert("Image preview 1 changed"); //Debugging alert
-  //var imageOutput = $(this).parent().next();
   $(this).parent().next().click(); //Trigger the file input click event to allow user to select a new image 
-  //alert($(this).parent().next().prop('files').length); //Debugging alert
-  //alert("Image output: " + imageOutput.attr('src')); //Debugging alert
-  //Set the src of the image preview to the selected file
 });
 
 //Event listener for changing the image preview when a new file is selected
 $(document).on('change', '.imgPreview', function (event) {
-  var image = URL.createObjectURL($(this).prop('files')[0]); //Debugging alert
-  //alert("Image: " + image); //Debugging alert
-  //alert(URL.createObjectURL(event.target.files[0]))
-  //alert($(this).prev().children().attr('src'));
-  //alert("Image preview 1 changed"); //Debugging alerts
-//imageOutput.src = URL.createObjectURL(event.target.files[0]); 
+  var image = URL.createObjectURL($(this).prop('files')[0]);
   $(this).prev().children().attr('src', image); //Set the src of the image preview to the selected file
 });
 
@@ -167,7 +200,7 @@ $(document).ready(function() {
         // If no items are found, display a error message in the table
         $('#itemsTableBody').append(
           `<tr>
-            <td colspan="5">No items found</td>
+            <td colspan="11">No items found</td>
           </tr>`
         );
       }
@@ -203,45 +236,16 @@ $(document).on('click', '.cancel-btn', function(event)
   //Iterate through the row-data class elements and set them to be non-editable and set the original value to be the current value
   row.find(".row-data").each(function() {
     if ($(this).attr("type") == "file") {
-      //alert(jQuery.type($(this).attr("originalvalue"))); // Store the original value in a data attribute
       $(this).prev().children().attr("src", $(this).attr("originalvalue")); // Set the src of the image preview to the original value
       $(this).prop("disabled", true); // Disable the file input
     } else if (["itemPostage", "itemCategory"].includes($(this).attr("name"))){
-      //$(this).attr("value", $(this).attr("originalvalue")); // Set the value of the element to the original value
-      //alert($(this).attr("originalvalue"));
-      //$(this).attr("value", $(this).attr("origiSnalvalue")); // Set the value of the element to the original value
-      //alert($(this).attr("value"));
       $(this).val($(this).attr("originalvalue")); // Set the selected value of the element to the original value
       $(this).prop("disabled", true); // Make the element non-editable
-      //alert($(this).find(":selected").val()); //Debugging alert
     } else {
       $(this).val($(this).attr("originalvalue")); // Set the value of the element to the original value
       $(this).attr("disabled", true); // Make the element non-editable
     }
-
-    //alert($(this).attr("disabled")); // Store the original value in a data attribute
-    //alert("Value: " + $(this).find(":selected").val()); //Debugging alert
-    //alert("Original value: " + $(this).attr("originalvalue")); //Debugging alert
   });
-
-  /*row.find(".row-data").each(function() {
-      //Check if element is a file input, 
-      if ($(this).attr("type") == "file") {
-        $(this).attr("originalvalue", $(this).prev().children().attr("src")); // Store the original value in a data attribute
-        $(this).prop("disabled", false); // Enable the file input
-      } else if (["itemPostage", "itemCategory"].includes($(this).attr("name"))) { //
-        $(this).attr("originalvalue", $(this).find(":selected").val()); // Store the original value in a data attribute
-        //$(this).html($(this).attr("originalvalue")); // Set the inner HTML of the element to the value
-        $(this).prop("disabled", false); // Make the element editable
-        //alert($(this).attr("originalvalue")); //Debugging alert
-      } else {
-        $(this).attr("originalvalue", $(this).val()); // Store the original value in a data attribute
-        $(this).prop("disabled", false); // Make the element editable
-      }
-  
-      //alert($(this).attr("originalvalue")) // Store the original value in a data attribute
-    });*/
-
 })
 
 //Event listener for saving the edit of an item in the table
@@ -255,16 +259,6 @@ $(document).on('click', '.save-btn', function(event)
 
   // Get the item ID from the first cell of the row
   var itemId = row.find("td").eq(0).text();
-
-  //alert("Saving edit for item with ID: " + itemId);
-
-  //Get the item details from the row and store them in an object
-  //alert(parseFloat(row.find("td").eq(2).find(".row-data").attr("value"))); //Debugging alert
-  //var num = row.find("td").eq(2).find(".row-data").attr("value").length-1;
-  //alert(parseFloat(row.find("td").eq(2).find(".row-data").attr("value")).toPrecision(num)); //Debugging alert
-  //var e = row.find("td").eq(4).find(":selected");
-  //var e = document.getElementById("itemCategory"); //Get the item category from the select element
-  //alert(e.val()); //Debugging alert
 
   const itemDetails = {
     itemId: parseInt(row.find("td").eq(0).text()),
