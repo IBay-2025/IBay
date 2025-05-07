@@ -152,10 +152,11 @@ a:hover {
     top: 400px;
     left: 150px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(192px, 2fr));
+    grid-template-columns: repeat(1, 1fr); /* Ensures only one row */
     gap: 10px;
     padding: 10px;
 }
+
 h2 {
     color: white;
     text-align: center;
