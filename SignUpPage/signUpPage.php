@@ -3,19 +3,19 @@ include '../connect.php';
 //echo('active debugging<br>');
 echo`Sign up page<br>`;
 if(isset($_POST['signUp-Submit'])){
-    $firstName = $_POST['firstName'];
+    $firstName = $_POST['firstname'];
     $surname = $_POST['surname'];
     $password = $_POST['password'];
     $address = $_POST['address'];
     $postcode = $_POST['postcode'];
-    $phoneNumber = $_POST['phoneNumber'];
+    $phonenumber = $_POST['phonenumber'];
     $dob = $_POST['dob'];
     $gender = $_POST['gender'];
     $email = $_POST['email'];
-
+    $name = 'tom';#$firstname.' '.$surname;
     #login form submitted
-    $membersTbl = "ibayMembers";
-    $userId = 0;
+    $membersTbl = "iBayMembers";
+    $userId = 2;
     #while (true) {
         #$sql = "SELECT userId FROM $membersTbl WHERE userId = $userId";
         #$result = mysqli_query($db, $sql);
@@ -24,12 +24,15 @@ if(isset($_POST['signUp-Submit'])){
         #}
         #$userIdNum++;
     #}
-    $sql = "INSERT INTO $membersTbl (userId, password, firstname, email, address, postcode, rating, surname, gender, phone_number) 
-    VALUES ($userId, '$password', '$firstName', '$email', '$address', '$postcode', 0, '$surname', '$gender', '$phoneNumber')";
+    $sql = "INSERT INTO $membersTbl (userId, password, firstname,surname, email, address, postcode, rating, gender, phone_number) 
+    VALUES ($userId, '$password', '$firstname','$surname', '$email', '$address', '$postcode', 0, '$gender', '$phoneNumber')";
 
     $result = mysqli_query($db, $sql);
     if ($result) {
         echo "User successfully added.<br>";
+        echo("email".$email."<br>");
+        echo("password".$password."<br>");
+        echo("name".$firstname."<br>"); 
     } else {
         echo "Error:.<br>";
     }
