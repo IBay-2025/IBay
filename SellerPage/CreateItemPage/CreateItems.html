@@ -20,7 +20,10 @@
         <header id="home-header">
             <!-- Go back to buyers/search page by clicking on logo-->
             <a href="../../BuyersPage/buyers_page1.html"><img src="../../Formatting/IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
-            <h1>My Seller Page</h1>
+            <div class="link-title-container">
+                <a href="../../LoginPage/loginPage.html">Log Out</a>
+                <h1>My Seller Page</h1>
+            </div>
         </header>
         <br>
 
@@ -33,9 +36,6 @@
         <!-- HTML for form for uplading a new selling item to database -->
         <!-- All inputs are required to be filled in by user -->
         <form name="sellerForm" enctype="multipart/form-data" action="addItem.php" method="post">
-            <!-- Max file size for uploaded images set to 1MB -->
-            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-            
             <!-- HTML for text boxes for item name, item price and item postage -->
             <label for="itemTitle">Item Title:</label>
             <input type="text" class="textbox" placeholder="Enter Item Title" name="itemTitle" required><br>
@@ -78,7 +78,7 @@
             <!-- HTML for file upload for item images -->
             <!-- User must upload 2 images of item -->
             <label for="imgFiles">Upload Images for Item (2 images required, max size for each image is 1MB):</label>
-            <input type="file" class="textbox" id="imgFiles" name="imgFiles" accept="image/*" multiple required>
+            <input type="file" class="textbox imgFiles" id="imgFiles" name="imgFiles" accept="image/*" multiple required>
             <br>
             <br>
 

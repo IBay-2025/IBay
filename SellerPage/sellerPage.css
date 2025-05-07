@@ -121,6 +121,7 @@ textarea {
 a {
     color: white;
     font-size: 1.3em;
+    text-decoration: underline red;
 }
 
 /*Hover styling for links*/
@@ -128,9 +129,10 @@ a:hover {
     color: rgb(173, 100, 16);
 }
 
-#linkBack {
-    text-align: right;
-    background-color: #fff;
+.link-title-container {
+    display: block;
+    margin-top: -4px;
+    text-align: end;
 }
 
 /*Styling for table of items*/
@@ -155,7 +157,7 @@ td img{
 .row-data[disabled], .itemTextbox[disabled] {
     background-color:  rgba(0, 0, 0, 0);
     color: #fff;
-    border: 1px solid beige;
+    border: 1px solid black;
 
 }
 
