@@ -15,7 +15,7 @@ if(isset($_POST['signUp-Submit'])){
     $username = $_POST['username'];#$firstname.' '.$surname;
     #login form submitted
     $membersTbl = "iBayMembers";
-    $userId = 2;
+    $userId = 1;
     while (true) {
         $sql = "SELECT userId FROM $membersTbl WHERE userId = $userId";
         $result = mysqli_query($db, $sql);
@@ -28,27 +28,16 @@ if(isset($_POST['signUp-Submit'])){
     VALUES ($userId, '$password','$username', '$firstname','$surname', '$email', '$address', '$postcode', 0, '$gender', '$phonenumber')";
 
     $result = mysqli_query($db, $sql);
-    if ($result) {
-        echo "User successfully added.<br>";
-        echo("email".$email."<br>");
-        echo("password".$password."<br>");
-        echo("name".$firstname."<br>"); 
-    } else {
-        echo "Error:.<br>";
+    if (!$result) {
+        die("Query failed: " . mysqli_error($db));
     }
-    //use query results
-    #if (!$result) {
-     #   die("Query failed: " . mysqli_error($db));
-    #}
-    #else{
-    #echo "<script>
-    #     alert('New user created successfully!');
-    #    window.location.href = '../LoginPage/loginPage.html';
-    #</script>";
-    #exit();
-        
-    #   }
-
+    else{
+        echo "<script>
+             alert('New user created successfully!');
+            window.location.href = '../LoginPage/loginPage.html';
+        </script>";
+        exit();
+    }
 }
 else{
     echo "Incorrect php file called. this is for the sign up form only.<br>";
