@@ -218,6 +218,8 @@ h2 {
 
 
 .basket-icon {
+    top : 10px;
+    right: 300px;
     width: 40px;
     height: 40px;
     border-radius: 50%;
