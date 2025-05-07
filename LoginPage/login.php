@@ -27,7 +27,7 @@ if(isset($_POST['login-submit'])){
                     session_start();
                     $_SESSION['userId'] = $row['userId'];
                     #header("Location: ../SellerPage/ViewItemsPage/ViewItemsPage.html");
-                    header("Location: ../BuyersPage/buyers_page1.html");
+                    header("Location: ../BuyersPage/homePage/buyersHomePage.html");
                     exit();
                     #### open corresponding page ####
                 }
