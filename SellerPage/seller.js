@@ -1,7 +1,7 @@
 //Adjust the width of header to be the same as body width for the view page
 $("#view-header").css("width", $("#view-body").width()); //Set the width of the header to be the same as the body width
 
-$(document).on('change', '.startDate, .endDate', function() {
+$(document).on('change, blur', '.startDate, .endDate', function() {
   var startDate = $(this).val(); //Get the value of the input field
   var endDate = $('#endDate').val(); //Get the value of the end date input field
 
