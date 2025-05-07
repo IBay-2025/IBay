@@ -12,20 +12,20 @@ if(isset($_POST['signUp-Submit'])){
     $dob = $_POST['dob'];
     $gender = $_POST['gender'];
     $email = $_POST['email'];
-    $name = 'tom';#$firstname.' '.$surname;
+    $username = $_POST['username'];#$firstname.' '.$surname;
     #login form submitted
     $membersTbl = "iBayMembers";
     $userId = 2;
-    #while (true) {
-        #$sql = "SELECT userId FROM $membersTbl WHERE userId = $userId";
-        #$result = mysqli_query($db, $sql);
-        #if (!$result) {
-        #    break; // Unique userId found
-        #}
-        #$userIdNum++;
-    #}
-    $sql = "INSERT INTO $membersTbl (userId, password, firstname,surname, email, address, postcode, rating, gender, phone_number) 
-    VALUES ($userId, '$password', '$firstname','$surname', '$email', '$address', '$postcode', 0, '$gender', '$phoneNumber')";
+    while (true) {
+        $sql = "SELECT userId FROM $membersTbl WHERE userId = $userId";
+        $result = mysqli_query($db, $sql);
+        if (mysqli_num_rows($result) === 0) {
+            break; // Unique userId found
+        }
+        $userId++;
+    }
+    $sql = "INSERT INTO $membersTbl (userId,password, username,firstname,surname, email, address, postcode, rating, gender, phone_number) 
+    VALUES ($userId, '$password','$username', '$firstname','$surname', '$email', '$address', '$postcode', 0, '$gender', '$phonenumber')";
 
     $result = mysqli_query($db, $sql);
     if ($result) {
