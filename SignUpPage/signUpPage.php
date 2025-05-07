@@ -14,19 +14,16 @@ if(isset($_POST['signUp-Submit'])){
     $email = $_POST['email'];
 
     #login form submitted
-    $membersTbl = "iBayMembers";
-    $userId = substr($firstName, 0, 2) . substr($surname, 0, 2);
-    $userIdNum = 0;
-    //create $userid
-    while (true) {
-        $sql = "SELECT userId FROM $membersTbl WHERE userId = $userId";
-        $result = mysqli_query($db, $sql);
-        if (mysqli_num_rows($result) == 0) {
-            break; // Unique userId found
-        }
-        $userIdNum++;
-    }
-    $userId .= $userIdNum; //1 Append the number to the userId
+    $membersTbl = "ibayMembers";
+    $userId = 0;
+    #while (true) {
+        #$sql = "SELECT userId FROM $membersTbl WHERE userId = $userId";
+        #$result = mysqli_query($db, $sql);
+        #if (!$result) {
+        #    break; // Unique userId found
+        #}
+        #$userIdNum++;
+    #}
     $sql = "INSERT INTO $membersTbl (userId, password, firstname, email, address, postcode, rating, surname, gender, phone_number) 
     VALUES ($userId, '$password', '$firstName', '$email', '$address', '$postcode', 0, '$surname', '$gender', '$phoneNumber')";
 
