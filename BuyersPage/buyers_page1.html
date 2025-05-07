@@ -12,27 +12,9 @@
         <div class="sell-box">
             <input type="button" value="Sell" onclick="location.href='../SellerPage/sellerPage.html'" class="sell-button">
         </div>
-        <style>
-            .sell-box {
-                position:absolute;
-                top: 10px;
-                right: 50px;
-                margin-top: 10px;
-                text-align: center;
-            }
-            .sell-button {
-                padding: 10px 20px;
-                font-size: 16px;
-                background-color: #ff0400;
-                color: rgb(0, 0, 0);
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            .sell-button:hover {
-                background-color: #a04545;
-            }
-        </style>
+        <div class="basket-box">
+            <img src="shopping.png" alt="Basket" class="basket-icon" onclick="location.href='basket.html'" style="cursor: pointer;">
+        </div>
         
     </head> 
     <!--BODY-->
@@ -58,8 +40,10 @@
                     <option value="Price High to Low">Price high to low</option>
                     <option value="Price Low to High">Price low to high</option>
                     <opion value="Ending soonest">Ending soonest</option>
-                    <option value="User rating">User rating</option>
+                    <option value="User rating">User rating</option>                   
                 </select>
+                <button type="button" onclick="sortItems()">Sort</button>
+
                 <!-- <script>
                     function sortItems() {
                         const sortOption = document.getElementById('sortOptions').value;
@@ -188,6 +172,221 @@
                     </div>
                     <div class="grid-item" onclick="location.href='buyersPage2.html'">
                         Item 25
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 26
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 28
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 29
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 30
+                    </div>
+                </div>
+
+                <h2>Electronics</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 31
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 32
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 33
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 34
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 35
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 36
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 37
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 38
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 39
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 40
+                    </div>
+                </div>
+
+                <h2>Fashion</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 41
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 42
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 43
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 44
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 45
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 46
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 47
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 48
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 49
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 50
+                    </div>
+                </div>
+
+                <h2>Sports & Outdoors</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 51
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 52
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 53
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 54
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 55
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 56
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 57
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 58
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 59
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 60
+                    </div>
+                </div>
+
+                <h2>Health & Beauty</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 61
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 62
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 63
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 64
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 65
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 66
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 67
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 68
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 69
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 70
+                    </div>
+                </div>
+
+                <h2>Motors</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 71
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 72
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 73
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 74
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 75
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 76
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 77
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 78
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 79
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 80
+                    </div>
+                </div>
+
+                <h2>Collectables</h2>
+                <div class="horizontal-scroll">
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 81
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 82
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 83
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 84
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 85
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 86
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 87
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 88
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 89
+                    </div>
+                    <div class="grid-item" onclick="location.href='buyersPage2.html'">
+                        Item 90
                     </div>
                 </div>
             </div>

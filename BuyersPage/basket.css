@@ -116,12 +116,11 @@ a:hover {
     margin-top: 20px;
 }
 .search-bar {
-    background-color: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
     display: flex;
     align-items: center;
     gap: 10px;
     position: absolute;
-    top: 90px;
+    top: 80px;
     left: 100px;
     width: auto;
     
@@ -140,53 +139,6 @@ a:hover {
 }
 
 
-.horizontal-scroll {
-    display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 10px 0;
-}
-
-.grid-container {
-    background-color: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
-    top: 400px;
-    left: 150px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(192px, 2fr));
-    gap: 10px;
-    padding: 10px;
-}
-h2 {
-    color: white;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.grid-item {
-    min-width: 200px;
-    height: 150px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.horizontal-scroll::-webkit-scrollbar {
-    height: 8px;
-}
-
-.horizontal-scroll::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-}
-
-.horizontal-scroll::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
 .item_description {
     flex: 1;
     border: 
@@ -195,40 +147,9 @@ h2 {
     background-color: #f9f9f9;
 }
 
-.sell-box {
-    position:absolute;
-    top: 10px;
-    right: 50px;
-    margin-top: 10px;
-    text-align: center;
-}
-.sell-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #ff0400;
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.sell-button:hover {
-    background-color: #a04545;
-}
-
-
-.basket-box {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 10px;
-    right: 250px;
-    background-image: url("shopping.png");
-    background-size: 40px 40px; /* Adjust size to fit within the box */
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-    margin: 10px auto;
+.basket-container {
+    background-color: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
 }
