@@ -19,7 +19,7 @@
         <!-- HTML for header -->
         <header id="home-header">
             <!-- Go back to buyers/search page by clicking on logo-->
-            <a href="../../BuyerPage/BuyerPage.html"><img src="../../Formatting/IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
+            <a href="../../BuyersPage/buyers_page1.html"><img src="../../Formatting/IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
             <h1>My Seller Page</h1>
         </header>
         <br>
@@ -81,6 +81,16 @@
             <br>
             <br>
 
+            <!-- HTML for letting user put start date & time and end data & time of auction -->
+            <label for="startDate">Auction Start Date:</label>
+            <input type="datetime-local" class="textbox" id="startDate" name="startDate" required>
+            <br>
+            
+            <label for="endDate">Auction End Date:</label>
+            <input type="datetime-local" class="textbox" id="endDate" name="endDate" required>
+            <br>
+            <br>
+
             <!-- HTML for submit and reset buttons -->
             <input type="submit" class="btn" value="Submit" id="submitBtn">
             <input type="reset" class="btn" value="Reset" id="resetBtn">
@@ -88,7 +98,7 @@
         </div>
         
         <!-- Link to JavaScript file-->
-        <script type="text/javascript" src="seller.js"></script>
+        <script type="text/javascript" src="../seller.js"></script>
 
     </body>
 

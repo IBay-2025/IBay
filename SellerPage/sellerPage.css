@@ -15,7 +15,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #000;
-    background-image: url("background_img3.jpg");
+    background-image: url("../../Formatting/background_img3.jpg");
     background-size: cover;
     background-attachment: fixed;
     border: 1px solid red;
@@ -149,6 +149,7 @@ td img{
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
+    width: 100px;
 }
 
 /*Styling for disabled rows*/
