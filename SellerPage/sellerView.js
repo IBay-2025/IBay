@@ -11,7 +11,7 @@ $(document).ready(function() {
           // Iterate through the items and append them to the table, then display them
           var tbl = '';
   
-          $.each(items, function(index, item) {
+          $.each(response, function(index, item) {
             tbl += `<tr>`;
             tbl += `<td>${item.itemId}</td>`;
             tbl += `<td>
