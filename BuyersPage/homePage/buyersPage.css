@@ -2,7 +2,27 @@ html {
     height: 100%;
     margin: 0;
 }
+.header-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    z-index: 1000;
+}
 
+.header .logo,
+.header .search-bar,
+.header .sell-box,
+.header .basket-icon {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 body {
     display: flex;
     justify-content: center;
