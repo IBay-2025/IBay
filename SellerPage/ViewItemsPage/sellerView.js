@@ -12,8 +12,9 @@ $(document).ready(function() {
         if (response.length > 0) { 
           // Iterate through the items and append them to the table, then display them
           var tbl = '';
-          
-          $.each(items, function(index, item) {
+  
+          $.each(response, function(index, item) {
+            // Create a table row for each item
             tbl += `<tr>`;
             tbl += `<td>${item.itemId}</td>`;
             tbl += `<td>
