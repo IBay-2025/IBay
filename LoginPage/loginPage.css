@@ -14,7 +14,7 @@ body {
     min-height: 100%;
     margin: 0;
     background-color: #000;
-    background-image: url("../../Formatting/background_img3.jpg");
+    background-image: url("../Formatting/background_img3.jpg");
     background-size: cover;
     background-attachment: fixed;
     border: 1px solid black;
