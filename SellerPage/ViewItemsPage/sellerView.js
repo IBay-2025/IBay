@@ -14,8 +14,7 @@ $(document).ready(function() {
           var tbl = '';
   
           $.each(response, function(index, item) {
-          
-          $.each(items, function(index, item) {
+            // Create a table row for each item
             tbl += `<tr>`;
             tbl += `<td>${item.itemId}</td>`;
             tbl += `<td>
