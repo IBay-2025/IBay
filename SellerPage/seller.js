@@ -1,6 +1,7 @@
 //Adjust the width of header to be the same as body width for the view page
 $("#view-header").css("width", $("#view-body").width()); //Set the width of the header to be the same as the body width
 
+//Seperate startdate and enddate conditions 
 $(document).on('change, blur', '.startDate, .endDate', function() {
   var startDate = $(this).val(); //Get the value of the input field
   var endDate = $('#endDate').val(); //Get the value of the end date input field
@@ -15,79 +16,6 @@ $(document).on('change, blur', '.startDate, .endDate', function() {
   this.reportValidity(); //Report the validity of the input field
 });
 
-$(document).ready(function() {
-  var items = [
-    {itemId: 1, itemTitle: "Item 1", itemPrice: 10.00, itemPostage: "2.00 - Standard Delivery", itemCategory: "Fashion", itemDescription: "Description 1", itemImages: [{imageId: 1, imageLink: "../../Formatting/IBAY-Logo.png"}, {imageId: 2, imageLink: "../../Formatting/IBAY-Logo.png"}], startDate: "2023-10-01T12:00", endDate: "2023-10-02T12:00"},
-  ];
-  
-  var tbl = '';
-
-  $.each(items, function(index, item) {
-    tbl += `<tr>`;
-    tbl += `<td>${item.itemId}</td>`;
-    tbl += `<td>
-              <textarea type="text" class="row-data itemTitle itemTextbox" name="itemTitle" disabled>${item.itemTitle}</textarea>
-            </td>`;
-    tbl += `<td>
-              <input type="number" class="row-data itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" value="${item.itemPrice.toFixed(2)}" disabled>
-            </td>`;
-    tbl += `<td>
-              <select class="row-data itemPostage" name="itemPostage" disabled>
-              <option value=${item.itemPostage} selected disabled hidden>${item.itemPostage}</option>
-              <option value="0.00 - Standard Delivery">0.00 - Standard Delivery</option>
-              <option value="1.00 - Standard Delivery">1.00 - Standard Delivery</option>
-              <option value="2.00 - Standard Delivery">2.00 - Standard Delivery</option>
-              <option value="0.00 - Economy Delivery">0.00 - Economy Delivery</option>
-              <option value="1.00 - Economy Delivery">1.00 - Economy Delivery</option>
-              <option value="2.00 - Economy Delivery">2.00 - Economy Delivery</option>
-              </select>
-            </td>`;
-    tbl += `<td>
-              <select class="row-data itemCategory" name="itemCategory" disabled>
-                <option value=${item.itemCategory} selected disabled hidden>${item.itemCategory}</option>
-                <option value="Home">Home</option>
-                <option value="Garden & DIY">Garden & DIY</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Refurbished">Refurbished</option>
-                <option value="Fashion">Fashion</option>
-                <option value="Jewellery & Watches">Jewellery & Watches</option>
-                <option value="Motors">Motors</option>
-                <option value="Collectables">Collectables</option>
-                <option value="Sport & Leisure">Sport & Leisure</option>
-                <option value="Health & Beauty">Health & Beauty</option> 
-              </select>           
-            </td>`;
-    tbl += `<td>
-              <textarea type="text" class="row-data itemTextbox" name="itemDescription" disabled>${item.itemDescription}</textarea>
-            </td>`;
-    tbl += `<td>
-              <label for="imgPreview"><img id=${item.itemImages[0].imageId} class="imgOutput" src="${item.itemImages[0].imageLink}" alt="Item Image 1" ></label>
-              <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden disabled>
-              <label for="imgPreview"><img id=${item.itemImages[1].imageId} class="imgOutput" src="${item.itemImages[1].imageLink}" alt="Item Image 2"></label>
-              <input type="file" class="row-data imgPreview" name="imgPreview2" accept="image/*" hidden disabled>
-            </td>`;
-    tbl += `<td>
-              <label for="startDate">Auction Start Date:</label>
-              <input type="datetime-local" class="row-data startDate" id="startDate" name="startDate" value=${item.startDate} disabled required>
-              <br>
-              <label for="endDate">Auction End Date:</label>
-              <input type="datetime-local" class="row-data endDate" id="endDate" name="endDate" value=${item.endDate} disabled required>
-            </td>`;
-    tbl += `<td>
-              <button id="editBtn" class="btn edit-btn">Edit</button>
-              <button name="saveBtn" class="btn save-btn" hidden>Save</button> 
-              <button name="cancelBtn" class="btn cancel-btn" hidden>Cancel</button>
-            </td>`;
-    tbl += `<td>
-              <button id="deleteBtn" class="btn delete-btn">Delete</button>
-            </td>`;
-    tbl += '</tr>';
-
-  //Append the table rows to the table body
-  $(document).find('#itemTableBody').append(tbl); //Append the table rows to the table body
-  });
-});
-
 //Event listener for making sure user uploads only 2 files
 $(document).on('change', '.imgFiles', function () {
   //Check if the number of files is greater than 2
@@ -100,9 +28,9 @@ $(document).on('change', '.imgFiles', function () {
     imgFiles.setCustomValidity('');
   }
 
-  //Check if the file size is greater than 1MB
-  if (this.files[0].size > 1048576 || this.files[1].size > 1048576) {
-    imgFiles.setCustomValidity("File size must be less than 1MB"); //Set the custom validity message
+  //Check if the file size is greater than 5MB
+  if (this.files[0].size > 1048576*5 || this.files[1].size > 1048576*5) {
+    imgFiles.setCustomValidity("File size must be less than 5MB"); //Set the custom validity message
   } else {
     imgFiles.setCustomValidity(''); //If the file size is less than 1MB, set the custom validity to empty
   }
@@ -196,20 +124,72 @@ $(document).ready(function() {
       // Check if item details are returned
       if (response.length > 0) { 
         // Iterate through the items and append them to the table, then display them
-        $.each(response, function (item) {
-          $('#itemsTableBody').append(
-            `<tr>
-              <td>${item.itemId}</td>
-              <td>${item.itemName}</td>
-              <td>£${item.itemPrice}</td>
-              <td>${item.itemCategory}</td>
-              <td>${item.itemDescription}</td>
-              <td><img src="${item.itemImages}" alt="Item Image" width="50" height="50"></td>
-              <td><button id="editBtn" class="btn edit-btn">Edit</button></td>
-              <td><button id="deleteBtn" onclick="deleteItem(this)" class="btn">Delete</button></td>
-            </tr>`
-          );
-      });
+        var tbl = '';
+        
+        $.each(items, function(index, item) {
+          tbl += `<tr>`;
+          tbl += `<td>${item.itemId}</td>`;
+          tbl += `<td>
+                    <textarea type="text" class="row-data itemTitle itemTextbox" name="itemTitle" disabled>${item.itemTitle}</textarea>
+                  </td>`;
+          tbl += `<td>
+                    <input type="number" class="row-data itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" value="${item.itemPrice.toFixed(2)}" disabled>
+                  </td>`;
+          tbl += `<td>
+                    <select class="row-data itemPostage" name="itemPostage" disabled>
+                    <option value=${item.itemPostage} selected disabled hidden>${item.itemPostage}</option>
+                    <option value="0.00 - Standard Delivery">0.00 - Standard Delivery</option>
+                    <option value="1.00 - Standard Delivery">1.00 - Standard Delivery</option>
+                    <option value="2.00 - Standard Delivery">2.00 - Standard Delivery</option>
+                    <option value="0.00 - Economy Delivery">0.00 - Economy Delivery</option>
+                    <option value="1.00 - Economy Delivery">1.00 - Economy Delivery</option>
+                    <option value="2.00 - Economy Delivery">2.00 - Economy Delivery</option>
+                    </select>
+                  </td>`;
+          tbl += `<td>
+                    <select class="row-data itemCategory" name="itemCategory" disabled>
+                      <option value=${item.itemCategory} selected disabled hidden>${item.itemCategory}</option>
+                      <option value="Home">Home</option>
+                      <option value="Garden & DIY">Garden & DIY</option>
+                      <option value="Electronics">Electronics</option>
+                      <option value="Refurbished">Refurbished</option>
+                      <option value="Fashion">Fashion</option>
+                      <option value="Jewellery & Watches">Jewellery & Watches</option>
+                      <option value="Motors">Motors</option>
+                      <option value="Collectables">Collectables</option>
+                      <option value="Sport & Leisure">Sport & Leisure</option>
+                      <option value="Health & Beauty">Health & Beauty</option> 
+                    </select>           
+                  </td>`;
+          tbl += `<td>
+                    <textarea type="text" class="row-data itemTextbox" name="itemDescription" disabled>${item.itemDescription}</textarea>
+                  </td>`;
+          tbl += `<td>
+                    <label for="imgPreview"><img id=${item.itemImages[0].imageId} class="imgOutput" src="${item.itemImages[0].imageLink}" alt="Item Image 1" ></label>
+                    <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden disabled>
+                    <label for="imgPreview"><img id=${item.itemImages[1].imageId} class="imgOutput" src="${item.itemImages[1].imageLink}" alt="Item Image 2"></label>
+                    <input type="file" class="row-data imgPreview" name="imgPreview2" accept="image/*" hidden disabled>
+                  </td>`;
+          tbl += `<td>
+                    <label for="startDate">Auction Start Date:</label>
+                    <input type="datetime-local" class="row-data startDate" id="startDate" name="startDate" value=${item.startDate} disabled required>
+                    <br>
+                    <label for="endDate">Auction End Date:</label>
+                    <input type="datetime-local" class="row-data endDate" id="endDate" name="endDate" value=${item.endDate} disabled required>
+                  </td>`;
+          tbl += `<td>
+                    <button id="editBtn" class="btn edit-btn">Edit</button>
+                    <button name="saveBtn" class="btn save-btn" hidden>Save</button> 
+                    <button name="cancelBtn" class="btn cancel-btn" hidden>Cancel</button>
+                  </td>`;
+          tbl += `<td>
+                    <button id="deleteBtn" class="btn delete-btn">Delete</button>
+                  </td>`;
+          tbl += '</tr>';
+
+        //Append the table rows to the table body
+        $(document).find('#itemTableBody').append(tbl); //Append the table rows to the table body
+        });
     } else {
         // If no items are found, display a error message in the table
         $('#itemsTableBody').append(
@@ -262,6 +242,37 @@ $(document).on('click', '.cancel-btn', function(event)
   });
 })
 
+//Function for validating item title, item price, item description, item images and duration dates when the user clicks on the save button
+function validateOnSave(row) {
+  // Get the item title, item price, item description, item images and duration dates from the row
+  var itemTitle = row.find(".itemTitle"); //Get the value of the item title input field
+  var itemPrice = row.find(".itemPrice"); //Get the value of the item price input field
+  var itemDescription = row.find(".itemTextbox").eq(1); //Get the value of the item description input field
+  var startDate = row.find(".startDate"); //Get the value of the start date input field
+  var endDate = row.find(".endDate"); //Get the value of the end date input field
+  var itemImage1 = row.find(".imgPreview").eq(0); //Get the value of the item images input field
+  var itemImage2 = row.find(".imgPreview").eq(1); //Get the value of the item images input field
+
+  //Check validity for the item title, item price, item description, item images and duration dates
+  if (itemTitle.val() == "" || itemPrice.val() == "" || itemDescription.val() == "" ) {
+    alert("Please fill in all empty fields");
+    return false; //Return false to prevent item from being saved
+    //Check if start date is greater than end date
+  } else if (startDate.val() > endDate.val()) {
+    alert("Start date cannot be greater than end date"); //If the start date is greater than the end date, set the custom validity message
+    return false; //Return true to allow item to be saved
+  //Check if the item images size are more than 5 MB or empty if user has selected file(s)
+  } else if (endDate.val() > startDate.val()) {
+    alert("End date cannot be less than start date"); //If the end date is less than the start date, set the custom validity message
+    return false; //Return true to allow item to be saved
+  } else if (itemImage1[0].files.length > 0 && itemImage1[0].files[0].size > 1048576*5 || itemImage2[0].files.length > 0 && itemImage2[0].files[0].size > 1048576*5) {
+    alert("File size must be less than 5MB"); //If the file size is greater than 5MB, set the custom validity message
+    return false; //Return true to allow item to be saved
+  } else {
+    return true; //Return true to allow item to be saved
+  }
+}
+
 //Event listener for saving the edit of an item in the table
 $(document).on('click', '.save-btn', function(event) 
 {
@@ -271,6 +282,12 @@ $(document).on('click', '.save-btn', function(event)
   // Get the row of the button that was clicked
   var row = $(this).closest("tr");
 
+  if (validateOnSave(row) == false) {
+    alert("Please fill in all the required fields correctly before saving."); //If the validation fails, show an alert message
+    return; //If the validation fails, return and do not proceed with saving
+  }
+
+  // Get the item details and store them in an object
   const itemDetails = {
     itemId: parseInt(row.find("td").eq(0).text()),
     itemName: row.find("td").eq(1).find(".row-data").val(),
@@ -323,13 +340,8 @@ $(document).on('click', '.save-btn', function(event)
     error: function(error) {
       // Handle errors (e.g., network issues)
       alert("Error updating item, please cick cancel and try again later.");
-      /*row.find(".row-data").each(function() {
-        alert($(this).attr("originalvalue")); 
-      });*/
     }
   });
-
-
 });
 
 //jQuery function for deleting an item from the table
