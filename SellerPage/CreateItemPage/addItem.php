@@ -1,6 +1,4 @@
 <?php
-
-error_reporting(E_ALL);
 include '../../connect.php'; // Include your database connection file
 echo "connecting";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
