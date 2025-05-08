@@ -37,14 +37,14 @@
             
             <!-- HTML for text boxes for item name, item price and item postage -->
             <label for="itemTitle">Item Title:</label>
-            <input type="text" class="textbox" placeholder="Enter Item Title" name="itemTitle" required><br>
+            <input type="text" class="textbox" placeholder="Enter Item Title" name="itemTitle" value="Example Item Title" required><br>
 
             <label for="itemPrice">Item Price (GBP):</label> <!-- Prices must be entered in GBP -->
-            <input type="number" class="textbox itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price to 2 decimal places" name="itemPrice" required>
+            <input type="number" class="textbox itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price to 2 decimal places" name="itemPrice" value="19.99" required>
             <br>
             <label for="itemPostage">Item Postage:</label>
             <select name="itemPostage" required>
-                <option value="0.00 - Standard Delivery">0.00 - Standard Delivery</option>
+                <option value="0.00 - Standard Delivery" selected>0.00 - Standard Delivery</option>
                 <option value="1.00 - Standard Delivery">1.00 - Standard Delivery</option>
                 <option value="2.00 - Standard Delivery">2.00 - Standard Delivery</option>
                 <option value="0.00 - Economy Delivery">0.00 - Economy Delivery</option>
@@ -57,7 +57,7 @@
             <label for="itemCategory">Item Category:</label>
             <!-- Allow user to select category from choices listed below -->
             <select name="itemCategory" required>
-                <option value="home">Home</option>
+                <option value="home" selected>Home</option>
                 <option value="harden">Garden & DIY</option>
                 <option value="electronics">Electronics</option>
                 <option value="refurbished">Refurbished</option>
@@ -72,7 +72,7 @@
             <br>
             <!-- HTML for text area for item description -->
             <label for="description">Item Description:</label>
-            <textarea class="textbox" placeholder="Enter Item Description..." id="description" name="description" required></textarea><br><br>
+            <textarea class="textbox" placeholder="Enter Item Description..." id="description" name="description" required>Example description of the item.</textarea><br><br>
             
             <!-- HTML for file upload for item images -->
             <!-- User must upload 2 images of item -->
@@ -83,11 +83,11 @@
 
             <!-- HTML for letting user put start date & time and end data & time of auction -->
             <label for="startDate">Auction Start Date:</label>
-            <input type="datetime-local" class="textbox" id="startDate" name="startDate" required>
+            <input type="datetime-local" class="textbox" id="startDate" name="startDate" value="2025-05-08T10:00" required>
             <br>
             
             <label for="endDate">Auction End Date:</label>
-            <input type="datetime-local" class="textbox" id="endDate" name="endDate" required>
+            <input type="datetime-local" class="textbox" id="endDate" name="endDate" value="2025-05-15T10:00" required>
             <br>
             <br>
 

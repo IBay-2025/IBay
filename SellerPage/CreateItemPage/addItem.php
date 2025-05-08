@@ -1,7 +1,8 @@
 <?php
 include '../connect.php'; // Include your database connection file
-
+echo "connecting";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    echo "connecting";     
     // Retrieve form data
     $userId = $_SESSION['userId']; // Replace with the actual userId (e.g., from session or authentication)
     $title = $_POST['itemTitle'];
@@ -9,21 +10,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = $_POST['description'];
     $price = $_POST['itemPrice'];
     $postage = $_POST['itemPostage'];
-    $start = $_POST['']; 
-    $finish = $_POST['']; 
-    $itemsTbl = "iBayItems";
+    $start = $_POST['startDate']; 
+    $finish = $_POST['endDate']; 
+    
     // Prepare the SQL query
 
-
+    $itemsTbl = "iBayItems";
     $itemId = 1;
     while (true) {
+        echo "id: $itemId<br>";
         $sql = "SELECT itemId FROM $itemsTbl WHERE itemId = $itemId";
+        echo"$sql<br>";
+        
+        
         $result = mysqli_query($db, $sql);
+        echo "result has been found?";
+        
         if (mysqli_num_rows($result) === 0) {
             break; // Unique userId found
         }
+
         $itemId++;
     }
+    echo "$itemId<br>";
     $sql = "INSERT INTO $itemsTbl (itemId, userId, title, category, description, price, postage, start, finish) 
     VALUES ('$itemId','$userId', '$title', '$category', '$description', '$price', '$postage', '$start', '$finish')";
 
@@ -32,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if(!$result) {
         die("Query failed: " . mysqli_error($db));
+       
     } else {
         echo "<script>
             alert('New item created successfully!');
