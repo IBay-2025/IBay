@@ -12,43 +12,32 @@ if(isset($_POST['signUp-Submit'])){
     $dob = $_POST['dob'];
     $gender = $_POST['gender'];
     $email = $_POST['email'];
-    $name = 'tom';#$firstname.' '.$surname;
+    $username = $_POST['username'];#$firstname.' '.$surname;
     #login form submitted
     $membersTbl = "iBayMembers";
-    $userId = 2;
-    #while (true) {
-        #$sql = "SELECT userId FROM $membersTbl WHERE userId = $userId";
-        #$result = mysqli_query($db, $sql);
-        #if (!$result) {
-        #    break; // Unique userId found
-        #}
-        #$userIdNum++;
-    #}
-    $sql = "INSERT INTO $membersTbl (userId, password, firstname,surname, email, address, postcode, rating, gender, phone_number) 
-    VALUES ($userId, '$password', '$firstname','$surname', '$email', '$address', '$postcode', 0, '$gender', '$phoneNumber')";
+    $userId = 1;
+    while (true) {
+        $sql = "SELECT userId FROM $membersTbl WHERE userId = $userId";
+        $result = mysqli_query($db, $sql);
+        if (mysqli_num_rows($result) === 0) {
+            break; // Unique userId found
+        }
+        $userId++;
+    }
+    $sql = "INSERT INTO $membersTbl (userId,password, username,firstname,surname, email, address, postcode, rating, gender, phone_number) 
+    VALUES ($userId, '$password','$username', '$firstname','$surname', '$email', '$address', '$postcode', 0, '$gender', '$phonenumber')";
 
     $result = mysqli_query($db, $sql);
-    if ($result) {
-        echo "User successfully added.<br>";
-        echo("email".$email."<br>");
-        echo("password".$password."<br>");
-        echo("name".$firstname."<br>"); 
-    } else {
-        echo "Error:.<br>";
+    if (!$result) {
+        die("Query failed: " . mysqli_error($db));
     }
-    //use query results
-    #if (!$result) {
-     #   die("Query failed: " . mysqli_error($db));
-    #}
-    #else{
-    #echo "<script>
-    #     alert('New user created successfully!');
-    #    window.location.href = '../LoginPage/loginPage.html';
-    #</script>";
-    #exit();
-        
-    #   }
-
+    else{
+        echo "<script>
+             alert('New user created successfully!');
+            window.location.href = '../LoginPage/loginPage.html';
+        </script>";
+        exit();
+    }
 }
 else{
     echo "Incorrect php file called. this is for the sign up form only.<br>";

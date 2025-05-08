@@ -3,7 +3,6 @@
 html {
     margin: 0px;
     padding: 0px;
-    border: yellow solid 1px;
 }
 
 /*Styling for body*/
@@ -15,10 +14,9 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #000;
-    background-image: url("background_img3.jpg");
+    background-image: url("../../Formatting/background_img3.jpg");
     background-size: cover;
     background-attachment: fixed;
-    border: 1px solid red;
 }
 
 #home-body {
@@ -41,7 +39,7 @@ header {
     display: flex;
     flex: left;
     justify-content: space-between;
-    border: 1px solid red;
+    border: 1px solid black;
 }
 
 #home-header {
@@ -70,7 +68,7 @@ header {
 
 /*/Styling for buttons/*/
 /*Default styling for button */
-.btn {
+.btn{
     background-color: #b34b0b;
     color: white;
     padding: 10px 20px;
@@ -122,6 +120,8 @@ textarea {
 /*Main styling for links*/
 a {
     color: white;
+    font-size: 1.3em;
+    text-decoration: underline red;
 }
 
 /*Hover styling for links*/
@@ -129,9 +129,10 @@ a:hover {
     color: rgb(173, 100, 16);
 }
 
-#linkBack {
-    text-align: right;
-    background-color: #fff;
+.link-title-container {
+    display: block;
+    margin-top: -4px;
+    text-align: end;
 }
 
 /*Styling for table of items*/
@@ -149,13 +150,14 @@ td img{
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
+    width: 100px;
 }
 
 /*Styling for disabled rows*/
 .row-data[disabled], .itemTextbox[disabled] {
     background-color:  rgba(0, 0, 0, 0);
     color: #fff;
-    border: 1px solid beige;
+    border: 1px solid black;
 
 }
 
