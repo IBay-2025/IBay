@@ -13,7 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$result) {
         die("Query failed: " . mysqli_error($db));
     }
-    
+
+    //now use data to add to the table
+
 
 
 
