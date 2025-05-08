@@ -2,7 +2,7 @@
 include '../connect.php';
 // Check if the form is submitted and weather itsd login
 if(isset($_POST['login-submit'])){
-    $email = $_POST['username'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
     #login form submitted
@@ -14,7 +14,7 @@ if(isset($_POST['login-submit'])){
         $membersTbl = "iBayMembers";
         $sql = "SELECT * 
             FROM $membersTbl 
-            WHERE email = '$email' 
+            WHERE username = '$username' 
             AND password = '$password'";
         $result = mysqli_query($db, $sql);
         //use query results
