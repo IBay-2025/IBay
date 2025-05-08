@@ -1,93 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <!--HEAD-->
+    <!--HEAD 0-->
     <head> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
         <title>Buyers Page</title>
         <link rel="stylesheet" href="buyersPage.css">
-        <link rel="icon" href="../../Formatting/favicon.ico" type="image/x-icon">
-        <h1 class="header">Welcome to IBAY</h1>  
-            <img src="../../Formatting/IBAY-Logo.png" alt="Intro" width="200" class="logo">
-        <div class="sell-box">
-            <input type="button" value="Sell" onclick="location.href='../../SellerPage/ViewItemsPage/ViewItemsPage.html'" class="sell-button">
-        </div>
-        <div class="basket-box">
-            <img src="../shopping.png" alt="Basket" class="basket-icon" onclick="location.href='../basket/basket.html'" style="cursor: pointer;">
-        </div> 
+        <link rel="icon" href="../../Formatting/favicon.ico" type="image/x-icon"> 
+            
         
     </head> 
     <!--BODY-->
     <body>
         <header>
-            <div class="search-bar">
-                <input type="text" placeholder="Search for items..." id="searchInput">
-                <select id="Advanced searchOptions" onchange="sortItems()">
-                    <option value="default">None</option>
-                    <option value="Price less than £2">Price less than £2</option>
-                    <option value="Price greater than £2">Price greater than £2</option>
-                    <option value="Price between £2 and £5">Price between £2 and £5</option>
-                    <option value="free postage">free postage</option>
-                    <option value="restricted categories">restricted categories</option>
-                    <option value="location">location</option>
-                    <option value="Average or better condition">Average or better condition</option>
-                    <option value="Refurbished">Brand new</option>
-
-                </select>
-                <button type="button" onclick="searchItems()">Search</button>
-                <select id="sortOptions" onchange="sortItems()">
-                    <option value="default">Sort By</option>
-                    <option value="Price High to Low">Price high to low</option>
-                    <option value="Price Low to High">Price low to high</option>
-                    <option value="Ending soonest">Ending soonest</option>
-                    <option value="User rating">User rating</option>                   
-                </select>
-                <button type="button" onclick="sortItems()">Sort</button>
-
-                <!-- <script>
-                    function sortItems() {
-                        const sortOption = document.getElementById('sortOptions').value;
-                        const itemsContainer = document.getElementById('Items');
-                        const items = Array.from(itemsContainer.getElementsByClassName('item'));
-
-                        if (sortOption === 'name') {
-                            items.sort((a, b) => {
-                                const nameA = a.querySelector('h2').textContent.toLowerCase();
-                                const nameB = b.querySelector('h2').textContent.toLowerCase();
-                                return nameA.localeCompare(nameB);
-                            });
-                        } else if (sortOption === 'description') {
-                            items.sort((a, b) => {
-                                const descA = a.querySelector('p').textContent.toLowerCase();
-                                const descB = b.querySelector('p').textContent.toLowerCase();
-                                return descA.localeCompare(descB);
-                            });
+            <img src="../../Formatting/IBAY-Logo.png" alt="Intro" width="200" class="logo">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for items..." id="searchInput">
+                    <select id="Advanced searchOptions" onchange="sortItems()">
+                        <option value="default">None</option>
+                        <option value="Price less than £2">Price less than £2</option>
+                        <option value="Price greater than £2">Price greater than £2</option>
+                        <option value="Price between £2 and £5">Price between £2 and £5</option>
+                        <option value="free postage">free postage</option>
+                        <option value="restricted categories">restricted categories</option>
+                        <option value="location">location</option>
+                        <option value="Average or better condition">Average or better condition</option>
+                        <option value="Refurbished">Brand new</option>
+    
+                    </select>
+                    <button type="button" onclick="searchItems()">Search</button>
+                    <select id="sortOptions" onchange="sortItems()">
+                        <option value="default">Sort By</option>
+                        <option value="Price High to Low">Price high to low</option>
+                        <option value="Price Low to High">Price low to high</option>
+                        <option value="Ending soonest">Ending soonest</option>
+                        <option value="User rating">User rating</option>                   
+                    </select>
+                    <button type="button" onclick="sortItems()">Sort</button>
+    
+                    <!-- <script>
+                        function sortItems() {
+                            const sortOption = document.getElementById('sortOptions').value;
+                            const itemsContainer = document.getElementById('Items');
+                            const items = Array.from(itemsContainer.getElementsByClassName('item'));
+    
+                            if (sortOption === 'name') {
+                                items.sort((a, b) => {
+                                    const nameA = a.querySelector('h2').textContent.toLowerCase();
+                                    const nameB = b.querySelector('h2').textContent.toLowerCase();
+                                    return nameA.localeCompare(nameB);
+                                });
+                            } else if (sortOption === 'description') {
+                                items.sort((a, b) => {
+                                    const descA = a.querySelector('p').textContent.toLowerCase();
+                                    const descB = b.querySelector('p').textContent.toLowerCase();
+                                    return descA.localeCompare(descB);
+                                });
+                            }
+    
+                            itemsContainer.innerHTML = '';
+                            items.forEach(item => itemsContainer.appendChild(item));
                         }
-
-                        itemsContainer.innerHTML = '';
-                        items.forEach(item => itemsContainer.appendChild(item));
+                    </script> -->
+                    
+                </div>
+                <!-- <script>
+                    function searchItems() {
+                        const query = document.getElementById('searchInput').value.toLowerCase();
+                        const items = document.querySelectorAll('.item');
+                        items.forEach(item => {
+                            const itemName = item.querySelector('h2').textContent.toLowerCase();
+                            if (itemName.includes(query)) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
                     }
                 </script> -->
-                
-            </div>
-            <!-- <script>
-                function searchItems() {
-                    const query = document.getElementById('searchInput').value.toLowerCase();
-                    const items = document.querySelectorAll('.item');
-                    items.forEach(item => {
-                        const itemName = item.querySelector('h2').textContent.toLowerCase();
-                        if (itemName.includes(query)) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                }
-            </script> -->
+        <div class="sell-box">
+            <input type="button" value="Sell" onclick="location.href='../SellerPage/ViewItemPage/ViewItemsPage.html'" class="sell-button">
+        </div>
+        <div class="basket-box">
+            <img src="../shopping.png" alt="Basket" class="basket-icon" onclick="location.href='basket.html'" style="cursor: pointer;">
+        </div> 
         </header>
+        
         <br>
         <main>
             <div class="grid-container">
+
                 <h2>Home</h2>
                 <div class="horizontal-scroll">
                     <div class="grid-item" onclick="location.href='../itemView/buyersItemView.html'">

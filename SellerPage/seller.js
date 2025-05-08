@@ -1,12 +1,12 @@
 //Adjust the width of header to be the same as body width for the view page
 $("#view-header").css("width", $("#view-body").width()); //Set the width of the header to be the same as the body width
 
-$(document).on('change', '.startDate, .endDate', function() {
+$(document).on('change, blur', '.startDate, .endDate', function() {
   var startDate = $(this).val(); //Get the value of the input field
   var endDate = $('#endDate').val(); //Get the value of the end date input field
 
-  //Check if the start date is greater than the end date
-  if (startDate > endDate) {
+  //Check if the start date is greater or equal to than the end date
+  if (startDate >= endDate) {
     this.setCustomValidity("Start date cannot be greater than end date"); //If the start date is greater than the end date, set the custom validity message
   } else {
     this.setCustomValidity(''); //If the start date is not greater than the end date, set the custom validity to empty
@@ -17,7 +17,7 @@ $(document).on('change', '.startDate, .endDate', function() {
 
 $(document).ready(function() {
   var items = [
-    {itemId: 1, itemTitle: "Item 1", itemPrice: 10.00, itemPostage: "2.00 - Standard Delivery", itemCategory: "Fashion", itemDescription: "Description 1", itemImages: [{imageId: 1, imageLink: "../../Formatting/IBAY-Logo.png"}, {imageId: 2, imageLink: "../../Formatting/IBAY-Logo.png"}]},
+    {itemId: 1, itemTitle: "Item 1", itemPrice: 10.00, itemPostage: "2.00 - Standard Delivery", itemCategory: "Fashion", itemDescription: "Description 1", itemImages: [{imageId: 1, imageLink: "../../Formatting/IBAY-Logo.png"}, {imageId: 2, imageLink: "../../Formatting/IBAY-Logo.png"}], startDate: "2023-10-01T12:00", endDate: "2023-10-02T12:00"},
   ];
   
   var tbl = '';
@@ -44,17 +44,17 @@ $(document).ready(function() {
             </td>`;
     tbl += `<td>
               <select class="row-data itemCategory" name="itemCategory" disabled>
-              <option value=${item.itemCategory} selected disabled hidden>${item.itemCategory}</option>
-              <option value="Home">Home</option>
-              <option value="Garden & DIY">Garden & DIY</option>
-              <option value="Electronics">Electronics</option>
-              <option value="Refurbished">Refurbished</option>
-              <option value="Fashion">Fashion</option>
-              <option value="Jewellery & Watches">Jewellery & Watches</option>
-              <option value="Motors">Motors</option>
-              <option value="Collectables">Collectables</option>
-              <option value="Sport & Leisure">Sport & Leisure</option>
-              <option value="Health & Beauty">Health & Beauty</option> 
+                <option value=${item.itemCategory} selected disabled hidden>${item.itemCategory}</option>
+                <option value="Home">Home</option>
+                <option value="Garden & DIY">Garden & DIY</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Refurbished">Refurbished</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Jewellery & Watches">Jewellery & Watches</option>
+                <option value="Motors">Motors</option>
+                <option value="Collectables">Collectables</option>
+                <option value="Sport & Leisure">Sport & Leisure</option>
+                <option value="Health & Beauty">Health & Beauty</option> 
               </select>           
             </td>`;
     tbl += `<td>
@@ -65,6 +65,13 @@ $(document).ready(function() {
               <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden disabled>
               <label for="imgPreview"><img id=${item.itemImages[1].imageId} class="imgOutput" src="${item.itemImages[1].imageLink}" alt="Item Image 2"></label>
               <input type="file" class="row-data imgPreview" name="imgPreview2" accept="image/*" hidden disabled>
+            </td>`;
+    tbl += `<td>
+              <label for="startDate">Auction Start Date:</label>
+              <input type="datetime-local" class="row-data startDate" id="startDate" name="startDate" value=${item.startDate} disabled required>
+              <br>
+              <label for="endDate">Auction End Date:</label>
+              <input type="datetime-local" class="row-data endDate" id="endDate" name="endDate" value=${item.endDate} disabled required>
             </td>`;
     tbl += `<td>
               <button id="editBtn" class="btn edit-btn">Edit</button>
@@ -82,7 +89,7 @@ $(document).ready(function() {
 });
 
 //Event listener for making sure user uploads only 2 files
-$(document).on('change', '#imgFiles', function () {
+$(document).on('change', '.imgFiles', function () {
   //Check if the number of files is greater than 2
   if (this.files.length > 2) {
     imgFiles.setCustomValidity("You can only upload 2 files");
@@ -91,6 +98,13 @@ $(document).on('change', '#imgFiles', function () {
     imgFiles.setCustomValidity("You must upload 2 files");
   } else {
     imgFiles.setCustomValidity('');
+  }
+
+  //Check if the file size is greater than 1MB
+  if (this.files[0].size > 1048576 || this.files[1].size > 1048576) {
+    imgFiles.setCustomValidity("File size must be less than 1MB"); //Set the custom validity message
+  } else {
+    imgFiles.setCustomValidity(''); //If the file size is less than 1MB, set the custom validity to empty
   }
 
   imgFiles.reportValidity();
@@ -257,9 +271,6 @@ $(document).on('click', '.save-btn', function(event)
   // Get the row of the button that was clicked
   var row = $(this).closest("tr");
 
-  // Get the item ID from the first cell of the row
-  var itemId = row.find("td").eq(0).text();
-
   const itemDetails = {
     itemId: parseInt(row.find("td").eq(0).text()),
     itemName: row.find("td").eq(1).find(".row-data").val(),
@@ -267,8 +278,10 @@ $(document).on('click', '.save-btn', function(event)
     itemDescription: row.find("td").eq(5).find(".row-data").val(),
     itemPrice: parseFloat(row.find("td").eq(2).find(".row-data").val()), //Convert the price (type string) to a float
     itemPostage: row.find("td").eq(3).find(":selected").val(),
-    itemImages: {itemImage1: row.find("td").eq(6).find("img").eq(0).attr("src"), 
-      imgImage2:row.find("td").eq(6).find("img").eq(1).attr("src")}
+    itemImages: [{imgId: parseInt(row.find("td").eq(6).find("img").eq(0).attr("id")), imgLink: row.find("td").eq(6).find("img").eq(0).attr("src")}, 
+      {imgId: parseInt(row.find("td").eq(6).find("img").eq(1).attr("id")), imgLink: row.find("td").eq(6).find("img").eq(1).attr("src")}],
+    startDate: row.find("td").eq(7).find(".row-data").eq(0).val(), //Get the value of the start date input field
+    endDate: row.find("td").eq(7).find(".row-data").eq(1).val() //Get the value of the end date input field
   };
 
   const itemDetailsJSON = JSON.stringify(itemDetails); //Convert the object to a JSON string

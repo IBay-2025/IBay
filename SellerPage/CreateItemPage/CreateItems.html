@@ -20,21 +20,22 @@
         <header id="home-header">
             <!-- Go back to buyers/search page by clicking on logo-->
             <a href="../../BuyersPage/buyers_page1.html"><img src="../../Formatting/IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
-            <h1>My Seller Page</h1>
+            <div class="link-title-container">
+                <a href="../../LoginPage/loginPage.html">Log Out</a>
+                <h1>My Seller Page</h1>
+            </div>
         </header>
         <br>
 
         <!-- HTML for main div for sign up box -->
         <div id="upload" class="content-box">
+        <a href="../ViewItemsPage/ViewItemsPage.html" title="Click here to view and edit selling items">View and Edit Selling Items</a>
         <h1>Upload New Selling Item</h1>
         <br>
         <br>
         <!-- HTML for form for uplading a new selling item to database -->
         <!-- All inputs are required to be filled in by user -->
         <form name="sellerForm" enctype="multipart/form-data" action="addItem.php" method="post">
-            <!-- Max file size for uploaded images set to 1MB -->
-            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-            
             <!-- HTML for text boxes for item name, item price and item postage -->
             <label for="itemTitle">Item Title:</label>
             <input type="text" class="textbox" placeholder="Enter Item Title" name="itemTitle" value="Example Item Title" required><br>
@@ -77,17 +78,25 @@
             <!-- HTML for file upload for item images -->
             <!-- User must upload 2 images of item -->
             <label for="imgFiles">Upload Images for Item (2 images required, max size for each image is 1MB):</label>
-            <input type="file" class="textbox" id="imgFiles" name="imgFiles" accept="image/*" multiple required>
+            <input type="file" class="textbox imgFiles" id="imgFiles" name="imgFiles" accept="image/*" multiple required>
             <br>
             <br>
 
             <!-- HTML for letting user put start date & time and end data & time of auction -->
             <label for="startDate">Auction Start Date:</label>
+<<<<<<< HEAD
             <input type="datetime-local" class="textbox" id="startDate" name="startDate" value="2025-05-08T10:00" required>
+=======
+            <input type="datetime-local" class="textbox startDate" id="startDate" name="startDate" required>
+>>>>>>> 14fb5c4e665fe4756560c79826a0876496b47807
             <br>
-            
+
             <label for="endDate">Auction End Date:</label>
+<<<<<<< HEAD
             <input type="datetime-local" class="textbox" id="endDate" name="endDate" value="2025-05-15T10:00" required>
+=======
+            <input type="datetime-local" class="textbox endDate" id="endDate" name="endDate" required>
+>>>>>>> 14fb5c4e665fe4756560c79826a0876496b47807
             <br>
             <br>
 
