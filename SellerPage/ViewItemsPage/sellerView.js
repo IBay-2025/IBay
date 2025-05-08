@@ -6,11 +6,14 @@ $(document).ready(function() {
       method: "GET", // HTTP GET method
       dataType: "json", // Expecting JSON response data
       success: function(response) {
+        console.log("Program reached the success callback of the AJAX request.");
         // Check if item details are returned
+        //console.log("Response from fetchItems.php:", response); // Log the response to the console
+
         if (response.length > 0) { 
           // Iterate through the items and append them to the table, then display them
           var tbl = '';
-  
+          
           $.each(items, function(index, item) {
             tbl += `<tr>`;
             tbl += `<td>${item.itemId}</td>`;

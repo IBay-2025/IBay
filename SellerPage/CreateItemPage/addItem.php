@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 include '../../connect.php'; // Include your database connection file
 echo "connecting";
