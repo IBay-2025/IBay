@@ -3,6 +3,7 @@ include '../connect.php';
 //echo('active debugging<br>');
 echo`Sign up page<br>`;
 if(isset($_POST['signUp-Submit'])){
+    // Check if the user is logged in
     $firstName = $_POST['firstname'];
     $surname = $_POST['surname'];
     $password = $_POST['password'];
@@ -22,6 +23,7 @@ if(isset($_POST['signUp-Submit'])){
         if (mysqli_num_rows($result) === 0) {
             break; // Unique userId found
         }
+        echo "id: $userId<br>";
         $userId++;
     }
     $sql = "INSERT INTO $membersTbl (userId,password, username,firstname,surname, email, address, postcode, rating, gender, phone_number) 

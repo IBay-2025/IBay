@@ -14,12 +14,12 @@
         <link rel="icon" href="../../Formatting/favicon.ico" type="image/x-icon"> 
     </head>
 
-    <!-- HTML for body -->
+    <!-- HTML 0 for body -->
     <body id="home-body">
         <!-- HTML for header -->
         <header id="home-header">
             <!-- Go back to buyers/search page by clicking on logo-->
-            <a href="../../BuyersPage/buyers_page1.html"><img src="../../Formatting/IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
+            <a href="../../BuyersPage/homePage/buyersHomePage.html"><img src="../../Formatting/IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
             <div class="link-title-container">
                 <a href="../../LoginPage/loginPage.html">Log Out</a>
                 <h1>My Seller Page</h1>
@@ -38,14 +38,14 @@
         <form name="sellerForm" enctype="multipart/form-data" action="addItem.php" method="post">
             <!-- HTML for text boxes for item name, item price and item postage -->
             <label for="itemTitle">Item Title:</label>
-            <input type="text" class="textbox" placeholder="Enter Item Title" name="itemTitle" required><br>
+            <input type="text" class="textbox" placeholder="Enter Item Title" name="itemTitle" value="Example Item Title" required><br>
 
             <label for="itemPrice">Item Price (GBP):</label> <!-- Prices must be entered in GBP -->
-            <input type="number" class="textbox itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price to 2 decimal places" name="itemPrice" required>
+            <input type="number" class="textbox itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price to 2 decimal places" name="itemPrice" value="19.99" required>
             <br>
             <label for="itemPostage">Item Postage:</label>
             <select name="itemPostage" required>
-                <option value="0.00 - Standard Delivery">0.00 - Standard Delivery</option>
+                <option value="0.00 - Standard Delivery" selected>0.00 - Standard Delivery</option>
                 <option value="1.00 - Standard Delivery">1.00 - Standard Delivery</option>
                 <option value="2.00 - Standard Delivery">2.00 - Standard Delivery</option>
                 <option value="0.00 - Economy Delivery">0.00 - Economy Delivery</option>
@@ -58,37 +58,37 @@
             <label for="itemCategory">Item Category:</label>
             <!-- Allow user to select category from choices listed below -->
             <select name="itemCategory" required>
-                <option value="home">Home</option>
-                <option value="harden">Garden & DIY</option>
-                <option value="electronics">Electronics</option>
-                <option value="refurbished">Refurbished</option>
-                <option value="fashion">Fashion</option>
-                <option value="jewellery">Jewellery & Watches</option>
-                <option value="motors">Motors</option>
-                <option value="collectables">Collectables</option>
-                <option value="sport">Sport & Leisure</option>
-                <option value="health">Health & Beauty</option>
+                <option value="Home" selected>Home</option>
+                <option value="Garden & DIY">Garden & DIY</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Refurbished">Refurbished</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Jewellery & Watches">Jewellery & Watches</option>
+                <option value="Motors">Motors</option>
+                <option value="Collectables">Collectables</option>
+                <option value="Sport & Leisure">Sport & Leisure</option>
+                <option value="Health & Beauty">Health & Beauty</option>
             </select>
             <br>
             <br>
             <!-- HTML for text area for item description -->
             <label for="description">Item Description:</label>
-            <textarea class="textbox" placeholder="Enter Item Description..." id="description" name="description" required></textarea><br><br>
+            <textarea class="textbox" placeholder="Enter Item Description..." id="description" name="description" required>Example description of the item.</textarea><br><br>
             
             <!-- HTML for file upload for item images -->
             <!-- User must upload 2 images of item -->
-            <label for="imgFiles">Upload Images for Item (2 images required, max size for each image is 1MB):</label>
+            <label for="imgFiles">Upload Images for Item (2 images required, max size for each image is 5MB):</label>
             <input type="file" class="textbox imgFiles" id="imgFiles" name="imgFiles" accept="image/*" multiple required>
             <br>
             <br>
 
-            <!-- HTML for letting user put start date & time and end data & time of auction -->
+            <!-- HTML for letting user put start date & time and end date & time of auction -->
             <label for="startDate">Auction Start Date:</label>
-            <input type="datetime-local" class="textbox startDate" id="startDate" name="startDate" required>
+            <input type="datetime-local" class="textbox startDate" id="startDate" name="startDate" value="2025-05-08T10:00" required>
             <br>
 
             <label for="endDate">Auction End Date:</label>
-            <input type="datetime-local" class="textbox endDate" id="endDate" name="endDate" required>
+            <input type="datetime-local" class="textbox endDate" id="endDate" name="endDate" value="2025-05-15T10:00" required>
             <br>
             <br>
 

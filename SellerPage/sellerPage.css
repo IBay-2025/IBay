@@ -3,47 +3,40 @@
 html {
     margin: 0px;
     padding: 0px;
+    height: 100%;
+    width: 100%;
 }
 
 /*Styling for body*/
 body {
+    height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: center;  
-    align-items: center;
-    min-height: fit-content;
     margin: 0px;
     padding: 0px;
-    background-color: #000;
-    background-image: url("../../Formatting/background_img3.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-}
-
-#home-body {
-    width: 100%;
-}
-
-#view-body {
-    width: max-content;
+    background-color: #1c0b0b;
+    border: 1px solid red;
+    width: min-content;
 }
 
 /*Styling for header*/
 header {
     position: absolute;
-    top: 0;
-    max-height: 80px;
-    background-color: #000;
+    background-color: #000000;
     color: #fff;
     font-size: 1em;
     font-weight: bold;
     display: flex;
-    flex: left;
     justify-content: space-between;
-    border: 1px solid black;
+    border-bottom: 5px solid rgb(40, 1, 1);
 }
 
 #home-header {
     width: 100%;
+}
+
+#home-body {
+    justify-content: center;
 }
 
 /*Styling for logo*/
@@ -54,16 +47,18 @@ header {
 
 /*Styling for boxes where content is displayed in*/
 .content-box {
-    width: auto;
-    padding: 10px 20px;
-    border: 5px solid #000;
+    width: max-content;
+    padding: 20px 20px;
+    border: 5px solid rgb(54, 2, 2);
     border-radius: 5px;
     background-color:  rgba(0, 0, 0, 0.8);
     color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     justify-content: center;
     align-items: center;
+    margin: auto;
     margin-top: 120px;
+    max-width: 100%;
 }
 
 /*/Styling for buttons/*/
@@ -139,11 +134,19 @@ a:hover {
 /*Puts bottom border on each row of the table*/
 table { 
     border-collapse: collapse; 
+    width: max-content;
+
 }
 
 tr { 
-    border-bottom: grey solid thin; 
+    border-bottom: grey solid thin;
+    background-color: rgb(29, 2, 2); 
 }  
+
+th {
+    text-align: center;
+    padding: 5px;
+}
 
 td img{
     display: block;
