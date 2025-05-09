@@ -1,8 +1,14 @@
 <?php
 include '../../connect.php'; // Include your database connection file
 echo "connecting";
+
+session_start(); // Start the session to access session variables
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    echo "connecting";     
+    // Check if the user is logged in
+    if (!isset($_SESSION['userId'])) {
+        die(json_encode(["error" => "User not logged in."]));
+    }
+
     // Retrieve form data
     $userId = $_SESSION['userId']; // Replace with the actual userId (e.g., from session or authentication)
     $title = $_POST['itemTitle'];

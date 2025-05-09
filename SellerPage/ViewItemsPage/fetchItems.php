@@ -5,7 +5,6 @@ include '../../connect.php';
 session_start(); // Start the session to access session variables
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (!isset($_SESSION['userId'])) { 
-        print_r($_SESSION);
         die("User not logged in.");
     }
     $userId = $_SESSION['userId'];

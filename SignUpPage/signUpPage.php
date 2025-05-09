@@ -3,6 +3,7 @@ include '../connect.php';
 //echo('active debugging<br>');
 echo`Sign up page<br>`;
 if(isset($_POST['signUp-Submit'])){
+    // Check if the user is logged in
     $firstName = $_POST['firstname'];
     $surname = $_POST['surname'];
     $password = $_POST['password'];
