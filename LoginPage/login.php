@@ -33,17 +33,13 @@ if(isset($_POST['login-submit'])){
                 }
             } else {
                 die("incorrect username or password.<br>");
-    
                 ####pass message to login page####
-    
-    
-    
             }
         }
     }
     
 }
 else{
-    echo "Incorrect php file called. this is for the login form only.<br>";
+    echo "Incorrect php file called. this is for the login form only and sold only be called as POST.<br>";
 }
 ?>

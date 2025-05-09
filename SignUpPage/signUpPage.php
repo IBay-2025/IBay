@@ -1,7 +1,6 @@
 <?php
 include '../connect.php';
 //echo('active debugging<br>');
-echo`Sign up page<br>`;
 if(isset($_POST['signUp-Submit'])){
     // Check if the user is logged in
     $firstName = $_POST['firstname'];
@@ -20,10 +19,12 @@ if(isset($_POST['signUp-Submit'])){
     while (true) {
         $sql = "SELECT userId FROM $membersTbl WHERE userId = $userId";
         $result = mysqli_query($db, $sql);
+        if (!$result) {
+            die("Query failed: " . mysqli_error($db));
+        }
         if (mysqli_num_rows($result) === 0) {
             break; // Unique userId found
         }
-        echo "id: $userId<br>";
         $userId++;
     }
     $sql = "INSERT INTO $membersTbl (userId,password, username,firstname,surname, email, address, postcode, rating, gender, phone_number) 
