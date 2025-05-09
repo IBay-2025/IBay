@@ -37,7 +37,7 @@ $(document).ready(function() {
                       <textarea type="text" class="row-data itemTitle itemTextbox" name="itemTitle" disabled>${item.itemTitle}</textarea>
                     </td>`;
             tbl += `<td>
-                      <input type="number" class="row-data itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" value="${item.itemPrice.toFixed(2)}" disabled>
+                      <input type="number" class="row-data itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" value="${parseFloat(item.itemPrice).toFixed(2)}" disabled>
                     </td>`;
             tbl += `<td>
                       <select class="row-data itemPostage" name="itemPostage" disabled>
