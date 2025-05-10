@@ -11,7 +11,7 @@
         <!-- Link to CSS file -->
         <link rel="stylesheet" href="../sellerPage.css">
         <!-- Add favicon (small icon on tab) for website -->
-        <link rel="icon" href="../../Formatting/favicon.ico" type="image/x-icon"> 
+        <link rel="icon" href="../../Formatting/faviconLight.ico" type="image/x-icon"> 
     </head>
 
     <!-- HTML 0 for body -->
@@ -19,7 +19,7 @@
         <!-- HTML for header -->
         <header id="home-header">
             <!-- Go back to buyers/search page by clicking on logo-->
-            <a href="../../BuyersPage/homePage/buyersHomePage.html"><img src="../../Formatting/IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
+            <a href="../../BuyersPage/homePage/buyersHomePage.html"><img src="../../Formatting/IBAY-Logo-Light.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
             <div class="link-title-container">
                 <a href="../../LoginPage/loginPage.html">Log Out</a>
                 <h1>My Seller Page</h1>
@@ -83,12 +83,12 @@
             <br>
 
             <!-- HTML for letting user put start date & time and end date & time of auction -->
-            <label for="startDate">Auction Start Date:</label>
-            <input type="datetime-local" class="textbox startDate" id="startDate" name="startDate" value="2025-05-08T10:00" required>
+            <label for="startDate">Start Date:</label>
+            <input type="datetime-local" class="textbox startDate" id="startDate" name="startDate" value="2025-05-08T10:00" step="1" required>
             <br>
 
-            <label for="endDate">Auction End Date:</label>
-            <input type="datetime-local" class="textbox endDate" id="endDate" name="endDate" value="2025-05-15T10:00" required>
+            <label for="endDate">End Date:</label>
+            <input type="datetime-local" class="textbox endDate" id="endDate" name="endDate" value="2025-05-15T10:00:00" step="1" required>
             <br>
             <br>
 

@@ -22,13 +22,11 @@ $(document).ready(function() {
       method: "GET", // HTTP GET method
       dataType: "json", // Expecting JSON response data
       success: function(response) {
-        // Check if item details are returned
-        //console.log("Response from fetchItems.php:", response); // Log the response to the console
 
         if (response.length > 0) { 
           // Iterate through the items and append them to the table, then display them
           var tbl = '';
-  
+
           $.each(response, function(index, item) {
             // Create a table row for each item
             tbl += `<tr>`;
@@ -75,11 +73,11 @@ $(document).ready(function() {
                       <input type="file" class="row-data imgPreview" name="imgPreview2" accept="image/*" hidden disabled>
                     </td>`;
             tbl += `<td>
-                      <label for="startDate">Auction Start Date:</label>
-                      <input type="datetime-local" class="row-data startDate" id="startDate" name="startDate" value=${item.startDate} disabled required>
+                      <label for="startDate">Start Date:</label>
+                      <input type="datetime-local" class="row-data startDate" id="startDate" name="startDate" value=${item.startDate.slice(0, 10) + "T" + item.startDate.slice(11, 19)} step="1" disabled required>
                       <br>
-                      <label for="endDate">Auction End Date:</label>
-                      <input type="datetime-local" class="row-data endDate" id="endDate" name="endDate" value=${item.endDate} disabled required>
+                      <label for="endDate">End Date:</label>
+                      <input type="datetime-local" class="row-data endDate" id="endDate" name="endDate" value=${item.endDate.slice(0, 10) + "T" + item.endDate.slice(11, 19)} step="1" disabled required>
                     </td>`;
             tbl += `<td>
                       <button id="editBtn" class="btn edit-btn">Edit</button>
@@ -89,23 +87,23 @@ $(document).ready(function() {
             tbl += `<td>
                       <button id="deleteBtn" class="btn delete-btn">Delete</button>
                     </td>`;
-            tbl += '</tr>';
+            tbl += `</tr>`;
   
           //Append the table rows to the table body
-          $(document).find('#itemTableBody').append(tbl); //Append the table rows to the table body
+          $(document).find('#itemTableBody').html(tbl); //Append the table rows to the table body
           });
       } else {
           // If no items are found, display a error message in the table
-          $('#itemsTableBody').append(
+          $(document).find('#itemTableBody').html(
             `<tr>
-              <td colspan="11">No items found</td>
+              <td colspan="10">No items found</td>
             </tr>`
           );
         }
       },
       error: function (error) {
         // Handle errors (e.g., network issues)
-        alert("No items found.");
+        alert("Error fetching items, please try again later.");
       }
     });
   });
