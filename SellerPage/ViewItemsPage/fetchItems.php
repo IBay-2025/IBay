@@ -59,7 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             ],
         ];
     }
-    #echo('$items = ' . json_encode($items) . ';');
+
+    if (empty($items)) {
+        die("<script>
+            alert('No items found.');
+            window.location.href = '../../login.php';
+        </script>");
+    }
     // Return the items as a JSON response
     echo json_encode($items);
 }
