@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $items[] = [
             "itemId" => $row['itemId'],
             "itemTitle" => $row['title'],
-            "itemPrice" => $row['price'],
+            "itemPrice" => $row['price'],   
             "itemPostage" => $row['postage'],
             "itemCategory" => $row['category'],
             "itemDescription" => $row['description'],

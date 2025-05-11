@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Check if the form is submitted and whether it's a login
+// Check if the form is submitted and whether it's a POST request and from login page
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['login-submit'])) {
         $username = $_POST['username'];
