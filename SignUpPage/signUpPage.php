@@ -26,7 +26,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $sql = "SELECT userId FROM $membersTbl WHERE userId = $userId";
             $result = mysqli_query($db, $sql);
             if (!$result) {
-                die("Query failed: " . mysqli_error($db));
+                die("<script>
+                alert('Query failed: " . mysqli_error($db) . "');
+                window.location.href = 'signUpPage.html';
+                </script>");
             }
             if (mysqli_num_rows($result) === 0) {
                 break; // Unique userId found
@@ -49,12 +52,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $address,
             $postcode,
             $gender,
-            $phoneNumber
+            $phonenumber
         );
         $stmt->execute();
-        if (!$stmt) {
+        if ($stmt) {
             die("<script>
-            alert('New user created successfully!');
+            alert('New user created successfully!   ');
             window.location.href = '../LoginPage/loginPage.html';
             </script>");
         }

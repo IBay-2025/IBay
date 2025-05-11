@@ -36,25 +36,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $itemId++;
     }
-    echo "$itemId<br>";
-    $sql = "INSERT INTO $itemsTbl (itemId, userId, title, category, description, price, postage, start, finish) 
-    VALUES ('$itemId','$userId', '$title', '$category', '$description', '$price', '$postage', '$start', '$finish')";
 
-    $result = mysqli_query($db, $sql);
-    
-    
-    if(!$result) {
-        die("Query failed: " . mysqli_error($db));
-       
-    } else {
-        echo "<script>
+    // Insert the new item into the database
+    $sql = "INSERT INTO $itemsTbl (itemId, userId, title, category, description, price, postage, start, finish) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $db->prepare($sql);
+    if (!$stmt) {
+        die("<script>
+            alert('Query preparation failed: " . $db->error . "');
+            window.location.href = 'addItemPage.html';
+        </script>");
+    }
+    $stmt->bind_param(
+        "iisssdsss",
+        $itemId,
+        $userId,
+        $title,
+        $category,
+        $description,
+        $price,
+        $postage,
+        $start,
+        $finish
+    );
+
+    if($stmt->execute()) {
+        die("<script>
             alert('New item created successfully!');
             window.location.href = '../ViewItemsPage/ViewItemsPage.html';
-        </script>";
-        exit();
+        </script>");
+       
+    } 
+    else{
+        die("<script>
+            alert('Query execution failed: " . $stmt->error . "');
+            window.location.href = 'addItemPage.html';
+        </script>");
     }
 
-} else {
-    echo "Invalid request method.";
+} 
+else 
+{
+    die("<script>
+        alert('Invalid request method.');
+        window.location.href = 'addItemPage.html';
+    </script>");
 }
 ?>

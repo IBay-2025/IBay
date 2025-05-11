@@ -5,23 +5,43 @@ include '../../connect.php';
 session_start(); // Start the session to access session variables
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (!isset($_SESSION['userId'])) { 
-        die("User not logged in.");
+        die("<script>
+            alert('User not logged in.');
+            window.location.href = '../../login.php';
+        </script>");
     }
     $userId = $_SESSION['userId'];
 
-    $query = "SELECT * FROM iBayItems WHERE userId = $userId";
-    $result = mysqli_query($db, $query);
+    $sql = "SELECT * FROM iBayItems WHERE userId = $userId";
+    $result = mysqli_query($db, $sql);
     if (!$result) {
-        die("Query failed: " . mysqli_error($db));
+        die("<script>
+            alert('Query preparation failed: " . mysqli_error($db) . "');
+            window.location.href = '../../login.php';
+        </script>");
     }
 
     //now use $result to add to the table
 
     $items = [];
     while ($row = mysqli_fetch_assoc($result)) {
+
+        $sql = "SELECT * FROM iBayImages WHERE itemId = " . $row['itemId'];
+        $result = mysqli_query($db, $sql);
+        if (!$result) {
+            die("Query failed: " . mysqli_error($db));
+        }
+
+        // Fetch the images for the current item
+        $images = [];
+        while ($imageRow = mysqli_fetch_assoc($result)) {
+            $images[] = [
+                "imageBin" => $imageRow['image'],
+                "imageExtension" => $imageRow['mimeType'],
+            ];
+        }
         // Add each item to the items array
         $items[] = [
-            "itemId" => $row['itemId'],
             "itemTitle" => $row['title'],
             "itemPrice" => $row['price'],
             "itemPostage" => $row['postage'],
@@ -29,10 +49,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             "itemDescription" => $row['description'],
             "startDate" => $row['start'],
             "endDate" => $row['finish'],
-            "itemImages" => [
-                ["imageId" => 1, "imageLink" => "path/to/image1.jpg"], // Placeholder for image 1
-                ["imageId" => 2, "imageLink" => "path/to/image2.jpg"]  // Placeholder for image 2
-            ]
+            "imageBin" => [
+                ["image1" => $images[0]["imageBin"]],
+                ["image2" => $images[1]["imageBin"]] 
+            ],
+            "imageExtension" =>[
+                ["image1" => $images[0]['imageExtension']],
+                ["image2" => $images[1]['imageExtension']]
+            ],
         ];
     }
     #echo('$items = ' . json_encode($items) . ';');
