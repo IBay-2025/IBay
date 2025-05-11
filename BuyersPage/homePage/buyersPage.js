@@ -1,0 +1,1 @@
+//get the echod data from the fetchRow.php to the buyers page elements

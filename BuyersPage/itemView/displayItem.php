@@ -7,7 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_SESSION['userId'])) {
         die(json_encode(["error" => "User not logged in."]));
     }
-
+    $itemId = $_POST['itemId'];
+    
 
 
 }
