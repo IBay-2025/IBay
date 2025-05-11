@@ -1,130 +1,57 @@
-html {
+* --- Base Reset & HTML/BODY Setup --- */
+html, body {
     height: 100%;
     margin: 0;
-}
-.header-container {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    z-index: 1000;
-}
-
-.header .logo,
-.header .search-bar,
-.header .sell-box,
-.header .basket-icon {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-    margin: 0;
+    scroll-behavior: smooth;
+    font-family: Arial, sans-serif;
     background-color: #000;
     background-image: url("../../Formatting/background_img3.jpg");
     background-size: cover;
     background-attachment: fixed;
-    border: 1px solid black;
 }
 
-.header {
-    position:  fixed;
+/* --- Header Container --- */
+.header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 80px;
-    background-color: transparent;
-    color: #fff;
-    text-align: center;
-    line-height: 80px;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-@media screen and (max-width: 700px){
-    .header {
-        text-align: right;
-    }
-}
-
-.logo {
-    position: absolute;
-    top: 0px;
-    left: 20px;
-    height: auto;
-    width: 220px;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.btn {
-    background-color: #b34b0b;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.btn:hover {
-    background-color: #fc2807;
-}
-
-a {
-    color: white;
-}
-
-a:hover {
-    color: rgb(173, 100, 16);
-}
-
-
-.item {
-    border: 1px solid #ffffff;
-    padding: 15px;
-    text-align: center;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.item h2 {
-    margin: 10px 0;
-}
-
-.item a {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-/*jnnjynjj*/
-
-.item a:hover {
-    background-color: #0056b3;
-}
-
-.search-bar {
-    top: 10px;
-    left: 250px;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 1);
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
+    z-index: 1000;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+/* --- Header Flex Layout --- */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    width: 100%;
+    gap: 15px;
+}
+
+/* --- Logo --- */
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+/* --- Search Bar --- */
+.search-bar {
+    display: flex;
+    align-items: center;
+    flex: 1;
     gap: 10px;
-    padding: 10px 15px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 10px;
-    position: absolute;
-    width: fit-content;
-    margin-bottom: 20px;
+    min-width: 250px;
 }
 
 .search-bar input,
@@ -135,11 +62,11 @@ a:hover {
     border-radius: 5px;
     background-color: #fff;
     color: #000;
+    flex: 1;
+    min-width: 100px;
 }
 
 .search-bar button {
-    top: 10px;
-    left: 250px;
     padding: 8px 14px;
     font-size: 14px;
     border: none;
@@ -154,6 +81,67 @@ a:hover {
     background-color: #32ab11;
 }
 
+/* --- Basket Icon --- */
+.basket-icon {
+    width: 40px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: #f9f9f9;
+    background-image: url("../shopping.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* --- Sell Button --- */
+.sell-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #22e710ee;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sell-button:hover {
+    background-color: #08ae19;
+}
+
+/* --- Navigation Bar Under Header --- */
+.category-nav {
+    position: fixed;
+    top: calc(60px + 25px); /* Adjust based on actual header height */
+    z-index: 999;
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 100%;
+}
+
+.category-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.category-nav li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.category-nav li a:hover {
+    background-color: #ddd;
+}
 .horizontal-scroll {
     display: flex;
     overflow-x: auto;
@@ -164,7 +152,7 @@ a:hover {
 .grid-container {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.6); /* Black with 60% opacity */
-    top: 70px;
+    top: 110px;
     left: 0px;
     display: grid;
     grid-template-columns: repeat(1, 1fr); /* Ensures only one row */
@@ -173,7 +161,7 @@ a:hover {
 }
 
 h2 {
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
     margin-bottom: 10px;
 }
@@ -210,39 +198,38 @@ h2 {
     background-color: #f9f9f9;
 }
 
-.sell-box {
-    position:absolute;
-    top: 10px;
-    right: 50px;
-    margin-top: 10px;
+a {
+    color: white;
+}
+
+a:hover {
+    color: rgb(173, 100, 16);
+}
+
+
+.item {
+    border: 1px solid #ffffff;
+    padding: 15px;
     text-align: center;
-}
-.sell-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #22e710ee;
-    color: rgb(0, 0, 0);
-    border: none;
     border-radius: 5px;
-    cursor: pointer;
-}
-.sell-button:hover {
-    background-color: #08ae19;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.item h2 {
+    margin: 10px 0;
+}
 
-.basket-icon {
-    position: absolute;
-    top : 18px;
-    right: 190px;
-    width: 40px;
-    height: 35px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-    background-image: url("../shopping.png");
-    background-size: 40px 40px;
-    background-position: center;
-    background-repeat: no-repeat;
+.item a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+/*jnnjynjj*/
+
+.item a:hover {
+    background-color: #0056b3;
 }
