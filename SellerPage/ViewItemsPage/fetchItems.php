@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         }
         // Add each item to the items array
         $items[] = [
+            "itemId" => $row['itemId'],
             "itemTitle" => $row['title'],
             "itemPrice" => $row['price'],
             "itemPostage" => $row['postage'],
