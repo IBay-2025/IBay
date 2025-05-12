@@ -38,7 +38,7 @@
                         </td>
                         <td class="totalPrice">10.00</td>
                         <td>
-                            <button class="remove-btn">Remove</button>
+                            <button class="remove-btn btn">Remove</button>
                         </td>
                     </tr>
                     <tr>
@@ -47,14 +47,17 @@
                         <td class="quantity">5</td>
                         <td class="totalPrice">20.00</td>
                         <td>
-                            <button class="remove-btn">Remove</button>
+                            <button class="remove-btn btn">Remove</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <br>
             <div class="basket-summary">
-                <p id="subtotal"><strong>Subtotal: £</strong> 30.00</p>
-                <button class="checkout-btn">Proceed to Checkout</button>
+                <label for="subtotal">Subtotal (£):</label>
+                <p id="subtotal" name="subtotal">30.00</p>
+                <!-- When the checkout button is clicked, the user will be redirected to the checkout page --->
+                <button class="checkout-btn btn">Proceed to Checkout</button>
             </div>
             <br>
             <div class="back-to-shopping">

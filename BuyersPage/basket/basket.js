@@ -1,4 +1,4 @@
-//jQuery function for deleting an item from the basket
+//jQuery function for behaviour deleting an item from the basket
 $(document).on("click", ".remove-btn", function() {
     //Remove the row of the button that was clicked
     $(this).closest("tr").remove();
@@ -6,7 +6,7 @@ $(document).on("click", ".remove-btn", function() {
     //Subtract the price and quantity of the item from the subtotal
     var subtotal = parseFloat($("#subtotal").text().split("£")[1]);
     var totalPrice = parseFloat($(this).closest("tr").find(".totalPrice").text());
-    $("#subtotal").html(`<strong>Subtotal:</strong> £${(subtotal - totalPrice).toFixed(2)}`);
+    $("#subtotal").html(`${(subtotal - totalPrice).toFixed(2)}`);
 });
 
 //jQuery function for calcating the total price for each item with respect to quantity in the basket
@@ -20,15 +20,16 @@ $(document).ready(function() {
     });
 });
 
-
 //jQuery function for summing up the total price (subtotal) of all items in the basket
 $(document).ready(function() {
     var subtotal = 0;
     var totalPrices = $(document).find(".totalPrice");
+
+    //Loop through all the total price elements and add their values to the subtotal
     $.each(totalPrices, function() {
         subtotal += parseFloat($(this).text());
     })
 
     //Round the subtotal to two decimal places and display it in the subtotal element with the text
-    $("#subtotal").html(`<strong>Subtotal:</strong> £${subtotal.toFixed(2)}`); //Round the subtotal to two decimal places and display it in the subtotal element with the text
+    $("#subtotal").html(`${subtotal.toFixed(2)}`); 
 })
