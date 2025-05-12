@@ -26,16 +26,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $endDate = $_POST['endDate'];
     
     // UPDATE THE ITEM IN THE DATABASE
-    $sql = "UPDATE iBayItems SET title = '$itemTitle', price = '$itemPrice', postage = '$itemPostage', category = '$itemCategory', description = '$itemDescription', start = '$startDate', finish = '$endDate' WHERE itemId = $itemId";
-    $result = mysqli_query($db, $sql);
+    $sql ="UPDATE iBayItems 
+        SET title = ?, price = ?, postage = ?, category = ?, description = ?, start = ?, finish = ? 
+        WHERE itemId = ?";
     
-    if (!$result) {
-        die(json_encode(["error" => "Query failed: " . mysqli_error($db)]));
+    $stmt = $db->prepare($sql);
+    if (!$stmt) {
+        die(json_encode(["error" => "Query preparation failed: " . $db->error]));
     }
-    else{
+    $stmt->bind_param(
+        "sdsssssi", // Data types: s = string, d = double, i = integer
+        $itemTitle,
+        $itemPrice,
+        $itemPostage,
+        $itemCategory,
+        $itemDescription,
+        $startDate,
+        $endDate,
+        $itemId
+    );
+
+    // Execute the prepared statement
+    if ($stmt->execute()) {
         // Return a success message
         echo json_encode(["success" => "Item updated successfully."]);
+    } else {
+        // Return an error message if execution fails
+        die(json_encode(["error" => "Query execution failed: " . $stmt->error]));
     }
+
+    // Close the statement
+    $stmt->close();
 
 }
 ?>

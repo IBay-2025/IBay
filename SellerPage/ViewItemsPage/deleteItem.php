@@ -2,6 +2,7 @@
 
 include '../../connect.php'; // Include the database connection
 session_start();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if the user is logged in
     if (!isset($_SESSION['userId'])) {
@@ -15,26 +16,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $itemId = $_POST['itemId'];
 
     // Prepare the SQL query to delete the item
-    $sql = "DELETE FROM iBayItems WHERE itemId = $itemId ";
-    $result = mysqli_query($db, $sql);
-
-    // Execute the query
-    if(!$result) {
-        die(json_encode(["error" => "Query failed: " . mysqli_error($db)]));
+    $sql = "DELETE FROM iBayItems WHERE itemId = ?";
+    $stmt = $db->prepare($sql);
+    if (!$stmt) {
+        die(json_encode(["error" => "Query preparation failed: " . $db->error]));
     }
-    else {
+
+    // Bind the parameter to the prepared statement
+    $stmt->bind_param("i", $itemId); // "i" indicates the parameter is an integer
+
+    // Execute the prepared statement
+    if ($stmt->execute()) {
         // Check if any rows were affected (i.e., if the item was deleted)
-        if (mysqli_affected_rows($db) > 0) {
+        if ($stmt->affected_rows > 0) {
             echo json_encode(["success" => "Item deleted successfully."]);
-        } 
-        else {
+        } else {
             echo json_encode(["error" => "No item found with the given ID."]);
         }
+    } else {
+        die(json_encode(["error" => "Query execution failed: " . $stmt->error]));
     }
-    
-}
-else {
-    echo json_encode(["error" => "Failed to delete item: " . $stmt->error]);
+
+    // Close the statement
+    $stmt->close();
+} else {
+    // If the request method is not POST, return an error
+    echo json_encode(["error" => "Invalid request method."]);
 }
 
 ?>
