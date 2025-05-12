@@ -17,12 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (!$resultItems) {
         die("<script>
             alert('Query preparation failed: " . mysqli_error($db) . "');
-            window.location.href = '../../login.php';
+            window.location.href = 'ViewItemsPage.html';
         </script>");
     }
 
     //now use $result to add to the table
-
     $items = [];
     while ($rowItems = mysqli_fetch_assoc($resultItems)) {
 
@@ -40,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 "imageExtension" => $imageRow['mimeType'],
             ];
         }
+
         // Add each item to the items array
         $items[] = [
             "itemId" => $rowItems['itemId'],
@@ -50,26 +50,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             "itemDescription" => $rowItems['description'],
             "startDate" => $rowItems['start'],
             "endDate" => $rowItems['finish'],
-            "imageBin" => [
-                ["image1" => $images[0]["imageBin"]],
-                ["image2" => $images[1]["imageBin"]] 
-            ],
-            "imageExtension" =>[
-                ["image1" => $images[0]['imageExtension']],
-                ["image2" => $images[1]['imageExtension']]
-            ],
+            "images" => $images
         ];
     }
 
     if (empty($items)) {
         die("<script>
             alert('No items found.');
-            window.location.href = '../../login.php';
+            window.location.href = 'ViewItemsPage.html';
         </script>");
     }
     // Return the items as a JSON response
+    header('Content-Type: application/json');
     echo json_encode($items);
-    echo("Items fetched successfully.");
 }
 else {
     // If the request method is not POST, return an error

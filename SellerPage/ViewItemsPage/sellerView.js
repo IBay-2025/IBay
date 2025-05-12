@@ -98,14 +98,14 @@ $(document).ready(function() {
           // If no items are found, display a error message in the table
           $(document).find('#itemTableBody').html(
             `<tr>
-              <td colspan="9">No items found</td>
+              <td colspan="9">No items found tom 12/05</td>
             </tr>`
           );
         }
       },
       error: function (error) {
         // Handle errors (e.g., network issues)
-        alert("Error fetching items, please try again later.");
+        alert("Error adding items to html, please try again later.");
       }
     });
   });
