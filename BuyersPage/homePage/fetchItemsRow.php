@@ -44,58 +44,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             die("Query failed: " . mysqli_error($db));
         }
 
-        // Fetch the images for the current item
+        $resultImages = mysqli_query($db, $sql);
+        if (!$resultImages) {
+            die(json_encode(["error" => "Image query failed: " . $db->error]));
+        }
+
         $images = [];
-        while ($imageRow = mysqli_fetch_assoc($result)) {
+        while ($imageRow = mysqli_fetch_assoc($resultImages)) {
             $images[] = [
-                "imageBin" => $imageRow['image'],
+                "imageBin" => base64_encode($imageRow['image']), // Encode binary data as Base64
                 "imageExtension" => $imageRow['mimeType'],
             ];
         }
+
         // Add each item to the items array
         $items[] = [
-            "itemId" => $row['itemId'],
-            "itemTitle" => $row['title'],
-            "itemPrice" => $row['price'],   
-            "itemPostage" => $row['postage'],
-            "itemCategory" => $row['category'],
-            "itemDescription" => $row['description'],
-            "startDate" => $row['start'],
-            "endDate" => $row['finish'],
-            "imageBin" => [
-                ["image1" => $images[0]["imageBin"]],
-                ["image2" => $images[1]["imageBin"]] 
-            ],
-            "imageExtension" =>[
-                ["image1" => $images[0]['imageExtension']],
-                ["image2" => $images[1]['imageExtension']]
-            ],
+            "itemId" => $rowItems['itemId'],
+            "itemTitle" => $rowItems['title'],
+            "itemPrice" => $rowItems['price'],
+            "itemPostage" => $rowItems['postage'],
+            "itemCategory" => $rowItems['category'],
+            "itemDescription" => $rowItems['description'],
+            "startDate" => $rowItems['start'],
+            "endDate" => $rowItems['finish'],
+            "images" => $images,
         ];
     }
 
     //return the items array
     if (empty($items)) {
-        die("<script>
-            alert('No items found.');
-            window.location.href = '../../login.php';
-        </script>");
+        die(json_encode(["error" => "No items found for the given category."]));
     }
-    
-    
-    echo json_encode($items);
 
-
-
+    header('Content-Type: application/json');
+    $json = json_encode($items);
+    if ($json === false) {
+        echo "JSON Encoding Error: " . json_last_error_msg(); // Output JSON encoding error
+        die();
+    }
+    echo $json;
+} else {
+    // If the request method is not GET, return an error
+    header('Content-Type: application/json');
+    echo json_encode(["error" => "Invalid request method."]);
 }
-else {
-    die("<script>
-        alert('Invalid request method.');
-        window.location.href = '../../login.php';
-    </script>");
-}
-
-
-
-
-
 ?>
