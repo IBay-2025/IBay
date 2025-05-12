@@ -13,6 +13,10 @@ $(document).on('change, blur', '#startDate, #endDate', function() {
   //Check if the start date is greater than the end date
   if (startDate > endDate) {
     this.setCustomValidity("Start date cannot be greater than end date"); //If the start date is greater than the end date, set the custom validity message
+  } else if (startDate < new Date().toISOString().split('T')[0]) { //Check if start date is less than current date
+    this.setCustomValidity("Start date cannot be less than current date");
+  } else if (endDate < new Date().toISOString().split('T')[0]) { //Check if end date is less than current date
+    this.setCustomValidity("End date cannot be less than current date");
   } else {
     this.setCustomValidity(''); //If the start date is not greater than the end date, set the custom validity to empty
   }

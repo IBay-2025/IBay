@@ -155,8 +155,8 @@ function validateOnSave(row) {
   var itemTitle = row.find(".itemTitle"); //Get the value of the item title input field
   var itemPrice = row.find(".itemPrice"); //Get the value of the item price input field
   var itemDescription = row.find(".itemTextbox").eq(1); //Get the value of the item description input field
-  var startDate = row.find(".startDate"); //Get the value of the start date input field
-  var endDate = row.find(".endDate"); //Get the value of the end date input field
+  var startDate = row.find(".startDate").val(); //Get the value of the start date input field
+  var endDate = row.find(".endDate").val(); //Get the value of the end date input field
   var itemImage1 = row.find(".imgPreview").eq(0); //Get the value of the item images input field
   var itemImage2 = row.find(".imgPreview").eq(1); //Get the value of the item images input field
 
@@ -165,9 +165,13 @@ function validateOnSave(row) {
     alert("Please fill in all empty fields");
     return false; //Return false to prevent item from being saved
     //Check if start date is greater than end date
-  } else if (startDate.val() > endDate.val()) {
+  } else if (startDate > endDate) {
     alert("Start date cannot be greater than end date"); //If the start date is greater than the end date, set the custom validity message
     return false; //Return true to allow item to be saved
+  } else if (startDate < new Date().toISOString().split('T')[0]) { //Check if start date is less than current date
+    this.setCustomValidity("Start date cannot be less than current date");
+  } else if (endDate < new Date().toISOString().split('T')[0]) { //Check if end date is less than current date
+    this.setCustomValidity("End date cannot be less than current date");
   } else if (itemImage1[0].files.length > 0 && itemImage1[0].files[0].size > 1048576*5 || itemImage2[0].files.length > 0 && itemImage2[0].files[0].size > 1048576*5) {
     alert("File size must be less than 5MB"); //If the file size is greater than 5MB, set the custom validity message
     return false; //Return true to allow item to be saved
