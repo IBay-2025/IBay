@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $images = [];
         while ($imageRow = mysqli_fetch_assoc($resultImages)) {
             $images[] = [
-                "imageBin" => $imageRow['image'],
+                "imageBin" => base64_encode($imageRow['image']),
                 "imageExtension" => $imageRow['mimeType'],
             ];
         }
@@ -60,9 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             window.location.href = 'ViewItemsPage.html';
         </script>");
     }
-    // Return the items as a JSON response
-    header('Content-Type: application/json');
-    echo json_encode($items);
+    // Return the items as a JSON response]
+
+    $json = json_encode($items);
+    if ($json === false) {
+        echo "JSON Encoding Error: " . json_last_error_msg(); // Output the error message
+    die();
+}
+echo $json;
 }
 else {
     // If the request method is not POST, return an error
