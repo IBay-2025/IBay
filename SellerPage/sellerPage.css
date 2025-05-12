@@ -135,7 +135,6 @@ a:hover {
 table { 
     border-collapse: collapse; 
     width: max-content;
-
 }
 
 tr { 
@@ -168,6 +167,6 @@ td img{
     margin: auto;
     width: 90%;
     height: 5em;
-    word-break: break-word;
     overflow: auto;
+    word-break: break-word;
 }
