@@ -4,7 +4,7 @@ $(document).on("click", ".remove-btn", function() {
     $(this).closest("tr").remove();
 
     //Subtract the price and quantity of the item from the subtotal
-    var subtotal = parseFloat($("#subtotal").text().split("£")[1]);
+    var subtotal = parseFloat($("#subtotal").text());
     var totalPrice = parseFloat($(this).closest("tr").find(".totalPrice").text());
     $("#subtotal").html(`${(subtotal - totalPrice).toFixed(2)}`);
 });
