@@ -1,6 +1,6 @@
 <?php
 // Enable error reporting for debugging and incluede db connection 
-include '../connect.php';
+include '../../connect.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -9,14 +9,14 @@ error_reporting(E_ALL);
 fetches a row of items with a given a category
 */  
 
-
+echo "hi";
 
 
 //check GET and from 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $sql = "SELECT * FROM iBayItems WHERE category = ?";
     $stmt = $db->prepare($sql);
-    $category = $_GET['category'];
+    $category = 'Fashion';//$_GET['category'];
     $stmt->bind_param("s", $category);
     try{
         $stmt->execute();
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (empty($items)) {
         die(json_encode(["error" => "No items found for the given category."]));
     }
-
+    echo("hi");
     header('Content-Type: application/json');
     $json = json_encode($items);
     if ($json === false) {
