@@ -4,7 +4,7 @@ $(document).ready(function() {
   $(".content-box").width($("itemTable").width());
   $("#itemTable").width(window.innerWidth);
   $("header").width($("body").width());
-})
+});
 
 //Function to resize header when window is resized
 $(window).resize(function() {
@@ -147,7 +147,7 @@ $(document).on('click', '.cancel-btn', function(event)
       $(this).attr("disabled", true); // Disable the element
     }
   });
-})
+});
 
 //Function for validating item title, item price, item description, item images and duration dates when the user clicks on the save button
 function validateOnSave(row) {
@@ -155,7 +155,7 @@ function validateOnSave(row) {
   var itemTitle = row.find(".itemTitle"); //Get the value of the item title input field
   var itemPrice = row.find(".itemPrice"); //Get the value of the item price input field
   var itemDescription = row.find(".itemTextbox").eq(1); //Get the value of the item description input field
-  var startDate = row.find(".startDate").val(); //Get the value of the start date input field
+  var startDate = row.find(".startDate").val(); //Get th;e value of the start date input field
   var endDate = row.find(".endDate").val(); //Get the value of the end date input field
   var itemImage1 = row.find(".imgPreview").eq(0); //Get the value of the item images input field
   var itemImage2 = row.find(".imgPreview").eq(1); //Get the value of the item images input field
@@ -168,19 +168,19 @@ function validateOnSave(row) {
   } else if (startDate > endDate) {
     alert("Start date cannot be greater than end date"); //If the start date is greater than the end date, set the custom validity message
     return false; //Return true to allow item to be saved
-  } else if (startDate < new Date().toISOString().split('T')[0]) { //Check if start date is less than current date
+  } else if (startDate < new Date()) { //Check if start date is less than current date
     this.setCustomValidity("Start date cannot be less than current date");
     return false;
-  } else if (endDate < new Date().toISOString().split('T')[0]) { //Check if end date is less than current date
+  } else if (endDate < new Date()) { //Check if end date is less than current date
     this.setCustomValidity("End date cannot be less than current date");
     return false;
   } else if (itemImage1[0].files.length > 0 && itemImage1[0].files[0].size > 1048576*5 || itemImage2[0].files.length > 0 && itemImage2[0].files[0].size > 1048576*5) {
     alert("File size must be less than 5MB"); //If the file size is greater than 5MB, set the custom validity message
-    return false; //Return true to allow item to be saved
+    return false; 
   } else{
     return true; //Return true to allow item to be saved
   }
-}
+};
 
 //Event listener for saving the edit of an item in the table
 $(document).on('click', '.save-btn', function(event) 
@@ -194,7 +194,7 @@ $(document).on('click', '.save-btn', function(event)
     alert("Please fill in all the required fields correctly before saving."); //If the validation fails, show an alert message
     return; //If the validation fails, return and do not proceed with saving
   }
-
+  
   // Get the item details and store them in an object
   const itemDetails = {
     itemId: row.find("td").eq(0).text(),
@@ -203,8 +203,8 @@ $(document).on('click', '.save-btn', function(event)
     itemDescription: row.find("td").eq(5).find(".row-data").val(),
     itemPrice: parseFloat(row.find("td").eq(2).find(".row-data").val()), //Convert the price (type string) to a float
     itemPostage: row.find("td").eq(3).find(":selected").val(),
-    itemImages: [{imgLink1: row.find("td").eq(6).find("img").eq(0).attr("src")}, 
-      {imgLink2: row.find("td").eq(6).find("img").eq(1).attr("src")}],
+    itemImages: {imgLink1: row.find("td").eq(6).find("img").eq(0).attr("src"), 
+      imgLink2: row.find("td").eq(6).find("img").eq(1).attr("src")},
     startDate: row.find("td").eq(7).find(".row-data").eq(0).val(), //Get the value of the start date input field
     endDate: row.find("td").eq(7).find(".row-data").eq(1).val() //Get the value of the end date input field
   };
