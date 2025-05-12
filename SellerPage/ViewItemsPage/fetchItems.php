@@ -12,9 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
     $userId = $_SESSION['userId'];
 
-    $sql = "SELECT * FROM iBayItems WHERE userId = $userId";
-    $result = mysqli_query($db, $sql);
-    if (!$result) {
+    $sqlItems = "SELECT * FROM iBayItems WHERE userId = $userId";
+    $resultItems = mysqli_query($db, $sqlItems);
+    if (!$resultItems) {
         die("<script>
             alert('Query preparation failed: " . mysqli_error($db) . "');
             window.location.href = '../../login.php';
@@ -24,17 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     //now use $result to add to the table
 
     $items = [];
-    while ($row = mysqli_fetch_assoc($result)) {
+    while ($rowItems = mysqli_fetch_assoc($resultItems)) {
 
-        $sql = "SELECT * FROM iBayImages WHERE itemId = " . $row['itemId'];
-        $result = mysqli_query($db, $sql);
-        if (!$result) {
+        $sqlImages = "SELECT * FROM iBayImages WHERE itemId = " . $rowItems['itemId'];
+        $resultImages = mysqli_query($db, $sqlImages);
+        if (!$resultImages) {
             die("Query failed: " . mysqli_error($db));
         }
 
         // Fetch the images for the current item
         $images = [];
-        while ($imageRow = mysqli_fetch_assoc($result)) {
+        while ($imageRow = mysqli_fetch_assoc($resultImages)) {
             $images[] = [
                 "imageBin" => $imageRow['image'],
                 "imageExtension" => $imageRow['mimeType'],
@@ -42,14 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         }
         // Add each item to the items array
         $items[] = [
-            "itemId" => $row['itemId'],
-            "itemTitle" => $row['title'],
-            "itemPrice" => $row['price'],   
-            "itemPostage" => $row['postage'],
-            "itemCategory" => $row['category'],
-            "itemDescription" => $row['description'],
-            "startDate" => $row['start'],
-            "endDate" => $row['finish'],
+            "itemId" => $rowItems['itemId'],
+            "itemTitle" => $rowItems['title'],
+            "itemPrice" => $rowItems['price'],   
+            "itemPostage" => $rowItems['postage'],
+            "itemCategory" => $rowItems['category'],
+            "itemDescription" => $rowItems['description'],
+            "startDate" => $rowItems['start'],
+            "endDate" => $rowItems['finish'],
             "imageBin" => [
                 ["image1" => $images[0]["imageBin"]],
                 ["image2" => $images[1]["imageBin"]] 
@@ -69,9 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
     // Return the items as a JSON response
     echo json_encode($items);
-    echo("<script>
-        alert('Items fetched successfully.');
-        </script>");
+    echo("Items fetched successfully.");
 }
 else {
     // If the request method is not POST, return an error
