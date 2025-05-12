@@ -68,9 +68,9 @@ $(document).ready(function() {
                       <textarea type="text" class="row-data itemTextbox" name="itemDescription" disabled>${item.itemDescription}</textarea>
                     </td>`;
             tbl += `<td>
-                      <label for="imgPreview"><img id=${item.itemImages[0].imageId} class="imgOutput" src="${item.itemImages[0].imageLink}" alt="Item Image 1" ></label>
+                      <label for="imgPreview"><img class="imgOutput" src="${item.itemBin.image1}" alt="Item Image 1" ></label>
                       <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden disabled>
-                      <label for="imgPreview"><img id=${item.itemImages[1].imageId} class="imgOutput" src="${item.itemImages[1].imageLink}" alt="Item Image 2"></label>
+                      <label for="imgPreview"><img class="imgOutput" src="${item.itemBin.image2}" alt="Item Image 2"></label>
                       <input type="file" class="row-data imgPreview" name="imgPreview2" accept="image/*" hidden disabled>
                     </td>`;
             tbl += `<td>
@@ -141,10 +141,10 @@ $(document).on('click', '.cancel-btn', function(event)
       $(this).prop("disabled", true); // Disable the file input
     } else if (["itemPostage", "itemCategory"].includes($(this).attr("name"))){
       $(this).val($(this).attr("originalvalue")); // Set the selected value of the element to the original value
-      $(this).prop("disabled", true); // Make the element non-editable
+      $(this).prop("disabled", true); // Disable the element
     } else {
       $(this).val($(this).attr("originalvalue")); // Set the value of the element to the original value
-      $(this).attr("disabled", true); // Make the element non-editable
+      $(this).attr("disabled", true); // Disable the element
     }
   });
 })
@@ -170,8 +170,10 @@ function validateOnSave(row) {
     return false; //Return true to allow item to be saved
   } else if (startDate < new Date().toISOString().split('T')[0]) { //Check if start date is less than current date
     this.setCustomValidity("Start date cannot be less than current date");
+    return false;
   } else if (endDate < new Date().toISOString().split('T')[0]) { //Check if end date is less than current date
     this.setCustomValidity("End date cannot be less than current date");
+    return false;
   } else if (itemImage1[0].files.length > 0 && itemImage1[0].files[0].size > 1048576*5 || itemImage2[0].files.length > 0 && itemImage2[0].files[0].size > 1048576*5) {
     alert("File size must be less than 5MB"); //If the file size is greater than 5MB, set the custom validity message
     return false; //Return true to allow item to be saved
@@ -201,15 +203,13 @@ $(document).on('click', '.save-btn', function(event)
     itemDescription: row.find("td").eq(5).find(".row-data").val(),
     itemPrice: parseFloat(row.find("td").eq(2).find(".row-data").val()), //Convert the price (type string) to a float
     itemPostage: row.find("td").eq(3).find(":selected").val(),
-    itemImages: [{imgId: parseInt(row.find("td").eq(6).find("img").eq(0).attr("id")), imgLink: row.find("td").eq(6).find("img").eq(0).attr("src")}, 
-      {imgId: parseInt(row.find("td").eq(6).find("img").eq(1).attr("id")), imgLink: row.find("td").eq(6).find("img").eq(1).attr("src")}],
+    itemImages: [{imgLink1: row.find("td").eq(6).find("img").eq(0).attr("src")}, 
+      {imgLink2: row.find("td").eq(6).find("img").eq(1).attr("src")}],
     startDate: row.find("td").eq(7).find(".row-data").eq(0).val(), //Get the value of the start date input field
     endDate: row.find("td").eq(7).find(".row-data").eq(1).val() //Get the value of the end date input field
   };
 
   const itemDetailsJSON = JSON.stringify(itemDetails); //Convert the object to a JSON string
-
-  alert("Item details: " + JSON.stringify(itemDetails)); //Debugging alert
 
   //Make an AJAX request to update the item details in the database
   $.ajax({
@@ -223,7 +223,6 @@ $(document).on('click', '.save-btn', function(event)
         //Iterate through the row-data class elements and set them to be non-editable and set the original value to be the current value
         row.find(".row-data").each(function() {
         if ($(this).attr("type") == "file") {
-          //$(this).prev().children().attr("src", $(this).attr("src"));
           $(this).attr("originalvalue", $(this).prev().children().attr("src"));
           $(this).prop("disabled", true); // Disable the file input
         } else if (["itemPostage", "itemCategory"].includes($(this).attr("name"))) {
@@ -239,7 +238,7 @@ $(document).on('click', '.save-btn', function(event)
         row.find(".save-btn").hide(); 
         row.find(".cancel-btn").hide(); 
         row.find(".edit-btn").show();
-    //alert("Value: " + $(this).attr("originalvalue")); //Debugging alert
+        
       } else {
         alert("Your item was not updated, please try again later."); //Debugging alert
     }},

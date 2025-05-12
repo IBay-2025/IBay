@@ -21,17 +21,19 @@
             <!-- Go back to buyers/search page by clicking on logo-->
             <a href="../../BuyersPage/homePage/buyersHomePage.html"><img src="../../Formatting/IBAY-Logo.png" title="Go to Home Page" alt="Intro" width="200" class="logo"></a>
             <div class="link-title-container">
-                <a href="../../LoginPage/loginPage.html">Log Out</a>
+                <a href="../../LoginPage/main-G02.html">Log Out</a>
                 <h1>My Seller Page</h1>
             </div>
         </header>
         <br>
         
         <!-- HTML for content box for viewing and editing items -->
-        <!-- Use a table to display items -->
+       
         <div id="view" class="content-box">
+            <!-- Link to page to upload a new item -->
             <a href="../CreateItemPage/CreateItems.html" title="Click here to upload a new item">Upload a New Item</a>
             <h1>My Selling Items</h1>
+             <!-- Use a table to display items -->
             <table id="itemTable" class=".itemTable">
                     <tr>
                         <th>Item Title</th>
@@ -46,7 +48,7 @@
                     </tr>
                     <tbody id="itemTableBody">
                         <!-- fetchItems.php and sellerView.js will populate this table with items from the database -->  
-                         <!-- For now, use test data below-->
+                        <!-- For now, use test data below-->
                     <tr>
                         <td hidden>1</td>
                         <td><textarea type="text" class="row-data itemTitle itemTextbox" name="itemTitle" disabled>Test Item 1</textarea></td>
