@@ -176,7 +176,7 @@ function validateOnSave(row) {
     return false;
   } else if (itemImage1[0].files.length > 0 && itemImage1[0].files[0].size > 1048576*5 || itemImage2[0].files.length > 0 && itemImage2[0].files[0].size > 1048576*5) {
     alert("File size must be less than 5MB"); //If the file size is greater than 5MB, set the custom validity message
-    return false; //Return true to allow item to be saved
+    return false; 
   } else{
     return true; //Return true to allow item to be saved
   }
