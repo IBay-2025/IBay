@@ -16,6 +16,7 @@ $(window).resize(function() {
 
 //jQuery function to fetch user's items data from the database and display it in the table
 $(document).ready(function() {
+
     //Make an AJAX request to fetch the user's items
     $.ajax({
       url: "fetchItems.php", // The URL to PHP file that fetches items
@@ -30,7 +31,7 @@ $(document).ready(function() {
           $.each(response, function(index, item) {
             // Create a table row for each item
             tbl += `<tr>`;
-            tbl += `<td>${item.itemId}</td>`;
+            tbl += `<td hidden>${item.itemId}</td>`;
             tbl += `<td>
                       <textarea type="text" class="row-data itemTitle itemTextbox" name="itemTitle" disabled>${item.itemTitle}</textarea>
                     </td>`;
@@ -89,14 +90,15 @@ $(document).ready(function() {
                     </td>`;
             tbl += `</tr>`;
   
+          });
+
           //Append the table rows to the table body
           $(document).find('#itemTableBody').html(tbl); //Append the table rows to the table body
-          });
       } else {
           // If no items are found, display a error message in the table
           $(document).find('#itemTableBody').html(
             `<tr>
-              <td colspan="10">No items found</td>
+              <td colspan="9">No items found</td>
             </tr>`
           );
         }
@@ -127,18 +129,10 @@ $(document).on('click', '.cancel-btn', function(event)
   // Get the row of the button that was clicked
   var row = $(this).closest("tr");
 
-  // Get the item ID from the first cell of the row
-  var itemId = row.find("td").eq(0).text();
-
-  alert("Cancelling edit for item with ID: " + itemId);
-
   //Hide the save button and cancel button and show the edit button
   row.find(".save-btn").hide(); 
   row.find(".cancel-btn").hide(); 
   row.find(".edit-btn").show(); 
-
-  // Make the whole row non-editable
-  //row.find(".row-data").attr("contenteditable","false").prop("disabled",true)
 
   //Iterate through the row-data class elements and set them to be non-editable and set the original value to be the current value
   row.find(".row-data").each(function() {
@@ -185,7 +179,6 @@ function validateOnSave(row) {
 //Event listener for saving the edit of an item in the table
 $(document).on('click', '.save-btn', function(event) 
 {
-  alert("Save button clicked"); //Debugging alert
   event.preventDefault(); 
 
   // Get the row of the button that was clicked
@@ -198,7 +191,7 @@ $(document).on('click', '.save-btn', function(event)
 
   // Get the item details and store them in an object
   const itemDetails = {
-    itemId: parseInt(row.find("td").eq(0).text()),
+    itemId: row.find("td").eq(0).text(),
     itemName: row.find("td").eq(1).find(".row-data").val(),
     itemCategory: row.find("td").eq(4).find(":selected").val(), //Get the selected value from the select element
     itemDescription: row.find("td").eq(5).find(".row-data").val(),
@@ -292,11 +285,6 @@ $(document).on('click', '.edit-btn', function(event)
   
     // Get the row of the button that was clicked
     var row = $(this).closest("tr");
-  
-    // Get the item ID from the first cell of the row
-    var itemId = row.find("td").eq(0).text();
-  
-    alert("Editing item with ID: " + itemId);
   
     //Hide the edit button and show the save button and cancel button
     row.find(".edit-btn").hide(); 
