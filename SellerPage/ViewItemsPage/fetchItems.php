@@ -69,6 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
     // Return the items as a JSON response
     echo json_encode($items);
+    echo("<script>
+        alert('Items fetched successfully.');
+        </script>");
 }
 else {
     // If the request method is not POST, return an error
