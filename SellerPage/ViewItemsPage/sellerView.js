@@ -1,15 +1,14 @@
 //Function to resize header when page is loaded
 $(document).ready(function() {
   $("html").width("max-content");
-  $(".content-box").width($("itemTable").width());
-  $("#itemTable").width(window.innerWidth);
-  $("header").width($("body").width());
+  $(".content-box").width("#itemTable");
+  $("header").width($("html").width());
 });
 
 //Function to resize header when window is resized
-$(window).resize(function() {
-  $(".content-box").width($("itemTable").width());
-  $("#itemTable").width(window.innerWidth);
+$(window).resize(function() { 
+  $("body").width(window.innerWidth);
+  $(".content-box").width($("#itemTable").width());
   $("body").width("max-content");
   $("header").width($("body").width());
 });
@@ -68,9 +67,9 @@ $(document).ready(function() {
                       <textarea type="text" class="row-data itemTextbox" name="itemDescription" disabled>${item.itemDescription}</textarea>
                     </td>`;
             tbl += `<td>
-                      <label for="imgPreview"><img class="imgOutput" src="${item.itemBin.image1}" alt="Item Image 1" ></label>
+                      <label for="imgPreview"><img class="imgOutput" src="data:image/${item.images[0].imageExtension};base64, ${item.images[0].imageBin}" alt="Item Image 1" ></label>
                       <input type="file" class="row-data imgPreview" name="imgPreview1" accept="image/*" hidden disabled>
-                      <label for="imgPreview"><img class="imgOutput" src="${item.itemBin.image2}" alt="Item Image 2"></label>
+                      <label for="imgPreview"><img class="imgOutput" src="data:image/${item.images[1].imageExtension};base64, ${item.images[1].imageBin}" alt="Item Image 2"></label>
                       <input type="file" class="row-data imgPreview" name="imgPreview2" accept="image/*" hidden disabled>
                     </td>`;
             tbl += `<td>
@@ -309,4 +308,3 @@ $(document).on('click', '.edit-btn', function(event)
       }
     });
 });
-
