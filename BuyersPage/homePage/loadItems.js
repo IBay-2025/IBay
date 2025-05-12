@@ -81,14 +81,14 @@ $(document).ready(function() {
           //$(document).find('#itemTableBody').html(tbl); //Append the table rows to the table body
       
       
-        } else {
+        } /*else {
           // If no items are found, display a error message in the table
           $(document).find('#itemTableBody').html(
             `<tr>
               <td colspan="9">No items found tom 12/05</td>
             </tr>`
           );
-        }
+        }*/
       },
       error: function (error) {
         // Handle errors (e.g., network issues)
