@@ -5,56 +5,67 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
         <title>Buyers Page</title>
+        <!-- Link to CSS file -->
         <link rel="stylesheet" href="basket.css">
+        <!-- Add favicon (small icon on tab) for website -->
         <link rel="icon" href="../../Formatting/favicon.ico" type="image/x-icon">
+        <!-- Link to Google CDN for jQuery -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <h1 class="header">Welcome to IBAY</h1>  
-            <img src="../../Formatting/IBAY-Logo.png" alt="Intro" width="200" class="logo">
+        <!-- Go back to buyers/search page by clicking on logo-->
+        <a href="../../BuyersPage/homePage/buyersHomePage.html"><img src="../../Formatting/IBAY-Logo.png" alt="Intro" width="200" class="logo"></a>
     <head>
-<body>
-    <div class="basket-container">
-        <h2>Your Basket</h2>
-        <table class="basket-table">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sample Item 1</td>
-                    <td>$10.00</td>
-                    <td>
-                        <span>1</span>
-                    </td>
-                    <td>$10.00</td>
-                    <td>
-                        <button class="remove-btn">Remove</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Sample Item 2</td>
-                    <td>$20.00</td>
-                    <td>
-                        <span>1</span>
-                    </td>
-                    <td>$20.00</td>
-                    <td>
-                        <button class="remove-btn">Remove</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="basket-summary">
-            <p><strong>Subtotal:</strong> $30.00</p>
-            <button class="checkout-btn">Proceed to Checkout</button>
+
+    <body>
+        <div class="basket-container">
+            <h2>Your Basket</h2>
+            <table class="basket-table">
+                <!-- Table for basket should be populated with items added by the user when shopping -->
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price (£)</th>
+                        <th>Quantity</th>
+                        <th>Total (£) </th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sample Item 1</td>
+                        <td class="price">10.00</td>
+                        <td class="quantity">2</td>
+                        </td>
+                        <td class="totalPrice">10.00</td>
+                        <td>
+                            <button class="remove-btn btn">Remove</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sample Item 2</td>
+                        <td class="price">20.00</td>
+                        <td class="quantity">5</td>
+                        <td class="totalPrice">20.00</td>
+                        <td>
+                            <button class="remove-btn btn">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <div class="basket-summary">
+                <label for="subtotal">Subtotal (£):</label>
+                <p id="subtotal" name="subtotal">30.00</p>
+                <!-- When the checkout button is clicked, the user will be redirected to the checkout page --->
+                <button class="checkout-btn btn">Proceed to Checkout</button>
+            </div>
+            <br>
+            <div class="back-to-shopping">
+                <a href="../itemView/buyersItemView.html" class="back-btn">Back to Shopping</a>
+            </div>
         </div>
-        <div class="back-to-shopping">
-            <a href="../itemView/buyersItemView.html" class="back-btn">Back to Shopping</a>
-        </div>
-    </div>
-</body>
+
+        <!-- Link to JavaScript file -->
+        <script type="text/javascript" src="basket.js"></script>
+    </body>
 </html>
