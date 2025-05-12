@@ -282,8 +282,8 @@ $(document).on("click", ".delete-btn", function(event) {
 //Event listener for editing an item's details in the table
 $(document).on('click', '.edit-btn', function(event) 
   {
-    alert("Edit button clicked"); //Debugging alert
-    event.preventDefault(); 
+    //alert("Edit button clicked"); //Debugging alert
+    //event.preventDefault(); 
   
     // Get the row of the button that was clicked
     var row = $(this).closest("tr");

@@ -11,7 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_SESSION['userId'])) {
         die(json_encode(["error" => "User not logged in."]));
     }
-    
+    echo json_encode($_POST);
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
     //change item details in database
     $itemId = $_POST['itemId'];
     $itemTitle = $_POST['itemTitle'];   
@@ -22,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
     
-    // uPDATE THE ITEM IN THE DATABASE
+    // UPDATE THE ITEM IN THE DATABASE
     $sql = "UPDATE iBayItems SET title = '$itemTitle', price = '$itemPrice', postage = '$itemPostage', category = '$itemCategory', description = '$itemDescription', start = '$startDate', finish = '$endDate' WHERE itemId = $itemId";
     $result = mysqli_query($db, $sql);
     
