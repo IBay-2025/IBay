@@ -16,6 +16,7 @@ $(window).resize(function() {
 
 //jQuery function to fetch user's items data from the database and display it in the table
 $(document).ready(function() {
+
     //Make an AJAX request to fetch the user's items
     $.ajax({
       url: "fetchItems.php", // The URL to PHP file that fetches items
@@ -30,7 +31,7 @@ $(document).ready(function() {
           $.each(response, function(index, item) {
             // Create a table row for each item
             tbl += `<tr>`;
-            tbl += `<td>${item.itemId}</td>`;
+            tbl += `<td hidden>${item.itemId}</td>`;
             tbl += `<td>
                       <textarea type="text" class="row-data itemTitle itemTextbox" name="itemTitle" disabled>${item.itemTitle}</textarea>
                     </td>`;
@@ -89,14 +90,15 @@ $(document).ready(function() {
                     </td>`;
             tbl += `</tr>`;
   
+          });
+
           //Append the table rows to the table body
           $(document).find('#itemTableBody').html(tbl); //Append the table rows to the table body
-          });
       } else {
           // If no items are found, display a error message in the table
           $(document).find('#itemTableBody').html(
             `<tr>
-              <td colspan="10">No items found</td>
+              <td colspan="9">No items found</td>
             </tr>`
           );
         }
@@ -127,18 +129,10 @@ $(document).on('click', '.cancel-btn', function(event)
   // Get the row of the button that was clicked
   var row = $(this).closest("tr");
 
-  // Get the item ID from the first cell of the row
-  var itemId = row.find("td").eq(0).text();
-
-  alert("Cancelling edit for item with ID: " + itemId);
-
   //Hide the save button and cancel button and show the edit button
   row.find(".save-btn").hide(); 
   row.find(".cancel-btn").hide(); 
   row.find(".edit-btn").show(); 
-
-  // Make the whole row non-editable
-  //row.find(".row-data").attr("contenteditable","false").prop("disabled",true)
 
   //Iterate through the row-data class elements and set them to be non-editable and set the original value to be the current value
   row.find(".row-data").each(function() {
@@ -161,8 +155,8 @@ function validateOnSave(row) {
   var itemTitle = row.find(".itemTitle"); //Get the value of the item title input field
   var itemPrice = row.find(".itemPrice"); //Get the value of the item price input field
   var itemDescription = row.find(".itemTextbox").eq(1); //Get the value of the item description input field
-  var startDate = row.find(".startDate"); //Get the value of the start date input field
-  var endDate = row.find(".endDate"); //Get the value of the end date input field
+  var startDate = row.find(".startDate").val(); //Get the value of the start date input field
+  var endDate = row.find(".endDate").val(); //Get the value of the end date input field
   var itemImage1 = row.find(".imgPreview").eq(0); //Get the value of the item images input field
   var itemImage2 = row.find(".imgPreview").eq(1); //Get the value of the item images input field
 
@@ -171,9 +165,13 @@ function validateOnSave(row) {
     alert("Please fill in all empty fields");
     return false; //Return false to prevent item from being saved
     //Check if start date is greater than end date
-  } else if (startDate.val() > endDate.val()) {
+  } else if (startDate > endDate) {
     alert("Start date cannot be greater than end date"); //If the start date is greater than the end date, set the custom validity message
     return false; //Return true to allow item to be saved
+  } else if (startDate < new Date().toISOString().split('T')[0]) { //Check if start date is less than current date
+    this.setCustomValidity("Start date cannot be less than current date");
+  } else if (endDate < new Date().toISOString().split('T')[0]) { //Check if end date is less than current date
+    this.setCustomValidity("End date cannot be less than current date");
   } else if (itemImage1[0].files.length > 0 && itemImage1[0].files[0].size > 1048576*5 || itemImage2[0].files.length > 0 && itemImage2[0].files[0].size > 1048576*5) {
     alert("File size must be less than 5MB"); //If the file size is greater than 5MB, set the custom validity message
     return false; //Return true to allow item to be saved
@@ -185,7 +183,6 @@ function validateOnSave(row) {
 //Event listener for saving the edit of an item in the table
 $(document).on('click', '.save-btn', function(event) 
 {
-  alert("Save button clicked"); //Debugging alert
   event.preventDefault(); 
 
   // Get the row of the button that was clicked
@@ -198,7 +195,7 @@ $(document).on('click', '.save-btn', function(event)
 
   // Get the item details and store them in an object
   const itemDetails = {
-    itemId: parseInt(row.find("td").eq(0).text()),
+    itemId: row.find("td").eq(0).text(),
     itemName: row.find("td").eq(1).find(".row-data").val(),
     itemCategory: row.find("td").eq(4).find(":selected").val(), //Get the selected value from the select element
     itemDescription: row.find("td").eq(5).find(".row-data").val(),
@@ -292,11 +289,6 @@ $(document).on('click', '.edit-btn', function(event)
   
     // Get the row of the button that was clicked
     var row = $(this).closest("tr");
-  
-    // Get the item ID from the first cell of the row
-    var itemId = row.find("td").eq(0).text();
-  
-    alert("Editing item with ID: " + itemId);
   
     //Hide the edit button and show the save button and cancel button
     row.find(".edit-btn").hide(); 
