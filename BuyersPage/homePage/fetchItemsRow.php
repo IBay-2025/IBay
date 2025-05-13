@@ -68,7 +68,6 @@ print_r($_GET);
         if (empty($items)) {
             die(json_encode(["error" => "No items found for the given category."]));
         }
-        echo("hi");
         header('Content-Type: application/json');
         $json = json_encode($items);
         if ($json === false) {
