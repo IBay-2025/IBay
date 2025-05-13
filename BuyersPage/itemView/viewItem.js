@@ -37,6 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => {
       console.error("Error loading item details:", error);
-      alert("Failed to load item details.");
+      alert("Failed to load item details. here");
     });
 });
