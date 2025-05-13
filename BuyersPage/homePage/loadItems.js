@@ -43,14 +43,14 @@ $(document).ready(function() {
 
   // Load items for multiple categories
   loadItems("Home","home-items");
-  loadItems("Garden & DIY", "garden-items");
-  loadItems("Jewellery & Watches", "jewellery-items");
-  loadItems("Electronics","electronics-items");
-  loadItems("Fashion", "fashion-items");
-  loadItems("Health & Beauty", "health-items");
-  loadItems("Sport & Leisure", "sports-items");
-  // loadItems("Motors", "motors-items");
-  loadItems("Collectables", "collectables-items");
+  // loadItems("Garden & DIY", "garden-items");
+  // loadItems("Jewellery & Watches", "jewellery-items");
+  // loadItems("Electronics","electronics-items");
+  // loadItems("Fashion", "fashion-items");
+  // loadItems("Health & Beauty", "health-items");
+  // loadItems("Sport & Leisure", "sports-items");
+  // // loadItems("Motors", "motors-items");
+  // loadItems("Collectables", "collectables-items");
 
 
 });})
