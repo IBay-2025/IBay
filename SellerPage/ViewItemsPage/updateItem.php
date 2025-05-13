@@ -15,9 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (json_last_error() !== JSON_ERROR_NONE) {
         die(json_encode(["error" => "Invalid JSON input."]));
     }
-    echo "<pre>";
-    print_r($input);
-    echo "</pre>";
     //change item details in database
     $itemId = $input['itemId'];
     $itemTitle = $input['itemName'];   
