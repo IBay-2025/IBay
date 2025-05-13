@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $images = $_FILES['imgFiles']; //gets all images
 
     // print images
-    print_r($images);
+    print_r($_FILES['imgFiles']);
     print_r("<br>");
     
     // Prepare the SQL query
