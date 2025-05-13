@@ -8,10 +8,29 @@
     /*
     fetches a row of items with a given a category
     */     
-
+    $sqlItemsSORTSection = "";
+    if (isset($_GET['sort'])) {
+        $sort = $_GET['sort'];
+        if ($sort == 'priceLowToHigh') {
+            $sqlItemsSORTSection = "ORDER BY price ASC";
+        } 
+        elseif ($sort == 'priceHighToLow') {
+            $sqlItemsSORTSection = "ORDER BY price DESC";    
+        } 
+        elseif ($sort == 'endingSoon') {
+            $sqlItemsSORTSection = "ORDER BY finish ASC";    
+        } 
+        elseif ($sort == 'userRating') {
+            $sqlItemsSORTSection = "ORDER BY userRating DESC";    
+        }
+        else {
+            // Invalid sort option, handle error
+            die(json_encode(["error" => "Invalid sort option."]));
+        }
+    }
     //check GET and from 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $sql = "SELECT * FROM iBayItems WHERE category = ?";
+        $sql = "SELECT * FROM iBayItems WHERE category = ? $sqlItemsSORTSection";
         $stmt = $db->prepare($sql);
         $category = $_GET['category'];
         $stmt->bind_param("s", $category);
