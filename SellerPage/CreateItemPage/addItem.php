@@ -1,6 +1,9 @@
 <?php
 include '../../connect.php'; // Include your database connection file
-echo "connecting";
+//error checking
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 session_start(); // Start the session to access session variables
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -18,6 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $postage = $_POST['itemPostage'];
     $start = $_POST['startDate']; 
     $finish = $_POST['endDate']; 
+
+    $images = $_FILES['imgFiles']; //gets all images
+
+    // print images
+    print_r($images);
+    print_r("<br>");
     
     // Prepare the SQL query
 
@@ -60,20 +69,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $finish
     );
 
-    if($stmt->execute()) {
-        die("<script>
-            alert('New item created successfully!');
-            window.location.href = '../ViewItemsPage/ViewItemsPage.html';
-        </script>");
-       
-    } 
-    else{
+    if(!$stmt->execute()) {    
         die("<script>
             alert('Query execution failed: " . $stmt->error . "');
             window.location.href = 'addItemPage.html';
         </script>");
     }
 
+
+    //now add image to images table
+    $imageTbl = "iBayImages";
+    //for each image returned in the images array add the image to the database
+    // Loop through each image and add to db
+    
+    foreach () {
+
+        $image = $images['tmp_name'][$i];
+        $mimeType = $image['type'];
+        $imageSizeKB = $image['size'] / 1024; // Convert size to KB
+        $imageData = file_get_contents($image['tmp_name']);
+        //find image id`
+        $imageId = 1;
+        while (true) {
+            $sql = "SELECT imageId FROM $imageTbl WHERE imageId = $imageId";
+            $result = mysqli_query($db, $sql);
+
+            if (!$result) {
+                die("Query failed: " . mysqli_error($db));
+            }
+            
+            if (mysqli_num_rows($result) === 0) {
+                break; // Unique userId found
+            }
+            $imageId++;
+        }
+
+        // Insert the new item into the database
+        $sql = "INSERT INTO $imageTbl (imageId,image,mimeType,imageSizeKB, itemId) 
+                VALUES (?, ?, ?, ?, ?)";
+        $stmt = $db->prepare($sql);
+        if (!$stmt) {
+            die("<script>
+                alert('Query preparation failed: " . $db->error . "');
+                window.location.href = 'addItemPage.html';
+            </script>");
+        }
+        $stmt->bind_param(
+            "isssi",
+            $imageId,
+            $imageData,
+            $mimeType,
+            $imageSizeKB,
+            $itemId
+        );
+        if(!$stmt->execute()) {       
+            die("<script>
+                alert('Query execution failed: " . $stmt->error . "');
+                window.location.href = 'addItemPage.html';
+            </script>");
+        }
+}
 } 
 else 
 {

@@ -20,7 +20,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     $itemId = $input['itemId'];
-
+    //remove images with item id
+    $sql = "DELETE FROM iBayImages WHERE itemId = ?";
+    $stmt = $db->prepare($sql);
+    if (!$stmt) {
+        die(json_encode(["error" => "Query preparation failed: " . $db->error]));
+    }
+    $stmt->bind_param("i", $itemId);
+    if (!$stmt->execute()) {
+        die(json_encode(["error" => "Query execution failed: " . $stmt->error]));
+    }
+    $stmt->close();
+    
     // Prepare the SQL query to delete the item
     $sql = "DELETE FROM iBayItems WHERE itemId = ?";
     $stmt = $db->prepare($sql);
