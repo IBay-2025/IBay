@@ -9,11 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die(json_encode(["error" => "User not logged in."]));
     }
 
+     $input = json_decode(file_get_contents('php://input'), true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        die(json_encode(["error" => "Invalid JSON input."]));
+    }
+
     // Retrieve the itemId from the POST request
-    if (!isset($_POST['itemId']) || empty($_POST['itemId'])) {
+    if (!isset($input['itemId']) || empty($input['itemId'])) {
         die(json_encode(["error" => "Item ID is required."]));
     }
-    $itemId = $_POST['itemId'];
+    
+    $itemId = $input['itemId'];
 
     // Prepare the SQL query to delete the item
     $sql = "DELETE FROM iBayItems WHERE itemId = ?";
