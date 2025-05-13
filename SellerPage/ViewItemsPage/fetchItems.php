@@ -63,6 +63,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Return the items as a JSON response]
     header('Content-Type: application/json');
     echo json_encode($items, JSON_PRETTY_PRINT);
+
+
+
+    //now echo sellers information
+    $sqlSeller = "SELECT * FROM iBayUsers WHERE userId = $userId";
+    $resultSeller = mysqli_query($db, $sqlSeller);
+    if (!$resultSeller) {
+        die("<script>
+            alert('Query preparation failed: " . mysqli_error($db) . "');
+            window.location.href = 'ViewItemsPage.html';
+        </script>");
+    }
+    $rowSeller = mysqli_fetch_assoc($resultSeller);
+    if (!$rowSeller) {
+        die("<script>
+            alert('No seller found.');
+            window.location.href = 'ViewItemsPage.html';
+        </script>");
+    }
+    $seller = [
+        "userId" => $rowSeller['userId'],
+        "firstName" => $rowSeller['firstName'],
+        "lastName" => $rowSeller['lastName'],
+        "email" => $rowSeller['email'],
+        "phone" => $rowSeller['phone'],
+        "address" => $rowSeller['address'],
+        "city" => $rowSeller['city'],
+        "postcode" => $rowSeller['postcode'],
+        "country" => $rowSeller['country']
+    ];
+    // Return the seller information as a JSON response
+    header('Content-Type: application/json');
+    echo json_encode($seller, JSON_PRETTY_PRINT);
+    // Close the database connection
+    mysqli_close($db);
 }
 else {
     // If the request method is not POST, return an error
