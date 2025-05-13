@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$stmt) {
         die("<script>
             alert('Query preparation failed: " . $db->error . "');
-            window.location.href = 'addItemPage.html';
+            window.location.href = 'CreateItems.html';
         </script>");
     }
     $stmt->bind_param(
@@ -72,46 +72,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(!$stmt->execute()) {    
         die("<script>
             alert('Query execution failed: " . $stmt->error . "');
-            window.location.href = 'addItemPage.html';
+            window.location.href = 'CreateItems.html';
         </script>");
     }
 
-
-    //now add image to images table
-    $imageTbl = "iBayImages";
-    //for each image returned in the images array add the image to the database
-    // Loop through each image and add to db
+    // Normalize the $_FILES structure
+    $tmpNames = $images['tmp_name'];
+    $names = $images['name'];
+    $types = $images['type'];
+    $errors = $images['error'];
+    $sizes = $images['size'];
     
+    // Loop through each image and add it to the database
     foreach ($tmpNames as $key => $tmpName) {
+        // Validate the uploaded file
+        if ($errors[$key] !== UPLOAD_ERR_OK) {
+            die("<script>
+                alert('File upload failed for image $key with error code: " . $errors[$key] . "');
+                window.location.href = 'CreateItems.html';
+            </script>");
+        }
 
-        $image = $images['tmp_name'][$i];
-        $mimeType = $image['type'];
-        $imageSizeKB = $image['size'] / 1024; // Convert size to KB
-        $imageData = file_get_contents($image['tmp_name']);
-        //find image id`
+        // Remove "image/" from the MIME type
+        $mimeType = str_replace('image/', '', $types[$key]);
+        // Read the binary data of the uploaded image
+        $imageData = file_get_contents($tmpName);
+        $imageSizeKB = $sizes[$key] / 1024; // Convert size to KB
+
+        // Find a unique imageId
         $imageId = 1;
         while (true) {
-            $sql = "SELECT imageId FROM $imageTbl WHERE imageId = $imageId";
+            $sql = "SELECT imageId FROM iBayImages WHERE imageId = $imageId";
             $result = mysqli_query($db, $sql);
 
             if (!$result) {
                 die("Query failed: " . mysqli_error($db));
             }
-            
+
             if (mysqli_num_rows($result) === 0) {
-                break; // Unique userId found
+                break; // Unique imageId found
             }
             $imageId++;
         }
 
-        // Insert the new item into the database
-        $sql = "INSERT INTO $imageTbl (imageId,image,mimeType,imageSizeKB, itemId) 
+        // Insert the new image into the database
+        $sql = "INSERT INTO iBayImages (imageId, image, mimeType, imageSizeKB, itemId) 
                 VALUES (?, ?, ?, ?, ?)";
         $stmt = $db->prepare($sql);
         if (!$stmt) {
             die("<script>
                 alert('Query preparation failed: " . $db->error . "');
-                window.location.href = 'addItemPage.html';
+                window.location.href = 'CreateItems.html';
             </script>");
         }
         $stmt->bind_param(
@@ -122,19 +133,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imageSizeKB,
             $itemId
         );
-        if(!$stmt->execute()) {       
+        if (!$stmt->execute()) {
             die("<script>
-                alert('Query execution failed: " . $stmt->error . "');
-                window.location.href = 'addItemPage.html';
+                alert('Query execution failed for image $key: " . $stmt->error . "');
+                window.location.href = 'CreateItems.html';
             </script>");
         }
-}
+        else {
+            echo "<script>
+                alert('Item added successfully!');
+                window.location.href = 'CreateItems.html';
+            </script>";
+        }
+    }
 } 
 else 
 {
     die("<script>
         alert('Invalid request method.');
-        window.location.href = 'addItemPage.html';
+        window.location.href = 'CreateItems.html';
     </script>");
 }
 ?>

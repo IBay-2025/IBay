@@ -8,18 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_SESSION['userId'])) {
         die(json_encode(["error" => "User not logged in."]));
     }
-
-     $input = json_decode(file_get_contents('php://input'), true);
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        die(json_encode(["error" => "Invalid JSON input."]));
-    }
-
+    #if (json_last_error() !== JSON_ERROR_NONE) {
+    #    die(json_encode(["error" => "Invalid JSON input."]));
+    #}
     // Retrieve the itemId from the POST request
-    if (!isset($input['itemId']) || empty($input['itemId'])) {
+    if (!isset($_POST['itemId']) || empty($_POST['itemId'])) {
         die(json_encode(["error" => "Item ID is required."]));
     }
-    
-    $itemId = $input['itemId'];
+  
+    $itemId = $_POST['itemId'];
     //remove images with item id
     $sql = "DELETE FROM iBayImages WHERE itemId = ?";
     $stmt = $db->prepare($sql);
