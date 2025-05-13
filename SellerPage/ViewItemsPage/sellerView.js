@@ -215,7 +215,7 @@ $(document).on('click', '.save-btn', function(event)
     data: itemDetails, // Data to be sent to the server
     success: function(response) {
       // If update is successful, update the row in the table with the new values
-      if (response.success) {
+      if (response) {
         alert("Item updated successfully"); //Debugging alert
         //Iterate through the row-data class elements and set them to be non-editable and set the original value to be the current value
         row.find(".row-data").each(function() {
@@ -264,7 +264,7 @@ $(document).on("click", ".delete-btn", function(event) {
     data: { "itemId": itemId }, //Data to be sent to the server
     success: function(response) {
       // If deletion is successful, remove the row from the table
-      if (response.success) {
+      if (response) {
         row.remove();
       } else {
         alert("Error deleting item, please try again later.");
