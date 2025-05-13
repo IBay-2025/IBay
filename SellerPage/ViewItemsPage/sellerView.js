@@ -1,13 +1,6 @@
-//Function to resize header when page is loaded
-$(document).ready(function() {
-  $("html").width("max-content");
-  $(".content-box").width("#itemTable");
-  $("header").width($("html").width());
-});
-
 //Function to resize header when window is resized
 $(window).resize(function() { 
-  $("body").width(window.innerWidth);
+  $("#itemTable").width(window.innerWidth);
   $(".content-box").width($("#itemTable").width());
   $("body").width("max-content");
   $("header").width($("body").width());
@@ -15,6 +8,7 @@ $(window).resize(function() {
 
 //jQuery function to fetch user's items data from the database and display it in the table
 $(document).ready(function() {
+    $("html").width("max-content"); 
 
     //Make an AJAX request to fetch the user's items
     $.ajax({
@@ -92,12 +86,17 @@ $(document).ready(function() {
           });
 
           //Append the table rows to the table body
-          $(document).find('#itemTableBody').html(tbl); //Append the table rows to the table body
+          $(document).find('#itemTableBody').html(tbl);
+
+          //Resize the header and content box after all items have loaded in
+          $(".content-box").width($("#itemTable").width());
+	        $("header").width($(".content-box").outerWidth());
+
       } else {
           // If no items are found, display a error message in the table
           $(document).find('#itemTableBody').html(
             `<tr>
-              <td colspan="9">No items found tom 12/05</td>
+              <td colspan="9">No items found. Please try again later, or add an item.</td>
             </tr>`
           );
         }
@@ -105,11 +104,25 @@ $(document).ready(function() {
       error: function (error) {
         // Handle errors (e.g., network issues)
         alert("Error adding items to html, please try again later.");
+        $("header").width($("body").outerWidth());
+        
+        // If there is an error, display a error message in the table
+        $(document).find('#itemTableBody').html(
+          `<tr>
+            <td colspan="9">No items found. Please try again later, or add an item.</td>
+          </tr>`
+        );
+
       }
     });
-  });
+});
 
-  //Event listener for allowing user to upload a different image by clicking on the image preview
+//Event listener for resizing the header and content box if no items are found
+$(document).ready( function() {
+  $("header").width($("body").outerWidth());
+});
+
+//Event listener for allowing user to upload a different image by clicking on the image preview
 $(document).on('click', '.imgOutput', function (event) {
   $(this).parent().next().click(); //Trigger the file input click event to allow user to select a new image 
 });
@@ -193,10 +206,10 @@ $(document).on('click', '.save-btn', function(event)
     alert("Please fill in all the required fields correctly before saving."); //If the validation fails, show an alert message
     return; //If the validation fails, return and do not proceed with saving
   }
-  
+
   // Get the item details and store them in an object
   const itemDetails = {
-    itemId: pasrseInt(row.find("td").eq(0).text()),
+    itemId: parseInt(row.find("td").eq(0).text()),
     itemTitle: row.find("td").eq(1).find(".row-data").val(),
     itemCategory: row.find("td").eq(4).find(":selected").val(), //Get the selected value from the select element
     itemDescription: row.find("td").eq(5).find(".row-data").val(),

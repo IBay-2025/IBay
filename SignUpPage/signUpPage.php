@@ -58,7 +58,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         if ($stmt) {
             die("<script>
             alert('New user created successfully!   ');
-            window.location.href = '../LoginPage/loginPage.html';
+            window.location.href = '../LoginPage/main-G02.html';
             </script>");
         }
         else{
