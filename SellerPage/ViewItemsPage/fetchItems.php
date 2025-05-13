@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 
 
-    //now echo sellers information
+    //echo sellers information
     $sqlSeller = "SELECT * FROM iBayUsers WHERE userId = $userId";
     $resultSeller = mysqli_query($db, $sqlSeller);
     if (!$resultSeller) {
