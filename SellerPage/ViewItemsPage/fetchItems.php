@@ -61,13 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         </script>");
     }
     // Return the items as a JSON response]
-
-    $json = json_encode($items);
-    if ($json === false) {
-        echo "JSON Encoding Error: " . json_last_error_msg(); // Output the error message
-    die();
-}
-echo $json;
+    header('Content-Type: application/json');
+    echo json_encode($items, JSON_PRETTY_PRINT);
 }
 else {
     // If the request method is not POST, return an error
