@@ -196,8 +196,8 @@ $(document).on('click', '.save-btn', function(event)
   
   // Get the item details and store them in an object
   const itemDetails = {
-    itemId: row.find("td").eq(0).text(),
-    itemName: row.find("td").eq(1).find(".row-data").val(),
+    itemId: pasrseInt(row.find("td").eq(0).text()),
+    itemTitle: row.find("td").eq(1).find(".row-data").val(),
     itemCategory: row.find("td").eq(4).find(":selected").val(), //Get the selected value from the select element
     itemDescription: row.find("td").eq(5).find(".row-data").val(),
     itemPrice: parseFloat(row.find("td").eq(2).find(".row-data").val()), //Convert the price (type string) to a float
@@ -208,13 +208,11 @@ $(document).on('click', '.save-btn', function(event)
     endDate: row.find("td").eq(7).find(".row-data").eq(1).val() //Get the value of the end date input field
   };
 
-  const itemDetailsJSON = JSON.stringify(itemDetails); //Convert the object to a JSON string
-
   //Make an AJAX request to update the item details in the database
   $.ajax({
     url: "updateItem.php", // The URL to PHP file that updates items
     method: "POST", // HTTP POST method
-    data: itemDetailsJSON, // Data to be sent to the server
+    data: itemDetails, // Data to be sent to the server
     success: function(response) {
       // If update is successful, update the row in the table with the new values
       if (response.success) {
@@ -257,13 +255,13 @@ $(document).on("click", ".delete-btn", function(event) {
   var row = $(this).closest("tr");
 
   // Get the item ID from the first cell of the row
-  var itemId = row.find("td").eq(0).text(); //Get the item ID from the first cell of the row
+  var itemId = parseInt(row.find("td").eq(0).text()); //Get the item ID from the first cell of the row
   
   // Make an AJAX request to delete the item from the database
   $.ajax({
     url: "deleteItem.php", //The URL to PHP file that deletes items
     method: "POST", //HTTP POST method
-    data: JSON.stringify({ "itemId": itemId }), //Data to be sent to the server
+    data: { "itemId": itemId }, //Data to be sent to the server
     success: function(response) {
       // If deletion is successful, remove the row from the table
       if (response.success) {
@@ -282,9 +280,8 @@ $(document).on("click", ".delete-btn", function(event) {
 //Event listener for editing an item's details in the table
 $(document).on('click', '.edit-btn', function(event) 
   {
-    //alert("Edit button clicked"); //Debugging alert
-    //event.preventDefault(); 
-  
+    event.preventDefault(); 
+
     // Get the row of the button that was clicked
     var row = $(this).closest("tr");
   
