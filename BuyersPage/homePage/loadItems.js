@@ -39,7 +39,7 @@ $(document).ready(function () {
                 <div class="grid-item-image">${imageHtml}</div>
                 <div class="grid-item-info">
                   <h3 class="item-title">${item.itemTitle}</h3>
-                  <p class="item-price">£${parseFloat(item.itemPrice).toFixed(2)}</p>
+                  <p class="item-price">&pound;${parseFloat(item.itemPrice).toFixed(2)}</p>
                   <p class="item-postage">${item.itemPostage}</p>
                   <p class="item-enddate">Ends: ${new Date(item.endDate).toLocaleDateString()}</p>
                 </div>
