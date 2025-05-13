@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //for each image returned in the images array add the image to the database
     // Loop through each image and add to db
     
-    foreach () {
+    foreach ($tmpNames as $key => $tmpName) {
 
         $image = $images['tmp_name'][$i];
         $mimeType = $image['type'];
