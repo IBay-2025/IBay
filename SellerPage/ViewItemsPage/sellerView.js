@@ -1,16 +1,21 @@
 //Function to resize header when page is loaded
 $(document).ready(function() {
   $("html").width("max-content");
-  $(".content-box").width("#itemTable");
   $("header").width($("html").width());
 });
 
 //Function to resize header when window is resized
 $(window).resize(function() { 
-  $("body").width(window.innerWidth);
-  $(".content-box").width($("#itemTable").width());
-  $("body").width("max-content");
-  $("header").width($("body").width());
+  if ($("itemTableBody").find("tr").length > 0) {
+    $(".content-box").width($("#itemTable").width());
+    $("body").width("max-content");
+    $("header").width($("body").width());
+  } else {
+    $("#itemTable").width(window.innerWidth);
+    $(".content-box").width($("#itemTable").width);
+    $("body").width("max-content");
+    $("header").width($("body").width());
+  }
 });
 
 //jQuery function to fetch user's items data from the database and display it in the table

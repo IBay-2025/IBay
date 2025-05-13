@@ -35,7 +35,7 @@
             <h1>My Selling Items</h1>
              <!-- Use a table to display items -->
             <table id="itemTable" class=".itemTable">
-                    <tr>
+                    <thead>
                         <th>Item Title</th>
                         <th>Item Price (£)</th>
                         <th>Item Postage</th>
@@ -45,12 +45,11 @@
                         <th>Duration</th>
                         <th>Edit Item</th>
                         <th>Delete Item</th>
-                    </tr>
+                    </thead>
                     <tbody id="itemTableBody">
-                        <!-- fetchItems.php and sellerView.js will populate this table with items from the database -->  
-                        <!-- For now, use test data below-->
+                        <!-- fetchItems.php and sellerView.js will populate this table with items from the database -->     
+                         <!-- For now, use test data below-->
                     <tr>
-                        <td hidden>1</td>
                         <td><textarea type="text" class="row-data itemTitle itemTextbox" name="itemTitle" disabled>Test Item 1</textarea></td>
                         <td><input type="number" class="row-data itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price (in GBP)" name="itemPrice" value="10100.00" disabled></td>
                         <td>
@@ -97,12 +96,12 @@
                     </td>
                     <td>
                         <button name="editBtn" class="btn edit-btn">Edit</button>
-                        <!-- Only show save and cancel buttons after clicking  -->
+                        <!-- Only show save and cancel buttons after clicking edit button -->
                         <button name="saveBtn" class="btn save-btn" hidden>Save</button> 
                         <button name="cancelBtn" class="btn cancel-btn" hidden>Cancel</button>
                     </td>
                     <td><button name="deleteBtn" class="btn delete-btn">Delete</button></td>
-                    </tr>            
+                    </tr>      
                     </tbody>
             </table>
         </div>
