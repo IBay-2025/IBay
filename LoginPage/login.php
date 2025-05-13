@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($username) || empty($password)) {
             die("<script>
                 alert('Username or password is missing.');
-                window.location.href = 'loginPage.html';
+                window.location.href = 'main-G02.html';
             </script>");
         }
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         catch (Exception $e) {
             die("<script>
                 alert('Query failed: " . $e->getMessage() . "');
-                window.location.href = 'loginPage.html';
+                window.location.href = 'main-G02.html';
             </script>");
         }
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$result) {
             die("<script>
                 alert('Query failed: " . mysqli_error($db) . "');
-                window.location.href = 'loginPage.html';
+                window.location.href = 'main-G02.html';
             </script>");
         }
 
@@ -57,21 +57,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         else {
             die("<script>
                 alert('Incorrect username or password.');
-                window.location.href = 'loginPage.html';
+                window.location.href = 'main-G02.html';
             </script>");
         }
     } 
     else {
         die("<script>
             alert('This should be called from clicking the button login-submit.');
-            window.location.href = 'loginPage.html';
+            window.location.href = 'main-G02.html';
         </script>");
     }
 } 
 else {
     die("<script>
         alert('Use POST to access this page.');
-        window.location.href = 'loginPage.html';
+        window.location.href = 'main-G02.html';
     </script>");
 }
 ?>
