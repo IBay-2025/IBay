@@ -7,7 +7,7 @@
 
     /*
     fetches a row of items with a given a category
-    */  
+    */     
 
     //check GET and from 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
