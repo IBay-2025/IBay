@@ -9,8 +9,6 @@
     fetches a row of items with a given a category
     */  
 
-    echo "hi";
-
 
     //check GET and from 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -52,9 +50,6 @@
                     "imageExtension" => $imageRow['mimeType'],
                 ];
             }
-            print("<br>");
-            print_r($rowItems);
-            print("<br>");
             // Add each item to the items array
             $items[] = [
                 "itemId" => $rowItems['itemId'],
