@@ -275,6 +275,8 @@ $(document).on("click", ".delete-btn", function(event) {
       alert("Error deleting item, please try again later.");
     }
   });
+
+  
 });
 
 //Event listener for editing an item's details in the table
