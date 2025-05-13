@@ -42,7 +42,7 @@ $(document).ready(function() {
     });
   }
 
-  // Load items for multiple categories
+  // Load items for multiple categories 
   loadItems("Home","home-items");
   loadItems("Garden & DIY", "garden-items");
   loadItems("Jewellery & Watches", "jewellery-items");
