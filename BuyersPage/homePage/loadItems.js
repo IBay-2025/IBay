@@ -17,7 +17,8 @@ $(document).ready(function() {
               <div class="grid-item" onclick="location.href='../itemView/buyersItemView.html?itemId=${item.itemId}'">
               <div class="grid-item-image">
                 <!-- Only display the first image -->
-                <img src="data:image/${item.itemBin[0].imageExtension};base64,${item.itemBin[0].image1}" alt="${item.itemTitle}" />
+                <img src="data:image/${item.images[0].imageExtension};base64,${item.images[0].imageBin}" alt="${item.itemTitle}" />
+
               </div>
               <div class="grid-item-info">
                 <h3 class="item-title">${item.itemTitle}</h3>
@@ -43,14 +44,14 @@ $(document).ready(function() {
 
   // Load items for multiple categories
   loadItems("Home","home-items");
-  // loadItems("Garden & DIY", "garden-items");
-  // loadItems("Jewellery & Watches", "jewellery-items");
-  // loadItems("Electronics","electronics-items");
-  // loadItems("Fashion", "fashion-items");
-  // loadItems("Health & Beauty", "health-items");
-  // loadItems("Sport & Leisure", "sports-items");
-  // // loadItems("Motors", "motors-items");
-  // loadItems("Collectables", "collectables-items");
+  loadItems("Garden & DIY", "garden-items");
+  loadItems("Jewellery & Watches", "jewellery-items");
+  loadItems("Electronics","electronics-items");
+  loadItems("Fashion", "fashion-items");
+  loadItems("Health & Beauty", "health-items");
+  loadItems("Sport & Leisure", "sports-items");
+  // loadItems("Motors", "motors-items");
+  loadItems("Collectables", "collectables-items");
 
 
 });})
