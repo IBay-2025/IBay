@@ -16,7 +16,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $sql = "SELECT * FROM iBayItems WHERE category = ?";
         $stmt = $db->prepare($sql);
-        $category = 'Fashion';//$_GET['category'];
+        $category = $_GET['category'];
         $stmt->bind_param("s", $category);
         try{
             $stmt->execute();
@@ -27,8 +27,8 @@
                 window.location.href = '../../login.php';
             </script>");
         }
-        $result = $stmt->get_result();
-        if (!$result) {
+        $resultItem = $stmt->get_result();
+        if (!$resultItem) {
             die("<script>
                 alert('Query failed: " . mysqli_error($db) . "');
                 window.location.href = '../../login.php';
@@ -37,14 +37,10 @@
 
         //now use $result to get all of the images in the catagory
         $items = [];
-        while ($row = mysqli_fetch_assoc($result)) {
-            $sql = "SELECT * FROM iBayImages WHERE itemId = " . $row['itemId'];
-            $result = mysqli_query($db, $sql);
-            if (!$result) {
-                die("Query failed: " . mysqli_error($db));
-            }
-
-            $resultImages = mysqli_query($db, $sql);
+        while ($rowItems = mysqli_fetch_assoc($resultItem)) {
+            $sqlImages = "SELECT * FROM iBayImages WHERE itemId = " . $rowItems['itemId'];
+            
+            $resultImages = mysqli_query($db, $sqlImages);
             if (!$resultImages) {
                 die(json_encode(["error" => "Image query failed: " . $db->error]));
             }
@@ -56,7 +52,9 @@
                     "imageExtension" => $imageRow['mimeType'],
                 ];
             }
-
+            print("<br>");
+            print_r($rowItems);
+            print("<br>");
             // Add each item to the items array
             $items[] = [
                 "itemId" => $rowItems['itemId'],
