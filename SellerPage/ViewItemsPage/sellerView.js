@@ -198,10 +198,10 @@ $(document).on('click', '.save-btn', function(event)
     alert("Please fill in all the required fields correctly before saving."); //If the validation fails, show an alert message
     return; //If the validation fails, return and do not proceed with saving
   }
-  
+
   // Get the item details and store them in an object
   const itemDetails = {
-    itemId: pasrseInt(row.find("td").eq(0).text()),
+    itemId: parseInt(row.find("td").eq(0).text()),
     itemTitle: row.find("td").eq(1).find(".row-data").val(),
     itemCategory: row.find("td").eq(4).find(":selected").val(), //Get the selected value from the select element
     itemDescription: row.find("td").eq(5).find(".row-data").val(),
