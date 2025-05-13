@@ -33,14 +33,12 @@ $(document).on('change', '.imgFiles', function () {
   } else if (this.files.length < 2) {
     imgFiles.setCustomValidity("You must upload 2 files");
   } else {
-    imgFiles.setCustomValidity('');
-  }
-
-  //Check if the file size is greater than 5MB
-  if (this.files[0].size > 1048576*5 || this.files[1].size > 1048576*5) {
-    imgFiles.setCustomValidity("File size must be less than 5MB"); //Set the custom validity message
-  } else {
-    imgFiles.setCustomValidity(''); //If the file size is less than 1MB, set the custom validity to empty
+     //Check if the file size is greater than 
+    if (this.files[0].size > 1048576*5 || this.files[1].size > 1048576*5) {
+      imgFiles.setCustomValidity("File size must be less than 5MB"); //Set the custom validity message
+    } else {
+      imgFiles.setCustomValidity(''); //If the file size is less than 1MB, set the custom validity to empty
+    }
   }
 
   imgFiles.reportValidity();
@@ -63,10 +61,10 @@ $(document).on('change, blur', '.itemPrice', function () {
 
 //Validate the item title input to make sure it is not empty
 $(document).on('change, blur', '.itemTitle, .itemTextbox', function () {
-  itemNameValue = $(this).val(); //Get the value of the input field
+  itemTitleValue = $(this).val(); //Get the value of the input field
   
   //Check if the input is empty
-  if (itemNameValue == "") {
+  if (itemTitleValue == "") {
     this.setCustomValidity("Please do not leave this field empty"); //If the input is empty, set the custom validity message
   } else {
     this.setCustomValidity(''); //If the input is not empty, set the custom validity to empty
