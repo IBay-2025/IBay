@@ -3,7 +3,7 @@ $(document).ready(function() {
     $(document).ready(function () {
   function loadItems(category, containerId) {
     $.ajax({
-      url: "../../api/fetchItemsRow.php", // adjust path if needed
+      url: "fetchItemsRow.php", // adjust path if needed
       method: "GET",
       data: { category: category },
       dataType: "json",
