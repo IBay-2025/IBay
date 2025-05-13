@@ -11,19 +11,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_SESSION['userId'])) {
         die(json_encode(["error" => "User not logged in."]));
     }
-    $input = json_decode(file_get_contents('php://input'), true);
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        die(json_encode(["error" => "Invalid JSON input."]));
+    if ($_POST === null) {
+        die(json_encode(["error" => "Invalid or empty JSON input."]));
     }
     //change item details in database
-    $itemId = $input['itemId'];
-    $itemTitle = $input['itemName'];   
-    $itemPrice = $input['itemPrice'];
-    $itemPostage = $input['itemPostage'];
-    $itemCategory = $input['itemCategory'];
-    $itemDescription = $input['itemDescription'];
-    $startDate = $input['startDate'];
-    $endDate = $input['endDate'];
+    $itemId = $_POST['itemId'];
+    $itemTitle = $_POST['itemTitle'];   
+    $itemPrice = $_POST['itemPrice'];
+    $itemPostage = $_POST['itemPostage'];
+    $itemCategory = $_POST['itemCategory'];
+    $itemDescription = $_POST['itemDescription'];
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
     
     // UPDATE THE ITEM IN THE DATABASE
     $sql ="UPDATE iBayItems 
