@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$stmt) {
         die("<script>
             alert('Query preparation failed: " . $db->error . "');
-            window.location.href = 'addItemPage.html';
+            window.location.href = 'CreateItems.html';
         </script>");
     }
     $stmt->bind_param(
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(!$stmt->execute()) {    
         die("<script>
             alert('Query execution failed: " . $stmt->error . "');
-            window.location.href = 'addItemPage.html';
+            window.location.href = 'CreateItems.html';
         </script>");
     }
 
@@ -89,19 +89,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($errors[$key] !== UPLOAD_ERR_OK) {
             die("<script>
                 alert('File upload failed for image $key with error code: " . $errors[$key] . "');
-                window.location.href = 'addItemPage.html';
+                window.location.href = 'CreateItems.html';
             </script>");
         }
 
-        // Validate MIME type (only allow JPEG or PNG)
-        $mimeType = $types[$key];
-        if (!in_array($mimeType, ['image/jpeg', 'image/png'])) {
-            die("<script>
-                alert('Invalid file type for image $key. Only JPEG and PNG images are allowed.');
-                window.location.href = 'addItemPage.html';
-            </script>");
-        }
-
+        // Remove "image/" from the MIME type
+        $mimeType = str_replace('image/', '', $types[$key]);
         // Read the binary data of the uploaded image
         $imageData = file_get_contents($tmpName);
         $imageSizeKB = $sizes[$key] / 1024; // Convert size to KB
@@ -129,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$stmt) {
             die("<script>
                 alert('Query preparation failed: " . $db->error . "');
-                window.location.href = 'addItemPage.html';
+                window.location.href = 'CreateItems.html';
             </script>");
         }
         $stmt->bind_param(
@@ -143,8 +136,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$stmt->execute()) {
             die("<script>
                 alert('Query execution failed for image $key: " . $stmt->error . "');
-                window.location.href = 'addItemPage.html';
+                window.location.href = 'CreateItems.html';
             </script>");
+        }
+        else {
+            echo "<script>
+                alert('Item added successfully!');
+                window.location.href = 'CreateItems.html';
+            </script>";
         }
     }
 } 
@@ -152,7 +151,7 @@ else
 {
     die("<script>
         alert('Invalid request method.');
-        window.location.href = 'addItemPage.html';
+        window.location.href = 'CreateItems.html';
     </script>");
 }
 ?>
