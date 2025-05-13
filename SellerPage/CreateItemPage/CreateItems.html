@@ -38,10 +38,10 @@
         <form name="sellerForm" enctype="multipart/form-data" action="addItem.php" method="post">
             <!-- HTML for text boxes for item name, item price and item postage -->
             <label for="itemTitle">Item Title:</label>
-            <input type="text" class="textbox" placeholder="Enter Item Title" name="itemTitle" value="Example Item Title" required><br>
+            <input type="text" class="textbox" placeholder="Enter Item Title" name="itemTitle" required><br>
 
             <label for="itemPrice">Item Price (GBP):</label> <!-- Prices must be entered in GBP -->
-            <input type="number" class="textbox itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price to 2 decimal places" name="itemPrice" value="19.99" required>
+            <input type="number" class="textbox itemPrice" step="0.01" min="0.00" placeholder="Enter Item Price to 2 decimal places" name="itemPrice" required>
             <br>
             <label for="itemPostage">Item Postage:</label>
             <select name="itemPostage" required>
@@ -73,8 +73,8 @@
             <br>
             <!-- HTML for text area for item description -->
             <label for="description">Item Description:</label>
-            <textarea class="textbox" placeholder="Enter Item Description..." id="description" name="description" required>Example description of the item.</textarea><br><br>
-            
+            <textarea class="textbox" placeholder="Enter Item Description..." id="description" name="description" required></textarea><br><br>
+            e item
             <!-- HTML for file upload for item images -->
             <!-- User must upload 2 images of item each with max size of 5MB -->
             <label for="imgFiles">Upload Images for Item (2 images required, max size for each image is 5MB):</label>
@@ -84,11 +84,11 @@
 
             <!-- HTML for letting user put start date & time and end date & time of auction -->
             <label for="startDate">Start Date:</label>
-            <input type="datetime-local" class="textbox startDate" id="startDate" name="startDate" value="2025-05-08T10:00" step="1" required>
+            <input type="datetime-local" class="textbox startDate" id="startDate" name="startDate" step="1" required>
             <br>
 
             <label for="endDate">End Date:</label>
-            <input type="datetime-local" class="textbox endDate" id="endDate" name="endDate" value="2025-05-15T10:00:00" step="1" required>
+            <input type="datetime-local" class="textbox endDate" id="endDate" name="endDate" step="1" required>
             <br>
             <br>
 
