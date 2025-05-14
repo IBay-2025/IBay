@@ -23,6 +23,9 @@
         elseif ($sort == 'userRating') {
             $sqlItemsSORTSection = "ORDER BY userRating DESC";    
         }
+        elseif ($sort == '') {
+            $sqlItemsSORTSection = "ORDER BY itemId DESC";    
+        }
         else {
             // Invalid sort option, handle error
             die(json_encode(["error" => "Invalid sort option."]));

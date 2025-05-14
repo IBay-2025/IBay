@@ -3,7 +3,7 @@ $(document).ready(function () {
   let allItems = []; // This will be populated with all fetched items
 
   // Fetch and display items initially
-  $.ajax({
+  /*$.ajax({
     url: "fetchItemsRow.php",
     method: "GET",
     dataType: "json",
@@ -15,7 +15,7 @@ $(document).ready(function () {
     error: function () {
       alert("Error loading items.");
     }
-  });
+  });*/
 
   // Function to load items by category (from first script)
   function loadItems(category, mySort, containerId) {
@@ -60,7 +60,7 @@ $(document).ready(function () {
 
   // Call loadItems for each category
   function loadAllItems(sortBy) {
-    $.ajax({
+    /*$.ajax({
       url: "fetchItemsRow.php",
       method: "GET",
       dataType: "json",
@@ -87,7 +87,7 @@ $(document).ready(function () {
               </div>
             `;
             $container.append(itemHTML);
-          });
+          });*/
 
           // Now call loadItems for each category with the sortBy parameter
           loadItems("Home", sortBy, "home-items");
@@ -98,16 +98,18 @@ $(document).ready(function () {
           loadItems("Sport & Leisure", sortBy, "sports-items");
           loadItems("Health & Beauty", sortBy, "health-items");
           loadItems("Collectables", sortBy, "collectables-items");
-        } else {
+      /*  } else {
           $container.html("<p>No items found.</p>");
         }
-      },
+      }
       error: function (xhr) {
         console.error("AJAX Error:", xhr.responseText);
         $('#all-items').html("<p>Failed to load all items.</p>");
       }
-    });
+    });*/
   }
+
+loadAllItems("");
 });
 
 //to use file to lad the page call loadAllItems("")
