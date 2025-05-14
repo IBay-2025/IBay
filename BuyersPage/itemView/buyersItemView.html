@@ -13,24 +13,23 @@
 <body>
 
     <div class="top-left-boxes"></div>
-        <div class="small-box-top"></div>
-        <div class="small-box-bottom"></div>
+        <div class="small-box-top"><img id="smallImg1" src="" style="width: 150px;"></div>
+        <div class="small-box-bottom"><img id="smallImg2" src="" style="width: 150px;"></div>
     </div>
 
     <main>
         <section id="item-details" class="section">
             <div class="item-container"></div>
-                <div class="item-image"></div>
+                <div class="item-image"><img id="mainImg" src="" style="width: 450px;"></div>
                 <div class="item-description">
-                    <h2>Item Title</h2>
-                    <p><strong>Price:</strong> $99.99</p>
-                    <p><strong>Description:</strong> This is a detailed description of the item. It includes all the features and specifications.</p>
-                    <p><strong>Condition:</strong> New</p>
-                    <p><strong>Expire date:</strong>3 days</p>
-                    <p><strong>Shipping time:</strong>2 days</p>
-                    <p><strong>Seller:</strong> John Doe</p>
-                    <p><strong>Seller's Rating:</strong> 4.5/5</p>
-                    <p><strong>Seller's Location:</strong> New York, NY</p>
+                    <h2 id="itemTitle"></h2>
+                    <p id="itemPrice"></p>
+                    <p id="itemDesc"></p>                    
+		    <p id="itemEndDate"></p>
+		    <p id="itemPostage"></p>
+                    <p id="itemSellerName"></p>
+                    <p id="itemRating"></p>
+                    <p id="itemLocation"></p>
                     
                     <button class="add-to-cart btn">Add to Cart</button>
                     <button class="buy-now btn">Buy Now</button>
@@ -42,6 +41,7 @@
         </section>
     </main>
 
-
+ 	<!-- Link to JavaScript file-->
+        <script type="text/javascript" src="viewItem.js"></script>
 </body>
 </html>
